@@ -5,7 +5,7 @@
  * next.config.ts converts and injects. Bump package.json when you cut a
  * version; nothing else needs touching.
  *
- * On screen this reads "V6.4-PROD". The folders stay VXX.YY, because a padded
+ * On screen this reads "V7.0-PROD". The folders stay VXX.YY, because a padded
  * name sorts correctly in a directory listing and this one does not. Only the
  * interface changed.
  */

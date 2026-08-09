@@ -4,9 +4,9 @@ import pkg from "./package.json" with { type: "json" };
 /**
  * The version shown in the footer comes from package.json and nowhere else.
  *
- * From V06.04 the interface reads "V6.4-PROD" rather than "V06.04". The two
+ * From V06.04 the interface reads "V7.0-PROD" rather than "V07.00". The two
  * describe the same build and answer different questions: the folder scheme
- * (webapp/V06.04, docs/V06.04) is a sortable archive name, and the padding
+ * (webapp/V07.00, docs/V07.00) is a sortable archive name, and the padding
  * exists so V05.09 files next to V06.00 in a directory listing. On screen that
  * padding buys nothing, and the -PROD suffix says which of the two dozen
  * folders in this repository is the one that is actually deployed.
@@ -16,7 +16,7 @@ import pkg from "./package.json" with { type: "json" };
  * package.json and forgets, which is exactly the failure this function existed
  * to prevent.
  *
- *   "6.4.0"  ->  "V6.4-PROD"
+ *   "7.0.0"  ->  "V7.0-PROD"
  */
 function displayVersion(semver: string): string {
   const [major = "0", minor = "0"] = semver.split(".");

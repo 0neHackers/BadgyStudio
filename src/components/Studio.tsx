@@ -641,8 +641,12 @@ export function Studio({ origin }: { origin: string }) {
         {/* What each button actually produces, for every format rather than
             only the one on screen, so the choice can be made before switching
             to it. */}
+        {/* Set bold throughout. These are the numbers somebody checks before
+            pressing a download button, so they are read rather than skimmed,
+            and bold at 50% ink reads as muddy rather than as emphasis: the
+            weight comes with a lift in contrast to pay for it. */}
         <dl
-          className="mt-3 flex flex-wrap gap-x-5 gap-y-1 font-[family-name:var(--font-mono)] text-ink/50"
+          className="mt-3 flex flex-wrap gap-x-5 gap-y-1 font-[family-name:var(--font-mono)] font-bold text-ink/70"
           style={{ fontSize: "0.77rem" }}
           data-export-sizes
         >
@@ -652,10 +656,9 @@ export function Studio({ origin }: { origin: string }) {
             return (
               <div key={option.value} className={here ? "text-ink" : undefined}>
                 <dt className="inline font-bold tracking-[0.12em]">
-                  {option.label.toUpperCase()}
-                  {here ? " ·" : " ·"}
+                  {option.label.toUpperCase()} ·
                 </dt>{" "}
-                <dd className="inline">
+                <dd className="inline font-bold">
                   {canvas.w}×{canvas.h} · 2× {canvas.w * 2}×{canvas.h * 2} · 3×{" "}
                   {canvas.w * 3}×{canvas.h * 3}
                 </dd>

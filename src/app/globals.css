@@ -407,12 +407,36 @@ a:focus-visible {
   will-change: transform;
 }
 
+/*
+  The drawn scene: sun, horizon, dunes, palms and the grid behind them.
+
+  V07.00 puts a slight blur on it. The scene is the light background the page
+  content sits on, and a fraction of a pixel of softness pushes it behind the
+  panels rather than competing with them, in the way the orbs already are.
+
+  1.6px, deliberately small. Past about 3px the palms stop reading as palms and
+  it becomes a smear; at 1px it is indistinguishable from no blur at all.
+
+  ONLY THIS ELEMENT
+
+  Not `.ambient`, which would blur the paper fill for no gain, and not the page.
+  The header, the banners and the footer draw their own opaque or frosted
+  backgrounds on top of this layer, so they are untouched by construction
+  rather than by an exception: the blur cannot reach a surface that is painted
+  over it.
+
+  `filter` on a fixed, composited layer is a GPU pass on one texture rather
+  than a per-frame cost, and this element already parallaxes, so it is in its
+  own layer regardless. The grain sits above it, unblurred, which is what keeps
+  the surface from looking like an out-of-focus photograph.
+*/
 .ambient-scene {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   opacity: 0.55;
+  filter: blur(1.6px);
 }
 
 .ambient-scene [data-depth] {
