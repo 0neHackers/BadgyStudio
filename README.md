@@ -1,7 +1,7 @@
 # Badgy Studio
 
 **All-in-One ID Card, Badge, & Frame Creator** — built for the HH Goa 2026 Open Trials.
-Version **V06.03**.
+Version **V06.04**, shown in the app as **V6.4-PROD**.
 
 Upload a photo, get a branded HH Goa 2026 graphic, download it, share it on X with
 **#FrameInGoa**. Nothing is uploaded to produce the image.
@@ -30,8 +30,14 @@ The full development history, every version and the test harness live in
 
 **Two ways back to a pass.**
 
-- `/passes` — every pass this browser has issued, re-renderable at 2× or 3×.
-- `/v/<serial>` — look a pass up by its number and recover the card.
+- `/passes` — every pass this browser has issued, re-renderable at 2× or 3×. Pages at
+  10 to 1000 per page, or all of them, with numbered pages above and below the list.
+- `/v/<serial>` — look a pass up by its number and recover the card. Shows the photo
+  stored with the pass and lets you replace, re-crop or remove it; the change is shared
+  with `/passes` and every later render, because both read one record.
+
+Downloads are offered at 2× and 3× everywhere, with the pixel dimensions of all three
+formats printed under the canvas.
 
 **What makes it more than a badge generator.** Pass numbers are deterministic and carry a
 check character, so a transposed pair fails validation offline. Contact fields have
@@ -104,7 +110,7 @@ Copy-Item .env.example .env.local
 
 | Variable | What it does | Without it |
 | -------- | ------------ | ---------- |
-| `NEXT_PUBLIC_SITE_URL` | The public origin, used to build absolute share and verify URLs. | The verify line printed inside the code reads `localhost`. Vercel fills the origin in on its own. |
+| `NEXT_PUBLIC_SITE_URL` | The public origin, used to build absolute share and verify URLs. | Locally the verify line inside the code reads `localhost`. On Vercel it falls back to whichever domain Vercel treats as canonical, which is **not always the one you are handing out** if the project has more than one. Set it in production and redeploy; it is compiled in at build time. |
 | `BLOB_READ_WRITE_TOKEN` | Enables `/s/<id>`, the share page whose OG image is the generated graphic. | Share to X still works: the native share sheet on mobile, download plus a pre-filled composer on desktop. Only the rich link preview is lost. |
 
 Deployment, hardening and access control are in
@@ -239,11 +245,11 @@ produces everything, as zip parts budgeted at 96 MB each.
 ## 8. Testing
 
 The verification harness is not in this folder, deliberately: it needs Playwright, which
-would make every deployment install a browser binary. It lives in `../webapp/V06.03/tools/`
+would make every deployment install a browser binary. It lives in `../webapp/V06.04/tools/`
 and every script takes a `--url`, so it can be pointed at the live deployment:
 
 ```bash
-cd ../webapp/V06.03
+cd ../webapp/V06.04
 npm install
 npx playwright install chromium
 node tools/verify-v0603.mjs     --url https://your-deployment.vercel.app
@@ -254,7 +260,7 @@ node tools/verify-css.mjs       --url https://your-deployment.vercel.app
 PowerShell is identical here, since these are all `node` and `npx` invocations:
 
 ```powershell
-cd ..\webapp\V06.03
+cd ..\webapp\V06.04
 npm install
 npx playwright install chromium
 node tools\verify-v0603.mjs     --url https://your-deployment.vercel.app
@@ -317,6 +323,25 @@ source of every version stays intact and `npm install` brings it back.
 find ../webapp -maxdepth 2 -name .next -type d -exec rm -rf {} +
 ```
 
+**`git push` says `Permission denied (publickey)`.**
+The remote is the SSH form and this machine has no key GitHub knows. Switch to HTTPS with
+`git remote set-url origin https://github.com/<owner>/<repo>.git` and push again; Git
+Credential Manager will open a browser.
+
+**`git push` says `remote: Repository not found` and never prompts you to log in.**
+A credential is cached for a different GitHub account, and GitHub returns 404 rather than
+403 for a private repo you cannot see. Clear it and push again:
+
+```powershell
+cmdkey /list | Select-String -Pattern github
+cmdkey /delete:git:https://github.com
+git push -u origin main
+```
+
+**The repository page shows 404 in the browser.**
+Normal for a private repo when you are signed out or signed in as an account without access.
+GitHub does this deliberately so private names do not leak.
+
 **`npm warn cleanup ... EPERM ... rmdir` on Windows.**
 File locking during npm's own tidy-up, not a fault in this project. The install succeeds;
 read the last lines. Usually a virus scanner, an open editor, or a running dev server.
@@ -333,14 +358,45 @@ export builds its own font embed stylesheet to avoid this; if it recurs, check
 
 ---
 
-## 10. Attribution
+## 10. Licence
 
-The three files in `public/brand` belong to Hacker House Goa and its organiser, not to this
-project. They are here because this is a badge generator for that event and the brief asks
-for an instantly recognisable identity. **If this code is reused for anything else, delete
-them.** See `public/brand/README.md`.
+**Copyright © 2026 0neHackers ([@shanzalfiroz](https://x.com/shanzalfiroz)). All rights
+reserved.**
 
-The sun, palm and perforation marks are drawn in code rather than copied, because the site's
-illustrations are original artwork rather than identity marks.
+This is **not** open source. No permission is granted to copy, modify, distribute, publish,
+sublicense or create derivative works from this source, in whole or in part, without written
+permission from the copyright holder.
+
+Deliberately not an OSS licence. An open licence cannot be taken back once granted, and this
+was built as a submission and a portfolio piece rather than as something to be forked. It can
+be opened later; it cannot be closed later.
+
+**What this does not do.** It does not stop anyone using the deployed site, which is the
+point of the deployment and what the task brief requires. It does not conceal the client
+bundle either, because a web app has to send its JavaScript to the browser. What it reserves
+is the right to the source, the design and the work, not the right to visit the page.
+
+### What this licence does not cover
+
+Three categories inside this folder are not mine to license, and the notice above does not
+extend to them.
+
+| What | Whose | Terms |
+| ---- | ----- | ----- |
+| `public/brand/hacker-house.png`, `goa-devanagari.svg`, `247pm-studio.svg` | Hacker House Goa and 2:47 PM Studio | Used to identify the event this was built for. **Delete them if this code is reused for anything else.** See `public/brand/README.md`. |
+| `public/fonts/CalSans-SemiBold.woff2` | Cal Sans | MIT |
+| `public/fonts/VictorMono-*.woff2`, `Imbue-*.woff2` | Victor Mono, Imbue | SIL OFL 1.1. The licence text must travel with the font files if they are redistributed. |
+
+Every npm dependency keeps its own licence. `npm ls --long` lists them; all are MIT or
+similarly permissive, and none impose terms on this project's own source.
+
+The sun, palm and perforation marks in `src/components/Marks.tsx` are drawn in code rather
+than copied. The event site's illustrations are original artwork rather than identity marks,
+and there is a difference between using someone's logo to identify their event and lifting
+their illustrator's work.
+
+*Not legal advice. If any of this matters commercially, have a lawyer read it.*
+
+---
 
 Built by **0neHackers** ([@shanzalfiroz](https://x.com/shanzalfiroz)).

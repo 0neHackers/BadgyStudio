@@ -372,6 +372,35 @@ export async function clearVault(): Promise<void> {
   announce();
 }
 
+/**
+ * Replaces the photo on an existing pass, or removes it when given null.
+ *
+ * Added in V06.04 so /v can update a photo. The record is the only thing that
+ * changes; the details, the accent and the serial are untouched, because the
+ * serial is a hash of the details and a photo has never been part of it.
+ * Changing a face must not change a pass number.
+ *
+ * Returns false when there is nothing to update or the write is refused, so a
+ * caller can say what happened rather than claiming success.
+ */
+export async function updatePassPhoto(id: string, photo: VaultPhoto | null): Promise<boolean> {
+  const existing = cache.find((entry) => entry.id === id);
+  if (!existing) return false;
+
+  const record: VaultPass = { ...existing, photo, updatedAt: Date.now() };
+  const written = await run("readwrite", (store) => store.put(record));
+  if (written === null) {
+    // A quota refusal on a photo update leaves the old photo in place, which is
+    // the honest outcome: nothing was lost, and the caller is told.
+    if (photo) noteQuotaPressure();
+    return false;
+  }
+
+  cache = cache.map((entry) => (entry.id === id ? record : entry));
+  announce();
+  return true;
+}
+
 /* ------------------------------------------------------------------ lookup */
 
 /** Exact match on the pass number, or on the bare body when no prefix is given. */

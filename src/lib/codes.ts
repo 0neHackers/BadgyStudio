@@ -120,6 +120,31 @@ export async function qrCode(value: string): Promise<CodeResult> {
 
 export type CodeKind = "datamatrix" | "qrcode";
 
+/**
+ * The two options, named once.
+ *
+ * WHY THIS EXISTS, AND IT IS NOT TIDINESS
+ *
+ * Every surface that offered this choice built its own array inline and wrote
+ * the QR value as `"qr"`. The encoder's value is `"qrcode"`, so `renderCode`
+ * fell through to its Data Matrix branch and the QR option produced a Data
+ * Matrix. Everywhere. From V06.02, when the choice was introduced, until
+ * V06.04, when this was found.
+ *
+ * The type should have caught it on the first keystroke. `Segmented` is
+ * generic over its value, so a `CodeKind[]` of options makes `"qr"` an error.
+ * Every call site defeated that by writing `onChange={(next) => set(next as
+ * CodeKind)}`, which widened the inference to `string` and turned a compile
+ * error into a silent wrong answer.
+ *
+ * So the options live here, typed, and no call site casts. A cast that exists
+ * to silence a type error is usually the type being right.
+ */
+export const CODE_OPTIONS: { value: CodeKind; label: string; sub: string }[] = [
+  { value: "datamatrix", label: "Data Matrix", sub: "denser" },
+  { value: "qrcode", label: "QR", sub: "any camera" },
+];
+
 export function renderCode(kind: CodeKind, value: string): Promise<CodeResult> {
   return kind === "qrcode" ? qrCode(value) : dataMatrix(value);
 }

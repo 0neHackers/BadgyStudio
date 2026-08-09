@@ -3,12 +3,24 @@ import pkg from "./package.json" with { type: "json" };
 
 /**
  * The version shown in the footer comes from package.json and nowhere else.
- * "2.0.0" becomes "V02.00": major maps to XX, minor maps to YY, and the patch
- * field is unused because the scheme only has two parts.
+ *
+ * From V06.04 the interface reads "V6.4-PROD" rather than "V06.04". The two
+ * describe the same build and answer different questions: the folder scheme
+ * (webapp/V06.04, docs/V06.04) is a sortable archive name, and the padding
+ * exists so V05.09 files next to V06.00 in a directory listing. On screen that
+ * padding buys nothing, and the -PROD suffix says which of the two dozen
+ * folders in this repository is the one that is actually deployed.
+ *
+ * Deliberately derived rather than typed. A hand-written display string is a
+ * second source of truth that drifts the first time somebody bumps
+ * package.json and forgets, which is exactly the failure this function existed
+ * to prevent.
+ *
+ *   "6.4.0"  ->  "V6.4-PROD"
  */
 function displayVersion(semver: string): string {
   const [major = "0", minor = "0"] = semver.split(".");
-  return `V${major.padStart(2, "0")}.${minor.padStart(2, "0")}`;
+  return `V${Number(major)}.${Number(minor)}-PROD`;
 }
 
 const nextConfig: NextConfig = {

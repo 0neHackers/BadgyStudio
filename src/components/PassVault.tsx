@@ -8,7 +8,7 @@ import { downloadBlob, fileNameFor, renderBlob } from "@/lib/export";
 import { yieldToBrowser } from "@/lib/schedule";
 import { releasePhoto } from "@/lib/image";
 import { DEFAULT_INPUT, type BadgeState, type FieldVisibility, type PhotoAsset } from "@/types";
-import type { CodeKind } from "@/lib/codes";
+import { CODE_OPTIONS, type CodeKind } from "@/lib/codes";
 import {
   clearVault,
   deletePass,
@@ -27,6 +27,13 @@ import { TeamFrame } from "@/components/TeamFrame";
 import { Stage } from "@/components/Stage";
 import { Button, Segmented, TextField, VisibilityPicker } from "@/components/ui/controls";
 import { EmailField } from "@/components/ContactFields";
+import {
+  DEFAULT_VAULT_PAGE_SIZE,
+  VaultPager,
+  pageCountFor,
+  perPageFor,
+  type VaultPageSize,
+} from "@/components/Pager";
 import { notifyError, notifyProgress, notifySuccess, notifyWarning } from "@/lib/toast";
 
 /**
@@ -113,6 +120,8 @@ export function PassVault({ origin }: { origin: string }) {
   const [checked, setChecked] = useState<Set<string>>(new Set());
   const [settings, setSettings] = useState<RenderSettings>(DEFAULT_RENDER);
   const [usage, setUsage] = useState<{ usage: number; quota: number } | null>(null);
+  const [pageSize, setPageSize] = useState<VaultPageSize>(DEFAULT_VAULT_PAGE_SIZE);
+  const [page, setPage] = useState(0);
 
   useEffect(() => {
     void loadVault();
@@ -131,13 +140,43 @@ export function PassVault({ origin }: { origin: string }) {
     );
   }, [passes, filter]);
 
+  /**
+   * The selection is everything ticked across the whole filtered set, not just
+   * this page. Paging is a way of looking at the list; it should not silently
+   * narrow what a batch re-issue covers, because somebody who ticked forty
+   * people over four pages meant forty.
+   */
   const selected = useMemo(
     () => shown.filter((pass) => checked.has(pass.id)),
     [shown, checked],
   );
 
+  /**
+   * Clamped during render rather than corrected in an effect.
+   *
+   * Deleting the last pass on the last page, or filtering the list down, can
+   * leave the index past the end. Fixing that with setState inside an effect is
+   * the cascading-render pattern React warns about, and it is the same lint
+   * error the roster pager hit in V04.02.
+   */
+  const pages = pageCountFor(pageSize, shown.length);
+  const currentPage = Math.min(page, pages - 1);
+  const perPage = perPageFor(pageSize, shown.length);
+  const visible = useMemo(
+    () => shown.slice(currentPage * perPage, currentPage * perPage + perPage),
+    [shown, currentPage, perPage],
+  );
+
   const open = passes.find((pass) => pass.id === openId) ?? null;
-  const allShownChecked = shown.length > 0 && shown.every((pass) => checked.has(pass.id));
+
+  /**
+   * Select-all is scoped to the page, and the label says which. Ticking a box
+   * marked "select all" and silently taking a thousand passes with it is not a
+   * choice anybody made. The count of everything ticked sits beside it, so what
+   * a batch would cover is never hidden.
+   */
+  const allVisibleChecked =
+    visible.length > 0 && visible.every((pass) => checked.has(pass.id));
 
   const toggle = (id: string) =>
     setChecked((current) => {
@@ -150,8 +189,8 @@ export function PassVault({ origin }: { origin: string }) {
   const toggleAll = () =>
     setChecked((current) => {
       const next = new Set(current);
-      if (allShownChecked) shown.forEach((pass) => next.delete(pass.id));
-      else shown.forEach((pass) => next.add(pass.id));
+      if (allVisibleChecked) visible.forEach((pass) => next.delete(pass.id));
+      else visible.forEach((pass) => next.add(pass.id));
       return next;
     });
 
@@ -230,7 +269,13 @@ export function PassVault({ origin }: { origin: string }) {
               label="Filter"
               value={filter}
               placeholder="Serial, name, team or handle"
-              onChange={(event) => setFilter(event.target.value)}
+              onChange={(event) => {
+                setFilter(event.target.value);
+                // A filter changes what the pages contain, so staying on page 4
+                // would show a different four passes, or none. Back to the
+                // first page, where the best matches are.
+                setPage(0);
+              }}
             />
           </div>
         ) : null}
@@ -258,12 +303,13 @@ export function PassVault({ origin }: { origin: string }) {
             <label className="flex cursor-pointer items-center gap-2" style={{ fontSize: "var(--step--1)" }}>
               <input
                 type="checkbox"
-                checked={allShownChecked}
+                checked={allVisibleChecked}
                 onChange={toggleAll}
                 className="h-5 w-5 accent-[#FF0080]"
-                aria-label="Select every listed pass"
+                aria-label={`Select the ${visible.length} passes on this page`}
               />
-              Select all {shown.length === passes.length ? "" : `${shown.length} shown`}
+              Select all {visible.length}
+              {pages > 1 ? " on this page" : shown.length === passes.length ? "" : " shown"}
             </label>
             {checked.size > 0 ? (
               <>
@@ -281,8 +327,21 @@ export function PassVault({ origin }: { origin: string }) {
             <BatchUnlock passes={selected} settings={settings} origin={origin} />
           ) : null}
 
-          <ul className="grid gap-2">
-            {shown.map((pass) => (
+          {/* Above and below, because a list you have scrolled to the end of
+              should not make you scroll back up to turn the page, and a list
+              you have just arrived at should not make you scroll down to
+              choose how much of it to see. */}
+          <VaultPager
+            idPrefix="vault-top"
+            total={shown.length}
+            pageSize={pageSize}
+            page={currentPage}
+            onPageSize={setPageSize}
+            onPage={setPage}
+          />
+
+          <ul className="grid gap-2" id="vault-list">
+            {visible.map((pass) => (
               <li key={pass.id} className="border-[3px] border-ink bg-paper">
                 <div className="flex flex-wrap items-center justify-between gap-2 px-3 py-2">
                   <label className="flex min-w-0 flex-1 cursor-pointer items-center gap-3">
@@ -333,6 +392,16 @@ export function PassVault({ origin }: { origin: string }) {
               </li>
             ))}
           </ul>
+
+          <VaultPager
+            idPrefix="vault-bottom"
+            total={shown.length}
+            pageSize={pageSize}
+            page={currentPage}
+            onPageSize={setPageSize}
+            onPage={setPage}
+            scrollTargetId="vault-list"
+          />
         </>
       ) : null}
 
@@ -393,11 +462,8 @@ function RenderControls({
           <Segmented
             ariaLabel="Code type"
             value={settings.codeKind}
-            options={[
-              { value: "datamatrix", label: "Data Matrix", sub: "dense" },
-              { value: "qr", label: "QR", sub: "familiar" },
-            ]}
-            onChange={(next) => set("codeKind", next as CodeKind)}
+            options={CODE_OPTIONS}
+            onChange={(next) => set("codeKind", next)}
           />
         </div>
 
@@ -698,7 +764,7 @@ function PassPanel({
             {state.format === "card" ? (
               <IdCard badge={badge} photo={photo} codeKind={settings.codeKind} />
             ) : state.format === "pfp" ? (
-              <PfpFrame badge={badge} photo={photo} />
+              <PfpFrame badge={badge} photo={photo} codeKind={settings.codeKind} />
             ) : (
               <TeamFrame badge={badge} photo={photo} members={[]} codeKind={settings.codeKind} />
             )}
@@ -903,7 +969,7 @@ function BatchUnlock({
             {current.pass.format === "card" ? (
               <IdCard badge={badge} photo={current.photo} codeKind={settings.codeKind} />
             ) : current.pass.format === "pfp" ? (
-              <PfpFrame badge={badge} photo={current.photo} />
+              <PfpFrame badge={badge} photo={current.photo} codeKind={settings.codeKind} />
             ) : (
               <TeamFrame
                 badge={badge}

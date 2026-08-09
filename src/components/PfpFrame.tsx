@@ -8,18 +8,41 @@ import type { Badge } from "@/lib/badge";
 import type { PhotoAsset } from "@/types";
 import { StudioMark, BannerLockup } from "@/components/Lockups";
 import { PalmRow } from "@/components/Marks";
+import { DataCode } from "@/components/CodeBlock";
+import type { CodeKind } from "@/lib/codes";
 
 /**
  * Format A, the profile frame. Square, 1024, which is what X wants for an
  * avatar. The photo runs full bleed and the branding hugs the edges, so
  * nothing lands on the face regardless of how the shot was framed.
+ *
+ * THE CODE IN THE BAND, ADDED IN V06.04
+ *
+ * Until now this was the one artboard with no scannable code, so the Data
+ * Matrix / QR choice in the vault and in bulk was inert for a BGX- pass: you
+ * could pick QR, nothing changed, and nothing said why. A control that
+ * silently does nothing is worse than one that is absent.
+ *
+ * It sits in the band rather than over the photo, at 96px, which is the same
+ * decision the rest of this frame makes: everything lands in the margins the
+ * subject never occupies. On white, because bwip-js quiet zones need contrast
+ * and the accent field does not reliably provide it across five colourways.
  */
 
 const S = CANVAS.pfp.w;
 const RING = 26;
 const BAND = 148;
+const CODE = 96;
 
-export function PfpFrame({ badge, photo }: { badge: Badge; photo: PhotoAsset | null }) {
+export function PfpFrame({
+  badge,
+  photo,
+  codeKind = "datamatrix",
+}: {
+  badge: Badge;
+  photo: PhotoAsset | null;
+  codeKind?: CodeKind;
+}) {
   const accent = badge.accentHex;
   const bandText = badge.onAccent;
   const subtitle = badge.handle || badge.name || EVENT.location;
@@ -228,6 +251,23 @@ export function PfpFrame({ badge, photo }: { badge: Badge; photo: PhotoAsset | n
           >
             {badge.passNumber}
           </div>
+        </div>
+
+        {/* The scannable record, carrying the same payload the card does. */}
+        <div
+          style={{
+            width: CODE,
+            height: CODE,
+            flex: "0 0 auto",
+            backgroundColor: COLORS.paper,
+            border: `5px solid ${COLORS.ink}`,
+            padding: 5,
+            display: "grid",
+            placeItems: "center",
+            overflow: "hidden",
+          }}
+        >
+          <DataCode value={badge.payload} kind={codeKind} className="h-full w-full" />
         </div>
       </div>
     </div>

@@ -41,14 +41,15 @@ import {
   type RosterSettings,
 } from "@/lib/roster";
 import type { BuilderInput, PhotoAsset, Visibility } from "@/types";
-import type { CodeKind } from "@/lib/codes";
+import { CODE_OPTIONS, type CodeKind } from "@/lib/codes";
 import { TIERS } from "@/lib/tiers";
 
 import { BatchArtboard } from "@/components/BatchArtboard";
 import { RosterTable } from "@/components/RosterTable";
 import { RosterDetail } from "@/components/RosterDetail";
 import { RosterBulkApply } from "@/components/RosterBulkApply";
-import { RosterGoTo, RosterPager, type PageSize } from "@/components/RosterPager";
+import { RosterGoTo } from "@/components/RosterPager";
+import { VaultPager, toVaultPageSize, type VaultPageSize } from "@/components/Pager";
 import { Stage } from "@/components/Stage";
 import { Button, Panel, Segmented, VisibilityPicker } from "@/components/ui/controls";
 
@@ -114,7 +115,7 @@ export function BulkStudio({ origin }: { origin: string }) {
    */
   const roster = useSyncExternalStore(subscribeRoster, rosterSnapshot, () => EMPTY_ROSTER);
   const { rows, format, settings, focusId, page, batchDefaults, notice } = roster;
-  const pageSize = roster.pageSize as PageSize;
+  const pageSize = toVaultPageSize(roster.pageSize);
   const checked = useMemo(() => new Set(roster.checked), [roster.checked]);
   const [codeKind, setCodeKind] = useState<CodeKind>("datamatrix");
 
@@ -129,7 +130,7 @@ export function BulkStudio({ origin }: { origin: string }) {
   const setNotice = (next: string) => patchRoster({ notice: next });
   const setFocusId = (next: string | null) => patchRoster({ focusId: next });
   const setPage = (next: number) => patchRoster({ page: next });
-  const setPageSize = (next: PageSize) => patchRoster({ pageSize: next });
+  const setPageSize = (next: VaultPageSize) => patchRoster({ pageSize: next });
   const setSettings = (next: RosterSettings | ((current: RosterSettings) => RosterSettings)) =>
     patchRoster({ settings: typeof next === "function" ? next(settings) : next });
   const setBatchDefaults = (
@@ -178,10 +179,26 @@ export function BulkStudio({ origin }: { origin: string }) {
     if (pageSize !== "all") setPage(Math.floor(index / perPage));
   };
 
-  /** Row number or serial. Returns a result so the form can report failure. */
+  /**
+   * Row number, serial or name. Returns a result so the form can report failure.
+   *
+   * Three kinds of query, tried in the order that makes a wrong guess least
+   * likely:
+   *
+   *   1. All digits, so a row number. This is why the roster field can do
+   *      something the header search cannot: the header has no list to count.
+   *   2. A serial, exact first and then as a fragment. A partial match is what
+   *      you get from reading four characters off a card across a desk, and the
+   *      header search already accepted the shapes a serial is printed in.
+   *   3. A name, handle or team. Matched as a fragment, case-insensitively.
+   *
+   * An ambiguous fragment goes to the first match and says how many there were,
+   * rather than refusing. Refusing would be correct and useless: the person
+   * typing can see the roster and can type more.
+   */
   const goTo = (query: string) => {
     const q = query.trim().toUpperCase();
-    if (!q) return { ok: false, message: "Enter a row number or a serial." };
+    if (!q) return { ok: false, message: "Enter a row number, a serial or a name." };
 
     if (/^\d+$/.test(q)) {
       const index = Number(q) - 1;
@@ -194,9 +211,47 @@ export function BulkStudio({ origin }: { origin: string }) {
       return { ok: true, message: "" };
     }
 
-    const index = rows.findIndex((row) => rowSerial(row) === q);
+    // A serial, whole or in part. The stored form has no prefix and no spaces,
+    // so the query is stripped the same way before comparing.
+    const bare = q.replace(/^(IDX|BGX|FMX)-?/, "").replace(/\s+/g, "");
+    let index = rows.findIndex((row) => rowSerial(row) === bare);
+
+    if (index === -1 && bare.length >= 3) {
+      const partial = rows.filter((row) => rowSerial(row).includes(bare));
+      if (partial.length > 0) {
+        index = rows.indexOf(partial[0]);
+        if (partial.length > 1) {
+          notifyInfo(
+            `${partial.length} serials contain ${bare}`,
+            "Opened the first. Type more of it to narrow.",
+          );
+        }
+      }
+    }
+
+    // A name, handle or team.
     if (index === -1) {
-      notifyWarning("No match", `Nothing in the roster carries ${q}.`);
+      const named = rows.filter((row) => {
+        const input = row.input;
+        return (
+          input.name.toUpperCase().includes(q) ||
+          input.username.toUpperCase().includes(q) ||
+          input.team.toUpperCase().includes(q)
+        );
+      });
+      if (named.length > 0) {
+        index = rows.indexOf(named[0]);
+        if (named.length > 1) {
+          notifyInfo(
+            `${named.length} rows match ${query.trim()}`,
+            "Opened the first. Type more of the name to narrow.",
+          );
+        }
+      }
+    }
+
+    if (index === -1) {
+      notifyWarning("No match", `No row number, serial or name matches ${query.trim()}.`);
       return { ok: false, message: "No match" };
     }
     focusAt(index);
@@ -614,7 +669,12 @@ export function BulkStudio({ origin }: { origin: string }) {
                   />
                 ) : null}
 
-                <RosterPager
+                {/* Above the table and below it, on the same shared control the
+                    saved-pass list uses. A roster you have scrolled to the end
+                    of should not make you scroll back up to turn the page. */}
+                <VaultPager
+                  idPrefix="roster-top"
+                  noun="Rows"
                   total={rows.length}
                   pageSize={pageSize}
                   page={safePage}
@@ -624,6 +684,7 @@ export function BulkStudio({ origin }: { origin: string }) {
 
                 {rows.length > 10 ? <RosterGoTo total={rows.length} onGo={goTo} /> : null}
 
+                <div id="roster-list">
                 <RosterTable
                   rows={visible}
                   offset={offset}
@@ -646,6 +707,18 @@ export function BulkStudio({ origin }: { origin: string }) {
                     setRows((current) => current.filter((row) => row.id !== id));
                     if (focusId === id) setFocusId(null);
                   }}
+                />
+                </div>
+
+                <VaultPager
+                  idPrefix="roster-bottom"
+                  noun="Rows"
+                  total={rows.length}
+                  pageSize={pageSize}
+                  page={safePage}
+                  onPageSize={setPageSize}
+                  onPage={setPage}
+                  scrollTargetId="roster-list"
                 />
               </div>
             </Panel>
@@ -780,11 +853,8 @@ export function BulkStudio({ origin }: { origin: string }) {
                     <Segmented
                       ariaLabel="Code type for every badge in the run"
                       value={codeKind}
-                      options={[
-                        { value: "datamatrix", label: "Data Matrix", sub: "denser" },
-                        { value: "qr", label: "QR", sub: "familiar" },
-                      ]}
-                      onChange={(next) => setCodeKind(next as CodeKind)}
+                      options={CODE_OPTIONS}
+                      onChange={setCodeKind}
                     />
                     <p className="mt-1.5 text-ink/55" style={{ fontSize: "0.77rem" }}>
                       Both carry the same payload. Data Matrix packs it into a smaller square; QR is

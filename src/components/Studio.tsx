@@ -134,13 +134,24 @@ export function Studio({ origin }: { origin: string }) {
     }).catch(() => {});
   }, [badge.serial, state, fullDetailsInCode]);
 
-  const handleDownload = async () => {
-    const job = notifyProgress("Rendering at full size", "3x, print weight");
+  /**
+   * Download at a chosen multiplier.
+   *
+   * Until V06.04 this was one button fixed at 3x, while the bulk studio and the
+   * vault both offered the choice. A card at 3x is 3240x4050 and several
+   * megabytes, which is right for print and wrong for a phone with a slow
+   * connection, so the person making their own badge was the only one who could
+   * not pick.
+   */
+  const handleDownload = async (pixelRatio: 2 | 3) => {
+    const size = CANVAS[state.format];
+    const pixels = `${size.w * pixelRatio}x${size.h * pixelRatio}`;
+    const job = notifyProgress(`Rendering at ${pixelRatio}x`, pixels);
     try {
-      const blob = await capture(3);
+      const blob = await capture(pixelRatio);
       downloadBlob(blob, fileNameFor(state.format, badge.passNumber));
       remember();
-      job.succeed("Saved to your downloads", `Kept as ${badge.passNumber} on this device.`);
+      job.succeed("Saved to your downloads", `${pixels}, kept as ${badge.passNumber} here.`);
     } catch {
       job.fail("The render failed", "Try again in a moment.");
     }
@@ -590,37 +601,68 @@ export function Studio({ origin }: { origin: string }) {
             {state.format === "card" ? (
               <IdCard badge={badge} photo={state.photo} codeKind={codeKind} />
             ) : state.format === "pfp" ? (
-              <PfpFrame badge={badge} photo={state.photo} />
+              <PfpFrame badge={badge} photo={state.photo} codeKind={codeKind} />
             ) : (
               <TeamFrame badge={badge} photo={state.photo} members={state.team} codeKind={codeKind} />
             )}
           </Stage>
         </div>
 
+        {/* Two download buttons rather than one, each naming the pixels it
+            produces. "Download PNG" said nothing about what came out, and 3x
+            was the only thing it ever produced. */}
         <div className="mt-4 flex flex-wrap items-center gap-3">
           <Button
             variant="primary"
-            onClick={handleDownload}
+            onClick={() => void handleDownload(2)}
             className="flex-1 sm:flex-none"
-            style={{ paddingInline: "clamp(1rem, 0.7rem + 1.6vw, 1.75rem)", fontSize: "var(--step-1)" }}
+            style={{ paddingInline: "clamp(0.9rem, 0.7rem + 1.2vw, 1.5rem)", fontSize: "var(--step-1)" }}
           >
-            Download PNG
+            Download 2×
+          </Button>
+          <Button
+            variant="primary"
+            onClick={() => void handleDownload(3)}
+            className="flex-1 sm:flex-none"
+            style={{ paddingInline: "clamp(0.9rem, 0.7rem + 1.2vw, 1.5rem)", fontSize: "var(--step-1)" }}
+          >
+            Download 3×
           </Button>
           <Button
             onClick={handleShare}
             className="flex-1 sm:flex-none"
-            style={{ paddingInline: "clamp(1rem, 0.7rem + 1.6vw, 1.75rem)", fontSize: "var(--step-1)" }}
+            style={{ paddingInline: "clamp(0.9rem, 0.7rem + 1.2vw, 1.5rem)", fontSize: "var(--step-1)" }}
           >
             Share to X
           </Button>
           <Button onClick={handleCopy}>Copy image</Button>
-          <span
-            className="font-[family-name:var(--font-mono)] tracking-[0.12em] text-ink/45"
-            style={{ fontSize: "0.77rem" }}
-          >
-            {size.w} × {size.h} · 3× ON DOWNLOAD
-          </span>
         </div>
+
+        {/* What each button actually produces, for every format rather than
+            only the one on screen, so the choice can be made before switching
+            to it. */}
+        <dl
+          className="mt-3 flex flex-wrap gap-x-5 gap-y-1 font-[family-name:var(--font-mono)] text-ink/50"
+          style={{ fontSize: "0.77rem" }}
+          data-export-sizes
+        >
+          {FORMAT_OPTIONS.map((option) => {
+            const canvas = CANVAS[option.value];
+            const here = option.value === state.format;
+            return (
+              <div key={option.value} className={here ? "text-ink" : undefined}>
+                <dt className="inline font-bold tracking-[0.12em]">
+                  {option.label.toUpperCase()}
+                  {here ? " ·" : " ·"}
+                </dt>{" "}
+                <dd className="inline">
+                  {canvas.w}×{canvas.h} · 2× {canvas.w * 2}×{canvas.h * 2} · 3×{" "}
+                  {canvas.w * 3}×{canvas.h * 3}
+                </dd>
+              </div>
+            );
+          })}
+        </dl>
 
         <p className="mt-4 max-w-[62ch] leading-relaxed text-ink/60" style={{ fontSize: "var(--step--1)" }}>
           Your photo and details never leave this browser. The card is drawn locally and only the

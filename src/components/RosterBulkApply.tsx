@@ -4,7 +4,7 @@ import { useState } from "react";
 import type { BuilderInput } from "@/types";
 import { TIERS } from "@/lib/tiers";
 import { Button, Segmented } from "@/components/ui/controls";
-import type { CodeKind } from "@/lib/codes";
+import { CODE_OPTIONS, type CodeKind } from "@/lib/codes";
 
 /**
  * Apply one value to many people at once.
@@ -90,11 +90,8 @@ export function RosterBulkApply({
         <Segmented
           ariaLabel="Code type for the run"
           value={codeKind}
-          options={[
-            { value: "datamatrix", label: "Data Matrix", sub: "denser" },
-            { value: "qr", label: "QR", sub: "familiar" },
-          ]}
-          onChange={(next) => onCodeKind(next as CodeKind)}
+          options={CODE_OPTIONS}
+          onChange={onCodeKind}
         />
       </div>
 

@@ -57,20 +57,66 @@ export function SerialSearch({ compact = false }: { compact?: boolean }) {
     return () => document.removeEventListener("pointerdown", onPointerDown);
   }, [open]);
 
-  const go = (value: string) => {
-    const parsed = parseSerial(value);
-    if (!parsed.valid) {
-      setError(
-        parsed.body.length === 10
-          ? "That check character does not agree. Retype it."
-          : "A pass number is ten characters, with or without the IDX-, BGX- or FMX- prefix.",
-      );
-      return;
-    }
+  const open_ = (canonical: string) => {
     setError("");
     setOpen(false);
-    notifyInfo("Opening the pass check", parsed.canonical);
-    router.push(`/v/${parsed.canonical}`);
+    notifyInfo("Opening the pass check", canonical);
+    router.push(`/v/${canonical}`);
+  };
+
+  /**
+   * A pass number, or a name.
+   *
+   * The suggestion list has matched on name and handle since V05.09, but
+   * pressing Find with a name in the box failed: `go` only ever parsed a
+   * serial, so anyone who typed "Ada" and hit Enter rather than clicking the
+   * suggestion got told a pass number is ten characters. The list was already
+   * showing them the answer.
+   *
+   * So a query that is not a serial now falls through to the same vault search
+   * the suggestions use. One match opens it. Several leave the list open rather
+   * than guessing, because picking the first alphabetically is not an answer to
+   * "which Ada".
+   *
+   * The serial path is untouched, including its two error messages, and this
+   * still bypasses nothing: every route out of here lands on the same gate at
+   * /v, which asks for the four details the serial was built from. Knowing a
+   * name gets you to the door, not through it.
+   */
+  const go = (value: string) => {
+    const typed = value.trim();
+    if (!typed) return;
+
+    const parsed = parseSerial(typed);
+    if (parsed.valid) {
+      open_(parsed.canonical);
+      return;
+    }
+
+    const looksLikeSerial = /^[A-Za-z]{3}-?[A-Za-z0-9\s]{6,}$/.test(typed) || /^[A-Za-z0-9\s]{9,13}$/.test(typed);
+
+    const matches = searchPasses(typed, 12);
+    if (matches.length === 1) {
+      open_(matches[0].id);
+      return;
+    }
+    if (matches.length > 1) {
+      setError("");
+      setOpen(true);
+      notifyInfo(`${matches.length} passes match`, "Pick one from the list.");
+      return;
+    }
+
+    // Nothing matched by name either, so answer the question they were most
+    // likely asking. A ten-character-shaped query that failed to parse is a
+    // mistyped serial; anything else is a name this browser has never issued.
+    setError(
+      looksLikeSerial
+        ? parsed.body.length === 10
+          ? "That check character does not agree. Retype it."
+          : "A pass number is ten characters, with or without the IDX-, BGX- or FMX- prefix."
+        : "No pass on this device matches that name. Search a pass number instead.",
+    );
   };
 
   const onKeyDown = (event: React.KeyboardEvent) => {
@@ -97,8 +143,21 @@ export function SerialSearch({ compact = false }: { compact?: boolean }) {
         }}
         className="flex items-stretch"
       >
+        {/*
+          "holder", not "name".
+
+          The obvious label for this control is "Find a pass by serial or name",
+          and it is wrong: an accessible name containing "name" collides with
+          every "Name" and "Full name" field in the app. Anything resolving a
+          control by its label, a screen reader user tabbing by name included,
+          reaches this box first because it is the earliest in the document.
+
+          It is not a cosmetic string. The first version of this change silently
+          redirected typing into the header search, which produced a different
+          serial and made the saved-pass gate refuse correct details.
+        */}
         <label className="sr-only" htmlFor="serial-search">
-          Find a pass by serial
+          Find a pass by number or holder
         </label>
         <input
           id="serial-search"
@@ -111,7 +170,7 @@ export function SerialSearch({ compact = false }: { compact?: boolean }) {
           }}
           onFocus={() => setOpen(true)}
           onKeyDown={onKeyDown}
-          placeholder="IDX-1A01A0K6A1"
+          placeholder="IDX-1A01A0K6A1 or a name"
           spellCheck={false}
           autoComplete="off"
           role="combobox"
