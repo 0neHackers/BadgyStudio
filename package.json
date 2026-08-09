@@ -1,0 +1,38 @@
+{
+  "name": "badgy-studio",
+  "version": "6.3.0",
+  "private": true,
+  "description": "Badgy Studio: all-in-one ID card, badge and frame creator.",
+  "scripts": {
+    "preflight": "node tools/preflight.mjs",
+    "predev": "node tools/preflight.mjs",
+    "dev": "next dev",
+    "prebuild": "node tools/preflight.mjs",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@vercel/blob": "^2.0.0",
+    "bwip-js": "^4.11.2",
+    "client-zip": "^2.5.0",
+    "heic-to": "^1.5.2",
+    "papaparse": "^5.5.4",
+    "html-to-image": "^1.11.13",
+    "next": "16.3.0",
+    "react": "19.2.0",
+    "react-dom": "19.2.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.3.3",
+    "@types/node": "^22.15.3",
+    "@types/papaparse": "^5.5.2",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "eslint": "^9.26.0",
+    "eslint-config-next": "16.3.0",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^5.8.3"
+  }
+}

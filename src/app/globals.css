@@ -1,0 +1,1191 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+   Typefaces.
+
+   Declared by hand rather than through next/font so the family names stay
+   stable. lib/export.ts builds its embed stylesheet from exactly these names
+   and files, which is what keeps a third-party stylesheet on the user's
+   machine from breaking the PNG.
+
+   Cal Sans      display, and the face the badge is set in.
+   Victor Mono   all data: serials, field values, codes. Matches hhgoa.com.
+   Imbue         site chrome only. Never appears on an exported graphic.
+--------------------------------------------------------------------------- */
+
+@font-face {
+  font-family: "Cal Sans";
+  src: url("/fonts/CalSans-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Victor Mono";
+  src: url("/fonts/VictorMono-400.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+}
+@font-face {
+  font-family: "Victor Mono";
+  src: url("/fonts/VictorMono-500.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: block;
+}
+@font-face {
+  font-family: "Victor Mono";
+  src: url("/fonts/VictorMono-700.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Imbue";
+  src: url("/fonts/Imbue-400.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Imbue";
+  src: url("/fonts/Imbue-600.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Imbue";
+  src: url("/fonts/Imbue-700.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  /* Palette lifted from hhgoa.com's own stylesheet. */
+  --color-ink: #000000;
+  --color-paper: #fffbe8;
+  --color-sun: #fee101;
+  --color-palm: #0b6839;
+  --color-palm-light: #128a4c;
+  --color-palm-deep: #074726;
+  --color-neon: #ff0080;
+  --color-salt: #ffffff;
+  --color-flag: #e40014;
+
+  --font-display: "Cal Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Victor Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-chrome: "Imbue", ui-serif, Georgia, serif;
+  --font-sans: "Cal Sans", ui-sans-serif, system-ui, sans-serif;
+
+  /* Springy but restrained. Overshoots ~4%, settles fast. */
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ---------------------------------------------------------------------------
+   Neo-brutalist primitives. Hard edges and hard shadows, no blur anywhere,
+   because a blurred shadow rasterises badly at a 3x export.
+--------------------------------------------------------------------------- */
+
+@utility slab-sm {
+  box-shadow: 3px 3px 0 0 var(--color-ink);
+}
+@utility slab {
+  box-shadow: 5px 5px 0 0 var(--color-ink);
+}
+@utility slab-lg {
+  box-shadow: clamp(6px, 1.2vw, 10px) clamp(6px, 1.2vw, 10px) 0 0 var(--color-ink);
+}
+
+:root {
+  color-scheme: light;
+
+  /* Overridden on .app-scale. Declared here so anything rendered outside the
+     scaled wrapper still resolves calc(100dvh / var(--app-zoom)) to 100dvh. */
+  --app-zoom: 1;
+
+  /* Fluid scale. Everything below is derived from these, so the layout
+     stretches continuously instead of stepping at breakpoints. */
+  /* Floor raised from 0.72rem in V06.00. The interface renders at 90%, so a
+     0.72rem floor was drawn at 10.4px; 0.79 lands just over 11px, which is
+     where small type stops being a squint. */
+  --step--1: clamp(0.79rem, 0.72rem + 0.2vw, 0.86rem);
+  --step-0: clamp(0.86rem, 0.82rem + 0.2vw, 0.96rem);
+  --step-1: clamp(1rem, 0.94rem + 0.3vw, 1.16rem);
+  --step-2: clamp(1.05rem, 0.95rem + 0.6vw, 1.7rem);
+  --step-3: clamp(1.3rem, 1.1rem + 1.1vw, 2.4rem);
+  --step-4: clamp(1.6rem, 1.1rem + 2.6vw, 4.75rem);
+
+  --gap-xs: clamp(0.35rem, 0.3rem + 0.25vw, 0.6rem);
+  --gap-sm: clamp(0.6rem, 0.5rem + 0.4vw, 0.9rem);
+  --gap-md: clamp(0.9rem, 0.7rem + 0.8vw, 1.5rem);
+  --gap-lg: clamp(1.2rem, 0.9rem + 1.4vw, 2.25rem);
+
+  /* 320px gets 10px of gutter; a 4K display gets 40px and a wider shell. */
+  --pad-shell: clamp(0.625rem, 0.35rem + 1.6vw, 2.5rem);
+  /* Container ceiling. Grows past the old 1500px cap on very wide screens so a
+     4096px display is not two thirds empty. */
+  --shell-max: clamp(20rem, 96vw, 2200px);
+  --border-w: clamp(2px, 0.35vw, 3px);
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  /* Transparent so the fixed ambient layer shows through. The layer itself
+     carries the paper colour. */
+  background-color: transparent;
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: var(--step-0);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overscroll-behavior-y: none;
+}
+
+/* Stops a long unbroken serial or email from pushing a panel wider than the
+   viewport on a narrow phone. */
+* {
+  min-width: 0;
+}
+
+/* Belt and braces at 320px: nothing may create a horizontal scrollbar. */
+html {
+  overflow-x: hidden;
+  /* Reserve the scrollbar gutter. Without it a page that grows tall enough to
+     scroll narrows the viewport by the scrollbar's width while the scaled
+     wrapper keeps the width it was laid out at, which showed up in the audit
+     as a 23px horizontal overflow on /v at 2560. It also stops the layout
+     shifting sideways when content crosses the height of the window. */
+  scrollbar-gutter: stable;
+}
+
+/* Shared shell, so every page agrees on its gutters and ceiling. */
+.shell {
+  width: 100%;
+  max-width: var(--shell-max);
+  margin-inline: auto;
+  padding-inline: var(--pad-shell);
+}
+
+/* Sticky footer. The bulk page is short before a roster loads, and the footer
+   was floating mid-viewport with the ambient layer showing beneath it.
+
+   The division by --app-zoom is not cosmetic. `.page` lives inside the 90%
+   wrapper, and CSS zoom scales used values, so a plain `100dvh` resolves to
+   the viewport height and is then drawn at 90% of it. The page came out a
+   tenth of the viewport short, and that strip of ambient layer under the
+   footer is what was wrong with /bulk and /v in V05.06. Dividing first means
+   the page occupies the viewport after the scale, which is what was meant. */
+.page {
+  display: flex;
+  min-height: calc(100dvh / var(--app-zoom));
+  flex-direction: column;
+}
+.page > footer {
+  margin-top: auto;
+}
+
+/* Roster switches layout rather than scrolling a wide table on a phone. */
+.roster-cards { display: block; }
+.roster-table { display: none; }
+@media (min-width: 720px) {
+  .roster-cards { display: none; }
+  .roster-table { display: block; }
+}
+
+/* Horizontal scrollers get momentum and a visible edge on touch. */
+.scroll-x {
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+
+/* Paper grain, drawn once and tiled. Keeps the flat fills from looking sterile. */
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.14;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+}
+
+.hatch {
+  background-image: repeating-linear-gradient(
+    45deg,
+    var(--color-ink) 0px,
+    var(--color-ink) 2px,
+    transparent 2px,
+    transparent 9px
+  );
+}
+
+/* ---------------------------------------------------------------------------
+   Motion. Small, fast, slightly springy. Nothing here runs longer than 260ms,
+   so it reads as responsiveness rather than decoration.
+--------------------------------------------------------------------------- */
+
+.press {
+  transition:
+    transform 180ms var(--ease-bounce),
+    box-shadow 180ms var(--ease-bounce),
+    background-color 140ms var(--ease-out-soft);
+}
+.press:hover:not(:disabled) {
+  transform: translate(-1px, -1px);
+}
+.press:active:not(:disabled) {
+  transform: translate(3px, 3px);
+  box-shadow: 1px 1px 0 0 var(--color-ink);
+  transition-duration: 70ms;
+}
+
+.lift {
+  transition:
+    transform 220ms var(--ease-bounce),
+    box-shadow 220ms var(--ease-bounce);
+}
+.lift:hover {
+  transform: translate(-2px, -2px);
+}
+
+.tap {
+  transition: transform 160ms var(--ease-bounce);
+}
+.tap:active {
+  transform: scale(0.96);
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.985);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(-2px) scale(1.004);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  65% {
+    transform: scale(1.03);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes nudge {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-3px);
+  }
+  75% {
+    transform: translateX(3px);
+  }
+}
+
+.rise-in {
+  animation: rise-in 320ms var(--ease-bounce) both;
+}
+.pop-in {
+  animation: pop-in 240ms var(--ease-bounce) both;
+}
+.nudge {
+  animation: nudge 260ms var(--ease-out-soft);
+}
+
+/* Panels cascade in on load. Cheap, and it makes the form feel assembled
+   rather than dumped. */
+.stagger > * {
+  animation: rise-in 340ms var(--ease-bounce) both;
+}
+.stagger > *:nth-child(1) {
+  animation-delay: 0ms;
+}
+.stagger > *:nth-child(2) {
+  animation-delay: 55ms;
+}
+.stagger > *:nth-child(3) {
+  animation-delay: 110ms;
+}
+.stagger > *:nth-child(4) {
+  animation-delay: 165ms;
+}
+.stagger > *:nth-child(5) {
+  animation-delay: 220ms;
+}
+/* /passes and /v have six and seven children respectively. Without these the
+   last items arrived with no delay while the ones above them were still
+   moving, which looks like a stutter rather than a cascade. */
+.stagger > *:nth-child(6) {
+  animation-delay: 275ms;
+}
+.stagger > *:nth-child(7) {
+  animation-delay: 330ms;
+}
+.stagger > *:nth-child(n + 8) {
+  animation-delay: 385ms;
+}
+
+input,
+select,
+textarea {
+  font-family: var(--font-mono);
+  transition:
+    border-color 140ms var(--ease-out-soft),
+    background-color 140ms var(--ease-out-soft),
+    transform 180ms var(--ease-bounce);
+}
+input:focus,
+textarea:focus {
+  transform: translateY(-1px);
+}
+
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+button:focus-visible,
+a:focus-visible {
+  outline: 3px solid var(--color-neon);
+  outline-offset: 2px;
+}
+
+::selection {
+  background: var(--color-sun);
+  color: var(--color-ink);
+}
+
+/* ---------------------------------------------------------------------------
+   Ambient layer.
+
+   Fixed, behind everything, z-index -1. Never inside an artboard, so it can
+   never reach an exported PNG. Only transform and opacity animate, so the whole
+   thing stays on the compositor.
+--------------------------------------------------------------------------- */
+
+.ambient {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+  background-color: var(--color-paper);
+}
+
+.ambient-orb {
+  position: absolute;
+  display: block;
+  border-radius: 50%;
+  translate: -50% -50%;
+  /* Large radii read as light rather than as a circle with a soft edge. */
+  filter: blur(110px);
+  will-change: transform;
+}
+
+.ambient-scene {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.55;
+}
+
+.ambient-scene [data-depth] {
+  will-change: transform;
+}
+
+/* Fine film grain over everything, so the flat fills and the blurs share a
+   surface instead of looking like two different pictures. */
+.ambient-grain {
+  position: absolute;
+  inset: 0;
+  opacity: 0.2;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23g)' opacity='0.5'/%3E%3C/svg%3E");
+}
+
+.ambient-ticker {
+  position: absolute;
+  top: 61.5%;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  opacity: 0.3;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.24em;
+  color: var(--color-ink);
+  white-space: nowrap;
+}
+
+/* Marquee. Two identical runs side by side, the pair translated by exactly half
+   its own width, which loops with no seam and no JS. */
+.ticker {
+  display: flex;
+  width: max-content;
+  animation: ticker 90s linear infinite;
+}
+.ticker-run {
+  padding-right: 2rem;
+  white-space: nowrap;
+}
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* Credit boxes in the footer. Fixed height and a shared border, so the row is
+   equal by construction rather than by matching font metrics. */
+.credit-box {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--credit-h, 26px);
+  padding-inline: 0.5rem;
+  border: 2px solid currentColor;
+  font-size: var(--credit-size, 0.72rem);
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* ---------------------------------------------------------------------------
+   Custom cursor. Only ever active on fine pointers with hover; see Cursor.tsx.
+--------------------------------------------------------------------------- */
+
+.has-cursor,
+.has-cursor a,
+.has-cursor button,
+.has-cursor label,
+.has-cursor [role="button"] {
+  cursor: none;
+}
+/* Typing is not a place for a novelty cursor. */
+.has-cursor input,
+.has-cursor textarea,
+.has-cursor select {
+  cursor: auto;
+}
+
+.cursor-dot,
+.cursor-ring {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0;
+  /* transform is written by Cursor.tsx every frame; nothing else may touch it,
+     and nothing here may transition a layout property. */
+  will-change: transform;
+}
+
+.cursor-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--color-neon);
+  border: 1px solid var(--color-ink);
+  transition: opacity 120ms linear;
+}
+
+.cursor-ring {
+  /* Fixed size. State changes ride on scale inside the transform, so they
+     never trigger layout. */
+  width: 30px;
+  height: 30px;
+  border: 2px solid var(--color-ink);
+  transition:
+    opacity 120ms linear,
+    background-color 150ms var(--ease-out-soft),
+    border-color 150ms var(--ease-out-soft);
+}
+.cursor-ring[data-state="active"] {
+  background-color: color-mix(in srgb, var(--color-sun) 35%, transparent);
+}
+.cursor-ring[data-state="crop"] {
+  border-color: var(--color-neon);
+  background-color: transparent;
+}
+
+/* Corner ticks, the same registration-mark language the badges use. */
+.cursor-tick {
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  border: 2px solid var(--color-neon);
+  opacity: 0;
+  transition: opacity 150ms var(--ease-out-soft);
+}
+.cursor-ring[data-state="crop"] .cursor-tick {
+  opacity: 1;
+}
+.cursor-tick-tl { top: -5px; left: -5px; border-right: 0; border-bottom: 0; }
+.cursor-tick-tr { top: -5px; right: -5px; border-left: 0; border-bottom: 0; }
+.cursor-tick-bl { bottom: -5px; left: -5px; border-right: 0; border-top: 0; }
+.cursor-tick-br { bottom: -5px; right: -5px; border-left: 0; border-top: 0; }
+
+/* Slow independent drifts, so the four never line up into a pattern.
+   Applied to a wrapper-free element, so they compose with the parallax
+   transform by using `translate` here and `transform` there. */
+@keyframes drift-a {
+  0%, 100% { translate: -50% -50%; }
+  50%      { translate: calc(-50% + 6vw) calc(-50% - 4vh); }
+}
+@keyframes drift-b {
+  0%, 100% { translate: -50% -50%; }
+  50%      { translate: calc(-50% - 5vw) calc(-50% + 5vh); }
+}
+@keyframes drift-c {
+  0%, 100% { translate: -50% -50%; }
+  50%      { translate: calc(-50% + 4vw) calc(-50% + 6vh); }
+}
+@keyframes drift-d {
+  0%, 100% { translate: -50% -50%; }
+  50%      { translate: calc(-50% - 6vw) calc(-50% - 5vh); }
+}
+
+.drift-a { animation: drift-a 34s ease-in-out infinite; }
+.drift-b { animation: drift-b 41s ease-in-out infinite; }
+.drift-c { animation: drift-c 29s ease-in-out infinite; }
+.drift-d { animation: drift-d 47s ease-in-out infinite; }
+
+/* Panels lift off the ambient layer instead of sitting flat on it. */
+.frost {
+  background-color: color-mix(in srgb, var(--color-paper) 82%, transparent);
+  backdrop-filter: blur(10px) saturate(1.15);
+  -webkit-backdrop-filter: blur(10px) saturate(1.15);
+}
+
+/* Sweep of light across a surface on hover. Purely decorative. */
+.sheen {
+  position: relative;
+  overflow: hidden;
+}
+.sheen::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 38%,
+    color-mix(in srgb, var(--color-salt) 55%, transparent) 50%,
+    transparent 62%
+  );
+  translate: -120% 0;
+  transition: translate 620ms var(--ease-out-soft);
+  pointer-events: none;
+}
+.sheen:hover::after {
+  translate: 120% 0;
+}
+
+/* The preview shrinks to fit the viewport but exports at its true pixel size. */
+.stage {
+  transform-origin: top left;
+  will-change: transform;
+}
+
+/* ---------------------------------------------------------------------------
+   Touch targets.
+
+   The layout audit found every control in the header between 26px and 39px
+   tall, which is comfortable with a mouse and awkward with a thumb. 44px is
+   the smallest that is reliably hittable, so a coarse pointer gets it.
+
+   A fine pointer keeps the denser header on purpose: a mouse does not need the
+   padding, and adding it everywhere would cost a third of a short laptop
+   viewport for no benefit.
+--------------------------------------------------------------------------- */
+@media (pointer: coarse) {
+  header a,
+  header button,
+  header input,
+  header select,
+  .tap,
+  .press,
+  input,
+  select,
+  textarea,
+  .roster-cards button,
+  .roster-cards a {
+    /* Divided by the interface scale for the same reason `.page` divides its
+       height: `zoom` shrinks used values, so a flat 44px is drawn at 39.6px
+       and the thumb is still short. */
+    min-height: calc(44px / var(--app-zoom));
+  }
+
+  /* A checkbox sits inside a label that is itself the target, so this is not
+     strictly required. It is here because a 20px box is a fiddly thing to aim
+     at even when the row around it works, and the audit was right to say so. */
+  input[type="checkbox"] {
+    width: calc(24px / var(--app-zoom));
+    height: calc(24px / var(--app-zoom));
+    min-height: 0;
+  }
+}
+
+/* Touch and small screens. Hover transforms do nothing useful without a
+   cursor, and they leave elements stuck in their hover state after a tap. */
+@media (hover: none) {
+  .press:hover:not(:disabled),
+  .lift:hover {
+    transform: none;
+  }
+  .sheen::after {
+    display: none;
+  }
+}
+
+@media (max-width: 420px) {
+  /* The offset shadows eat real width at 320px. */
+  .slab { box-shadow: 3px 3px 0 0 var(--color-ink); }
+  .slab-lg { box-shadow: 4px 4px 0 0 var(--color-ink); }
+}
+
+/* ---------------------------------------------------------------------------
+   Boot screen.
+
+   Covers the viewport while the fonts resolve, the brand marks are inlined and
+   the export stylesheet is built. See components/BootScreen.tsx for what it is
+   actually waiting on.
+
+   Everything here animates transform, opacity or stroke-dashoffset only, and
+   the whole thing is removed from the DOM once the app is up, so none of it
+   competes with a render afterwards.
+--------------------------------------------------------------------------- */
+
+.boot {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background-color: var(--color-palm);
+  /* Inert. Nothing here is clickable, focusable or in the accessibility tree. */
+  pointer-events: none;
+  user-select: none;
+}
+.boot[data-leaving="true"] {
+  animation: boot-out 420ms var(--ease-out-soft) both;
+}
+
+.boot-art {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Rays sweep out from the corner rather than appearing at full length. */
+.boot-ray {
+  transform-origin: 1056px 96px;
+  animation: boot-ray 2600ms var(--ease-out-soft) infinite;
+}
+@keyframes boot-ray {
+  0% { transform: scaleX(0.2) scaleY(0.2); opacity: 0; }
+  30% { opacity: 1; }
+  100% { transform: none; opacity: 0.1; }
+}
+
+/* The coast writes itself in, then drifts. 1 unit of dash per unit of path. */
+.boot-contour {
+  stroke-dasharray: 2200;
+  stroke-dashoffset: 2200;
+  animation:
+    boot-draw 1600ms var(--ease-out-soft) forwards,
+    boot-drift 9000ms ease-in-out infinite;
+}
+@keyframes boot-draw {
+  to { stroke-dashoffset: 0; }
+}
+@keyframes boot-drift {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(-26px); }
+}
+
+.boot-rosette {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: boot-spin 26s linear infinite;
+}
+.boot-rosette-alt {
+  animation-duration: 34s;
+  animation-direction: reverse;
+}
+@keyframes boot-spin {
+  to { rotate: 360deg; }
+}
+
+.boot-palm {
+  transform-box: fill-box;
+  transform-origin: bottom center;
+  animation: boot-sway 4200ms ease-in-out infinite alternate;
+}
+@keyframes boot-sway {
+  from { transform: rotate(-2.4deg); }
+  to { transform: rotate(2.4deg); }
+}
+
+.boot-mote {
+  animation-name: boot-mote;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+@keyframes boot-mote {
+  0% { transform: translateY(14px); opacity: 0; }
+  20% { opacity: 0.6; }
+  100% { transform: translateY(-70px); opacity: 0; }
+}
+
+.boot-perf {
+  animation: boot-perf 1800ms ease-in-out infinite;
+}
+@keyframes boot-perf {
+  0%, 100% { opacity: 0.15; }
+  50% { opacity: 0.9; }
+}
+
+/* The plate. Hard edges and a hard shadow, same language as every panel. */
+.boot-plate {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 0.5rem;
+  padding: clamp(1.1rem, 3vw, 2rem) clamp(1.4rem, 4vw, 2.6rem);
+  border: var(--border-w) solid var(--color-ink);
+  background: var(--color-paper);
+  box-shadow: 6px 6px 0 0 var(--color-ink);
+  text-align: center;
+  animation: boot-plate-in 620ms var(--ease-bounce) both;
+}
+@keyframes boot-plate-in {
+  from { opacity: 0; transform: translateY(14px) scale(0.94); }
+  60% { transform: translateY(-3px) scale(1.02); }
+  to { opacity: 1; transform: none; }
+}
+
+/* The event mark, then who runs it. Both are the real lockups the rest of the
+   app uses; the boot screen previously set "HH GOA 2026" in type instead. */
+.boot-organiser {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.24em;
+  color: color-mix(in srgb, var(--color-ink) 55%, transparent);
+}
+
+.boot-where {
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.16em;
+  opacity: 0.62;
+}
+
+.boot-title {
+  font-family: var(--font-chrome);
+  font-size: clamp(1.5rem, 5vw, 2.6rem);
+  line-height: 1;
+}
+.boot-sub {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.6;
+}
+
+.boot-rail {
+  position: relative;
+  width: min(58vw, 320px);
+  height: 12px;
+  margin-top: 0.35rem;
+  border: 2px solid var(--color-ink);
+  background: repeating-linear-gradient(
+    45deg,
+    color-mix(in srgb, var(--color-ink) 14%, transparent) 0 3px,
+    transparent 3px 8px
+  );
+  overflow: hidden;
+}
+/* Ink, not palm. The rail sits on cream inside a green room, and a green fill
+   on cream reads as texture rather than as progress. */
+.boot-rail-fill {
+  display: block;
+  height: 100%;
+  background: var(--color-ink);
+  border-right: 3px solid var(--color-sun);
+  transition: width 420ms var(--ease-out-soft);
+}
+
+.boot-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  letter-spacing: 0.1em;
+}
+.boot-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--color-neon);
+  animation: boot-pulse 900ms ease-in-out infinite;
+}
+@keyframes boot-pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(0.55); opacity: 0.4; }
+}
+
+/* Who built it, on its own line at the foot of the plate, separated by a rule
+   so it reads as a signature rather than as part of the event's billing. */
+.boot-credit {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 0.55rem;
+  padding-top: 0.55rem;
+  border-top: 2px solid color-mix(in srgb, var(--color-ink) 18%, transparent);
+}
+
+/* Microtext rule along the foot, the same trick the badges print. */
+.boot-micro {
+  position: absolute;
+  bottom: 5%;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  opacity: 0.34;
+  color: var(--color-paper);
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+}
+.boot-micro-run {
+  display: inline-block;
+  animation: boot-micro 42s linear infinite;
+}
+@keyframes boot-micro {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes boot-out {
+  to { opacity: 0; visibility: hidden; }
+}
+
+/* ---------------------------------------------------------------------------
+   The reveal.
+
+   The app is laid out from the first paint and only held at opacity 0, so the
+   stage has already measured itself and nothing reflows when it appears. The
+   overshoot is small on purpose: 1.4% is enough to read as arrival and not
+   enough to look like a modal.
+--------------------------------------------------------------------------- */
+
+.boot-hold {
+  opacity: 0;
+}
+
+/* ---------------------------------------------------------------------------
+   Notifications.
+
+   Bottom left, because the batch strip owns bottom right and two stacks
+   competing for one corner is worse than either. A sibling of the scaled
+   wrapper, like every other fixed overlay, since CSS zoom would otherwise make
+   a fixed element cover 90% of the viewport.
+--------------------------------------------------------------------------- */
+
+.toast-stack {
+  position: fixed;
+  left: clamp(0.6rem, 2vw, 1.4rem);
+  bottom: clamp(0.6rem, 2vw, 1.4rem);
+  z-index: 70;
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 0.5rem;
+  width: min(22rem, calc(100vw - 1.2rem));
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  pointer-events: none;
+}
+
+.toast-card {
+  pointer-events: auto;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: start;
+  gap: 0.55rem;
+  padding: 0.55rem 0.6rem;
+  border: var(--border-w) solid var(--color-ink);
+  box-shadow: 4px 4px 0 0 var(--color-ink);
+  animation: toast-in 260ms var(--ease-bounce) both;
+}
+
+@keyframes toast-in {
+  from { opacity: 0; transform: translateX(-14px) scale(0.96); }
+  60% { transform: translateX(2px) scale(1.01); }
+  to { opacity: 1; transform: none; }
+}
+
+.toast-glyph {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  margin-top: 1px;
+}
+
+.toast-body {
+  display: grid;
+  gap: 0.1rem;
+  min-width: 0;
+}
+
+.toast-kind {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: 0.65;
+}
+
+.toast-title {
+  font-size: 0.82rem;
+  line-height: 1.25;
+}
+
+.toast-detail {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  line-height: 1.3;
+  opacity: 0.75;
+  overflow-wrap: anywhere;
+}
+
+.toast-bar {
+  display: block;
+  height: 5px;
+  margin-top: 0.3rem;
+  border: 1px solid currentColor;
+}
+.toast-bar-fill {
+  display: block;
+  height: 100%;
+  background: currentColor;
+  transition: width 220ms var(--ease-out-soft);
+}
+
+.toast-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  color: inherit;
+  opacity: 0.6;
+}
+.toast-close:hover { opacity: 1; }
+
+.toast-spin {
+  transform-origin: center;
+  animation: toast-spin 900ms linear infinite;
+}
+@keyframes toast-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ---------------------------------------------------------------------------
+   Bulk run status strip.
+
+   A run outlives the page that started it, so off the bulk page this is the
+   only sign it is still going. Fixed, so it stays put on a long roster, and a
+   sibling of the scaled wrapper for the reason given under .app-scale.
+--------------------------------------------------------------------------- */
+
+.batch-strip {
+  position: fixed;
+  right: clamp(0.6rem, 2vw, 1.4rem);
+  bottom: clamp(0.6rem, 2vw, 1.4rem);
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.5rem 0.8rem;
+  border: var(--border-w) solid var(--color-ink);
+  background: var(--color-paper);
+  box-shadow: 4px 4px 0 0 var(--color-ink);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  animation: pop-in 240ms var(--ease-bounce) both;
+}
+.batch-strip-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--color-neon);
+  animation: boot-pulse 900ms ease-in-out infinite;
+}
+.batch-strip-rail {
+  display: block;
+  width: 84px;
+  height: 8px;
+  border: 2px solid var(--color-ink);
+}
+.batch-strip-fill {
+  display: block;
+  height: 100%;
+  background: var(--color-palm);
+  transition: width 220ms var(--ease-out-soft);
+}
+
+/* ---------------------------------------------------------------------------
+   Interface scale.
+
+   The whole app runs at 90%, which is what it looked like at 90% browser zoom
+   and is where the density was wanted: more of the roster on screen, and a
+   bigger preview stage next to the controls.
+
+   `zoom` rather than `transform: scale()` on purpose. A transform would leave
+   the layout at 100% and paint it smaller, so the page would keep its old
+   width and grow a scrollbar with 10% of empty space beside it. `zoom`
+   changes the used values, so the layout genuinely reflows into the space and
+   every clamp() and media query resolves against the size it is actually
+   drawn at.
+
+   Two things must stay outside it, and both do:
+     - Fixed overlays. `zoom` scales the containing block of a fixed element,
+       so the boot screen, the ambient layer and the custom cursor sit as
+       siblings of this wrapper rather than inside it.
+     - The artboards. An exported PNG must be exactly 1080x1350 at 1x whatever
+       the interface is doing. lib/export.ts pins `zoom: 1` on the capture
+       root, and html-to-image rebuilds the clone outside this subtree, so the
+       output is unaffected. This is asserted in the verification run rather
+       than assumed.
+--------------------------------------------------------------------------- */
+
+.app-scale {
+  zoom: 0.9;
+  /* Kept in step with the zoom above by hand, because anything inside that
+     needs viewport units has to divide by it. See .page. */
+  --app-zoom: 0.9;
+}
+
+/* Below ~420px the layout is already at its minimum and 90% starts costing
+   legibility rather than buying density. */
+@media (max-width: 420px) {
+  .app-scale {
+    zoom: 1;
+    --app-zoom: 1;
+  }
+}
+
+.boot-reveal {
+  animation: boot-reveal 520ms var(--ease-bounce) both;
+}
+/*
+   The overshoot is vertical only.
+   
+   It used to scale to 1.014 at the peak, which on a 2560px viewport is 36px
+   wider than the screen and produced a horizontal scrollbar for about a fifth
+   of a second on every page load. The layout audit caught it as a transient
+   H-SCROLL at the widest breakpoint.
+
+   Scaling up from 0.972 to 1 still reads as arrival, and the bounce now comes
+   from the translate and the easing rather than from growing past full size,
+   which nothing needs it to do.
+*/
+@keyframes boot-reveal {
+  from { opacity: 0; transform: translateY(12px) scale(0.972); }
+  62% { opacity: 1; transform: translateY(-4px) scale(1); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .boot,
+  .boot-plate,
+  .boot-reveal {
+    animation: none !important;
+  }
+  .boot-ray,
+  .boot-contour,
+  .boot-rosette,
+  .boot-palm,
+  .boot-mote,
+  .boot-perf,
+  .boot-micro-run,
+  .boot-dot,
+  .boot-kicker {
+    animation: none !important;
+    stroke-dashoffset: 0 !important;
+    opacity: 0.5;
+  }
+  .boot-hold {
+    opacity: 1;
+  }
+
+  .toast-card,
+  .toast-spin,
+  .ticker,
+  .ambient-scene [data-depth] {
+    animation: none !important;
+    transform: none !important;
+  }
+  .cursor-dot,
+  .cursor-ring {
+    display: none;
+  }
+
+  .ambient-orb {
+    animation: none !important;
+    transform: none !important;
+  }
+  .sheen::after {
+    display: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .press:hover,
+  .lift:hover,
+  .press:active,
+  .tap:active {
+    transform: none !important;
+  }
+}

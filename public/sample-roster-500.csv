@@ -1,0 +1,501 @@
+name,username,team,role,tier,project,dob,phone,email,photo
+Kavya Bhat,@kavyabhat,Low Tide,"Kotlin, Android",CREW,Lantern Bus,2001-10-18,+91 97603 74343,kavya.bhat@hey.com,kavya-bhat.jpg
+Trisha Rao,@trisharao82,Low Tide,"C, embedded",MENTOR,Monsoon Queue,1988-11-16,+91 92262 51187,trisha.rao@mailbox.dev,trisha-rao.jpg
+Naveen Pillai,@naveenpillai951,Half Awake,"Postgres, data",ALUMNI,Harbour Watch,1990-12-11,+91 72938 83066,naveen.pillai@hey.com,naveen-pillai.jpg
+Payal Kaur,@payalkaur897,Signal Chain,"Rust, infra",MENTOR,Sandbox Radio,1999-08-14,+91 72971 62268,payal.kaur@hey.com,payal-kaur.jpg
+Keshav Bakshi,@keshavbakshi,Kernel Panic,"Zig, systems",MENTOR,Beacon Mesh,2000-09-09,+91 97671 65045,keshav.bakshi@hey.com,keshav-bakshi.jpg
+Zain Sethi,@zainsethi,Night Shift,"Kotlin, Android",SPEAKER,Grep Wizard,2004-11-04,+91 93504 91567,zain.sethi@builder.io,zain-sethi.jpg
+Yamini Kulkarni,@yaminikulkarni234,Low Tide,"Figma, product design",BUILDER,Lantern Bus,1996-09-13,+91 91946 50321,yamini.kulkarni@hey.com,yamini-kulkarni.jpg
+Deepa Chauhan,@deepachauhan,Tide Pool,"Three.js, WebGL",RESIDENT,Drift Compiler,1988-01-05,+91 91484 88285,deepa.chauhan@builder.io,deepa-chauhan.jpg
+Girish Bakshi,@girishbakshi204,Deep Water,"Rust, WASM",BUILDER,Beacon Mesh,2001-09-22,+91 99729 14406,girish.bakshi@proton.me,girish-bakshi.jpg
+Tarun Yadav,@tarunyadav,Low Tide,"Figma, product design",BUILDER,Harbour Watch,1996-08-06,+91 83951 72802,tarun.yadav@example.com,tarun-yadav.jpg
+Mihir Bakshi,@mihirbakshi199,Kernel Panic,"Kubernetes, platform",RESIDENT,Tide Table,1990-01-15,+91 89026 81642,mihir.bakshi@example.com,mihir-bakshi.jpg
+Vidya Desai,@vidyadesai635,Salt Runners,"Scala, streaming",CREW,Sandbox Radio,1992-01-11,+91 91777 86423,vidya.desai@hey.com,vidya-desai.jpg
+Bhavya Bose,@bhavyabose,Reef Knot,"Kubernetes, platform",CREW,Harbour Watch,1997-02-14,+91 91907 30987,bhavya.bose@mailbox.dev,bhavya-bose.jpg
+Radha Shetty,@radhashetty,Tide Pool,"Kubernetes, platform",BUILDER,Kernel Kite,2000-01-04,+91 82758 19625,radha.shetty@example.com,radha-shetty.jpg
+Farhan Ghosh,@farhanghosh,Night Shift,"Rust, infra",BUILDER,Palm Proxy,1997-08-11,+91 99948 25908,farhan.ghosh@builder.io,farhan-ghosh.jpg
+Wasim Grover,@wasimgrover,Offshore Ops,"Kubernetes, platform",BUILDER,Kernel Kite,2001-10-11,+91 85034 88409,wasim.grover@mailbox.dev,wasim-grover.jpg
+Arjun Bajaj,@arjunbajaj200,Offshore Ops,"React, Next.js",BUILDER,Grep Wizard,2002-11-07,+91 85854 98949,arjun.bajaj@example.com,arjun-bajaj.jpg
+Nikhil Rana,@nikhilrana903,Monsoon Stack,"Solidity, EVM",BUILDER,Salt Ledger,2000-05-14,+91 87465 64275,nikhil.rana@example.com,nikhil-rana.jpg
+Latika Shetty,@latikashetty178,Deep Water,"Figma, product design",BUILDER,Deep Link,1997-08-06,+91 80675 78070,latika.shetty@builder.io,latika-shetty.jpg
+Trisha Gupta,@trishagupta,Deep Water,"Python, ML",MENTOR,Reef Index,1988-02-15,+91 91157 53311,trisha.gupta@builder.io,trisha-gupta.jpg
+Juhi Chatterjee,@juhichatterjee,Half Awake,"Solidity, EVM",RESIDENT,Lantern Bus,1994-02-20,+91 93462 46762,juhi.chatterjee@hey.com,juhi-chatterjee.jpg
+Mohit Joshi,@mohitjoshi,Deep Water,"Scala, streaming",RESIDENT,Drift Compiler,1991-07-06,+91 73474 99724,mohit.joshi@example.com,mohit-joshi.jpg
+Gauri Chatterjee,@gaurichatterje,Low Tide,"Zig, systems",RESIDENT,Null Router,1997-06-06,+91 78547 43570,gauri.chatterjee@example.com,gauri-chatterjee.jpg
+Ananya Pandey,@ananyapandey,Deep Water,"Three.js, WebGL",ALUMNI,Grep Wizard,1991-04-01,+91 80155 26124,ananya.pandey@example.com,ananya-pandey.jpg
+Leela Grover,@leelagrover,Half Awake,"Elixir, realtime",SPEAKER,Grep Wizard,2000-06-20,+91 77065 87864,leela.grover@builder.io,leela-grover.jpg
+Rhea Gupta,@rheagupta,Deep Water,"Postgres, data",RESIDENT,Sandbox Radio,1989-12-23,+91 84311 13101,rhea.gupta@proton.me,rhea-gupta.jpg
+Vivek Kaur,@vivekkaur,Low Tide,"C, embedded",SPEAKER,Palm Proxy,2006-01-18,+91 81222 35879,vivek.kaur@hey.com,vivek-kaur.jpg
+Ishita Gupta,@ishitagupta125,Low Tide,"React, Next.js",RESIDENT,Sandbox Radio,1997-01-14,+91 88944 26554,ishita.gupta@proton.me,ishita-gupta.jpg
+Qadir Malhotra,@qadirmalhotra795,Kernel Panic,"Kotlin, Android",SPEAKER,Salt Ledger,2005-01-22,+91 93503 80953,qadir.malhotra@fastmail.com,qadir-malhotra.jpg
+Leela Naidu,@leelanaidu,Monsoon Stack,"Kotlin, Android",RESIDENT,Drift Compiler,2005-08-14,+91 78644 51254,leela.naidu@mailbox.dev,leela-naidu.jpg
+Radha Patel,@radhapatel,Salt Runners,"Zig, systems",MENTOR,Palm Proxy,2004-12-11,+91 71843 96228,radha.patel@example.com,radha-patel.jpg
+Ira Chauhan,@irachauhan227,Monsoon Stack,"Postgres, data",BUILDER,Sandbox Radio,1995-09-27,+91 79036 55047,ira.chauhan@mailbox.dev,ira-chauhan.jpg
+Jaya Ghosh,@jayaghosh468,Reef Knot,"C, embedded",RESIDENT,Deep Link,1992-08-01,+91 81614 78580,jaya.ghosh@fastmail.com,jaya-ghosh.jpg
+Parth Iyer,@parthiyer,Terminal Velocity,"C, embedded",RESIDENT,Drift Compiler,1992-12-24,+91 73301 12405,parth.iyer@hey.com,parth-iyer.jpg
+Nandini Tandon,@nandinitandon45,Tide Pool,"Postgres, data",BUILDER,Harbour Watch,1993-09-04,+91 72802 28598,nandini.tandon@fastmail.com,nandini-tandon.jpg
+Latika Dutta,@latikadutta,Signal Chain,"React, Next.js",BUILDER,Kernel Kite,1993-05-10,+91 87732 47431,latika.dutta@proton.me,latika-dutta.jpg
+Pooja Malhotra,@poojamalhotra764,Night Shift,"Rust, WASM",CREW,Sandbox Radio,2005-03-24,+91 86914 13868,pooja.malhotra@mailbox.dev,pooja-malhotra.jpg
+Tarun Kohli,@tarunkohli29,Low Tide,"Zig, systems",BUILDER,Tide Table,1999-02-12,+91 79917 38336,tarun.kohli@hey.com,tarun-kohli.jpg
+Tanvi Sinha,@tanvisinha,Monsoon Stack,"Python, ML",ALUMNI,Beacon Mesh,1991-12-03,+91 82491 44415,tanvi.sinha@hey.com,tanvi-sinha.jpg
+Rishi Gupta,@rishigupta931,Reef Knot,"Python, ML",BUILDER,Reef Index,1999-11-27,+91 84940 86718,rishi.gupta@proton.me,rishi-gupta.jpg
+Rahul Reddy,@rahulreddy,Terminal Velocity,"Rust, WASM",SPEAKER,Drift Compiler,1995-03-11,+91 84175 76358,rahul.reddy@hey.com,rahul-reddy.jpg
+Vivek Bhat,@vivekbhat,Reef Knot,"Postgres, data",RESIDENT,Kernel Kite,2002-04-28,+91 92582 55684,vivek.bhat@proton.me,vivek-bhat.jpg
+Parth Tandon,@parthtandon158,Dune Buggy,"Kubernetes, platform",RESIDENT,Palm Proxy,1991-06-09,+91 97563 68254,parth.tandon@proton.me,parth-tandon.jpg
+Varun Kohli,@varunkohli,Cold Start,"Elixir, realtime",ALUMNI,Lantern Bus,1991-05-10,+91 88821 70039,varun.kohli@fastmail.com,varun-kohli.jpg
+Oorja Naidu,@oorjanaidu733,Beach Head,"Three.js, WebGL",RESIDENT,Beacon Mesh,2005-09-07,+91 83907 56158,oorja.naidu@fastmail.com,oorja-naidu.jpg
+Vivek Nair,@viveknair,Offshore Ops,"Rust, infra",RESIDENT,Drift Compiler,1992-06-19,+91 91114 90178,vivek.nair@builder.io,vivek-nair.jpg
+Yamini Chauhan,@yaminichauhan38,Cold Start,"Python, ML",BUILDER,Drift Compiler,1998-01-25,+91 76855 69917,yamini.chauhan@hey.com,yamini-chauhan.jpg
+Nisha Mishra,@nishamishra,Terminal Velocity,"Scala, streaming",BUILDER,Lantern Bus,1988-02-05,+91 80812 38757,nisha.mishra@builder.io,nisha-mishra.jpg
+Yash Sinha,@yashsinha,Signal Chain,"Go, distributed systems",BUILDER,Harbour Watch,2006-09-05,+91 73540 13709,yash.sinha@proton.me,yash-sinha.jpg
+Qadir Iyer,@qadiriyer751,Cold Start,"Rust, WASM",BUILDER,Palm Proxy,1998-06-11,+91 89877 72874,qadir.iyer@proton.me,qadir-iyer.jpg
+Bhavya Bhat,@bhavyabhat,Salt Runners,"Rust, WASM",RESIDENT,Beacon Mesh,1999-05-27,+91 94738 71094,bhavya.bhat@mailbox.dev,bhavya-bhat.jpg
+Jaya Banerjee,@jayabanerjee,Tide Pool,"C, embedded",RESIDENT,Grep Wizard,2001-02-24,+91 93660 94601,jaya.banerjee@fastmail.com,jaya-banerjee.jpg
+Esha Kohli,@eshakohli,Signal Chain,"Rust, WASM",BUILDER,Harbour Watch,2004-10-11,+91 86031 51672,esha.kohli@fastmail.com,esha-kohli.jpg
+Zoya Kapoor,@zoyakapoor575,Offshore Ops,"Node, GraphQL",ALUMNI,Harbour Watch,2004-07-21,+91 73485 89869,zoya.kapoor@mailbox.dev,zoya-kapoor.jpg
+Priya Yadav,@priyayadav439,Monsoon Stack,"Zig, systems",RESIDENT,Drift Compiler,2003-03-18,+91 92232 52698,priya.yadav@proton.me,priya-yadav.jpg
+Naveen Kohli,@naveenkohli,Zero Config,"Kubernetes, platform",BUILDER,Signal Fire,1992-03-26,+91 96735 96111,naveen.kohli@hey.com,naveen-kohli.jpg
+Ishita Iyer,@ishitaiyer306,Offshore Ops,"Kubernetes, platform",RESIDENT,Lantern Bus,1999-03-15,+91 75514 34454,ishita.iyer@fastmail.com,ishita-iyer.jpg
+Vikram Chatterjee,@vikramchatterj,Kernel Panic,"Rust, WASM",CREW,Tide Table,1997-04-17,+91 81932 81138,vikram.chatterjee@example.com,vikram-chatterjee.jpg
+Wasim Pandey,@wasimpandey332,Monsoon Stack,"Zig, systems",RESIDENT,Tide Table,1989-02-12,+91 89202 43715,wasim.pandey@proton.me,wasim-pandey.jpg
+Priya Menon,@priyamenon,Terminal Velocity,"Three.js, WebGL",BUILDER,Kernel Kite,1993-04-08,+91 91680 74822,priya.menon@mailbox.dev,priya-menon.jpg
+Jaya Menon,@jayamenon,Kernel Panic,"Three.js, WebGL",RESIDENT,Sandbox Radio,1994-05-21,+91 94196 67734,jaya.menon@hey.com,jaya-menon.jpg
+Tara Chauhan,@tarachauhan918,Zero Config,"Swift, iOS",RESIDENT,Null Router,1999-12-22,+91 90387 30718,tara.chauhan@example.com,tara-chauhan.jpg
+Aman Joshi,@amanjoshi,Zero Config,"Three.js, WebGL",RESIDENT,Signal Fire,1996-05-24,+91 81967 62206,aman.joshi@example.com,aman-joshi.jpg
+Zain Rana,@zainrana279,Half Awake,"Rust, WASM",ALUMNI,Packet Garden,1992-09-08,+91 81763 69771,zain.rana@builder.io,zain-rana.jpg
+Tara Tandon,@taratandon714,Beach Head,"Node, GraphQL",ALUMNI,Null Router,2002-08-12,+91 87894 78864,tara.tandon@hey.com,tara-tandon.jpg
+Aditya Banerjee,@adityabanerjee82,Salt Runners,"Go, distributed systems",BUILDER,Monsoon Queue,2006-02-13,+91 96186 94602,aditya.banerjee@hey.com,aditya-banerjee.jpg
+Vani Mishra,@vanimishra22,Monsoon Stack,"Elixir, realtime",RESIDENT,Packet Garden,2000-02-06,+91 87523 43416,vani.mishra@example.com,vani-mishra.jpg
+Meera Reddy,@meerareddy,Low Tide,"Elixir, realtime",BUILDER,Anchor Cache,2003-04-11,+91 93493 71429,meera.reddy@fastmail.com,meera-reddy.jpg
+Ira Naidu,@iranaidu881,Beach Head,"Three.js, WebGL",RESIDENT,Reef Index,1993-08-07,+91 95191 24905,ira.naidu@hey.com,ira-naidu.jpg
+Yamini Tandon,@yaminitandon542,Night Shift,"Rust, WASM",CREW,Coast Guard,1989-09-15,+91 95709 28387,yamini.tandon@proton.me,yamini-tandon.jpg
+Dev Rana,@devrana785,Kernel Panic,"Rust, infra",RESIDENT,Harbour Watch,1993-09-04,+91 88440 58298,dev.rana@mailbox.dev,dev-rana.jpg
+Radha Reddy,@radhareddy,Dune Buggy,"Postgres, data",MENTOR,Packet Garden,2001-07-01,+91 78005 35774,radha.reddy@example.com,radha-reddy.jpg
+Lakshmi Menon,@lakshmimenon,Half Awake,"Go, distributed systems",RESIDENT,Grep Wizard,1994-12-27,+91 90672 83707,lakshmi.menon@example.com,lakshmi-menon.jpg
+Utkarsh Bajaj,@utkarshbajaj,Half Awake,"Figma, product design",MENTOR,Harbour Watch,1989-04-21,+91 91338 73105,utkarsh.bajaj@example.com,utkarsh-bajaj.jpg
+Payal Patel,@payalpatel67,Deep Water,"Swift, iOS",RESIDENT,Grep Wizard,2003-05-03,+91 99019 81634,payal.patel@mailbox.dev,payal-patel.jpg
+Keshav Rana,@keshavrana,Cold Start,"Rust, WASM",MENTOR,Lantern Bus,1999-04-18,+91 82877 70820,keshav.rana@example.com,keshav-rana.jpg
+Ira Iyer,@iraiyer395,Terminal Velocity,"Figma, product design",BUILDER,Salt Ledger,1993-04-06,+91 88323 36130,ira.iyer@hey.com,ira-iyer.jpg
+Zoya Naidu,@zoyanaidu661,Offshore Ops,"Figma, product design",RESIDENT,Sandbox Radio,1990-12-25,+91 74269 84303,zoya.naidu@hey.com,zoya-naidu.jpg
+Tanvi Bhat,@tanvibhat563,Low Tide,"Kubernetes, platform",RESIDENT,Coast Guard,1990-12-16,+91 90619 64870,tanvi.bhat@fastmail.com,tanvi-bhat.jpg
+Mohit Dutta,@mohitdutta,Half Awake,"Go, distributed systems",SPEAKER,Tide Table,1996-04-04,+91 82361 42080,mohit.dutta@proton.me,mohit-dutta.jpg
+Sameer Grover,@sameergrover,Offshore Ops,"C, embedded",SPEAKER,Tide Table,1988-06-24,+91 75751 70055,sameer.grover@hey.com,sameer-grover.jpg
+Aditya Rao,@adityarao,Offshore Ops,"Zig, systems",CREW,Beacon Mesh,1991-02-05,+91 70130 90346,aditya.rao@hey.com,aditya-rao.jpg
+Sana Kulkarni,@sanakulkarni258,Night Shift,"Figma, product design",BUILDER,Signal Fire,2000-11-21,+91 70164 68206,sana.kulkarni@hey.com,sana-kulkarni.jpg
+Kavya Singh,@kavyasingh332,Dune Buggy,"Go, distributed systems",MENTOR,Drift Compiler,2002-08-24,+91 97225 48980,kavya.singh@proton.me,kavya-singh.jpg
+Utkarsh Mishra,@utkarshmishra303,Beach Head,"Solidity, EVM",RESIDENT,Lantern Bus,1988-04-07,+91 92906 48596,utkarsh.mishra@fastmail.com,utkarsh-mishra.jpg
+Oorja Mehta,@oorjamehta,Beach Head,"Solidity, EVM",MENTOR,Reef Index,2000-03-20,+91 80985 94481,oorja.mehta@hey.com,oorja-mehta.jpg
+Naveen Joshi,@naveenjoshi,Signal Chain,"Scala, streaming",BUILDER,Coast Guard,1996-06-28,+91 84816 41793,naveen.joshi@mailbox.dev,naveen-joshi.jpg
+Esha Shetty,@eshashetty636,Zero Config,"C, embedded",RESIDENT,Deep Link,2006-03-15,+91 82293 93409,esha.shetty@builder.io,esha-shetty.jpg
+Ishita Mishra,@ishitamishra37,Beach Head,"Scala, streaming",RESIDENT,Deep Link,1995-12-21,+91 98896 80106,ishita.mishra@hey.com,ishita-mishra.jpg
+Omkar Mishra,@omkarmishra,Half Awake,"Postgres, data",BUILDER,Tide Table,2001-09-14,+91 82694 91633,omkar.mishra@proton.me,omkar-mishra.jpg
+Ira Bajaj,@irabajaj,Half Awake,"Rust, infra",RESIDENT,Kernel Kite,1993-08-20,+91 82897 71981,ira.bajaj@mailbox.dev,ira-bajaj.jpg
+Sahil Sethi,@sahilsethi31,Terminal Velocity,"Python, ML",RESIDENT,Coast Guard,1991-08-20,+91 81370 93351,sahil.sethi@hey.com,sahil-sethi.jpg
+Aditya Pandey,@adityapandey318,Night Shift,"Python, ML",CREW,Palm Proxy,1992-08-21,+91 83561 23047,aditya.pandey@fastmail.com,aditya-pandey.jpg
+Neha Desai,@nehadesai,Reef Knot,"Elixir, realtime",BUILDER,Packet Garden,1990-06-08,+91 74895 68112,neha.desai@builder.io,neha-desai.jpg
+Aditya Bajaj,@adityabajaj,Kernel Panic,"Kubernetes, platform",RESIDENT,Monsoon Queue,2001-02-15,+91 86314 18040,aditya.bajaj@builder.io,aditya-bajaj.jpg
+Yamini Ghosh,@yaminighosh,Salt Runners,"Three.js, WebGL",RESIDENT,Null Router,1996-12-18,+91 87169 42515,yamini.ghosh@builder.io,yamini-ghosh.jpg
+Neha Ghosh,@nehaghosh,Night Shift,"Kubernetes, platform",BUILDER,Anchor Cache,1996-07-26,+91 73353 39678,neha.ghosh@proton.me,neha-ghosh.jpg
+Sneha Pandey,@snehapandey,Terminal Velocity,"Node, GraphQL",RESIDENT,Anchor Cache,1995-12-27,+91 89819 78649,sneha.pandey@mailbox.dev,sneha-pandey.jpg
+Hina Pandey,@hinapandey568,Deep Water,"Zig, systems",BUILDER,Deep Link,1996-04-23,+91 95337 87406,hina.pandey@builder.io,hina-pandey.jpg
+Manish Ghosh,@manishghosh,Signal Chain,"Node, GraphQL",RESIDENT,Reef Index,1988-04-20,+91 89494 54254,manish.ghosh@fastmail.com,manish-ghosh.jpg
+Tarun Gupta,@tarungupta,Tide Pool,"Three.js, WebGL",BUILDER,Coast Guard,1991-06-28,+91 96990 66437,tarun.gupta@fastmail.com,tarun-gupta.jpg
+Utkarsh Tandon,@utkarshtandon386,Half Awake,"Rust, infra",SPEAKER,Coast Guard,1999-05-26,+91 85722 11313,utkarsh.tandon@proton.me,utkarsh-tandon.jpg
+Parth Yadav,@parthyadav23,Signal Chain,"Scala, streaming",ALUMNI,Grep Wizard,1991-06-14,+91 78572 60322,parth.yadav@proton.me,parth-yadav.jpg
+Kabir Sharma,@kabirsharma59,Terminal Velocity,"Kotlin, Android",RESIDENT,Sandbox Radio,2005-08-04,+91 92146 90285,kabir.sharma@hey.com,kabir-sharma.jpg
+Girish Mishra,@girishmishra129,Low Tide,"Three.js, WebGL",RESIDENT,Null Router,1991-02-19,+91 98651 60875,girish.mishra@example.com,girish-mishra.jpg
+Pooja Trivedi,@poojatrivedi,Night Shift,"C, embedded",RESIDENT,Sandbox Radio,2005-11-27,+91 96009 67827,pooja.trivedi@mailbox.dev,pooja-trivedi.jpg
+Vikram Pandey,@vikrampandey273,Offshore Ops,"Postgres, data",BUILDER,Null Router,2002-10-14,+91 96913 72651,vikram.pandey@builder.io,vikram-pandey.jpg
+Varun Sharma,@varunsharma799,Low Tide,"Kubernetes, platform",RESIDENT,Drift Compiler,2002-09-20,+91 74939 36942,varun.sharma@proton.me,varun-sharma.jpg
+Manish Kaur,@manishkaur105,Zero Config,"Figma, product design",RESIDENT,Sandbox Radio,2000-02-28,+91 70328 58109,manish.kaur@hey.com,manish-kaur.jpg
+Divya Banerjee,@divyabanerjee,Zero Config,"Elixir, realtime",RESIDENT,Anchor Cache,2005-09-04,+91 97005 81239,divya.banerjee@example.com,divya-banerjee.jpg
+Harsh Yadav,@harshyadav,Monsoon Stack,"Solidity, EVM",RESIDENT,Lantern Bus,1996-11-04,+91 82790 42948,harsh.yadav@hey.com,harsh-yadav.jpg
+Yamini Kapoor,@yaminikapoor778,Offshore Ops,"TypeScript, fullstack",BUILDER,Signal Fire,1997-09-02,+91 88199 55239,yamini.kapoor@mailbox.dev,yamini-kapoor.jpg
+Nisha Chauhan,@nishachauhan,Salt Runners,"C, embedded",RESIDENT,Monsoon Queue,2000-12-04,+91 76810 50230,nisha.chauhan@example.com,nisha-chauhan.jpg
+Lakshmi Pandey,@lakshmipandey323,Signal Chain,"C, embedded",RESIDENT,Grep Wizard,1990-05-25,+91 84254 21806,lakshmi.pandey@mailbox.dev,lakshmi-pandey.jpg
+Anjali Kohli,@anjalikohli322,Zero Config,"Rust, infra",BUILDER,Palm Proxy,1991-05-16,+91 87066 63991,anjali.kohli@fastmail.com,anjali-kohli.jpg
+Vivek Kohli,@vivekkohli,Cold Start,"React, Next.js",RESIDENT,Beacon Mesh,2003-12-14,+91 72041 91966,vivek.kohli@fastmail.com,vivek-kohli.jpg
+Kabir Bajaj,@kabirbajaj,Half Awake,"Postgres, data",BUILDER,Null Router,1988-07-15,+91 92353 16856,kabir.bajaj@fastmail.com,kabir-bajaj.jpg
+Sameer Iyer,@sameeriyer888,Reef Knot,"Postgres, data",RESIDENT,Sandbox Radio,1991-05-04,+91 77961 65400,sameer.iyer@mailbox.dev,sameer-iyer.jpg
+Yash Banerjee,@yashbanerjee,Dune Buggy,"Rust, infra",RESIDENT,Harbour Watch,2003-06-06,+91 82902 94233,yash.banerjee@mailbox.dev,yash-banerjee.jpg
+Anjali Sinha,@anjalisinha315,Kernel Panic,"C, embedded",RESIDENT,Deep Link,2005-07-07,+91 72930 61975,anjali.sinha@builder.io,anjali-sinha.jpg
+Jaya Joshi,@jayajoshi,Reef Knot,"Node, GraphQL",SPEAKER,Reef Index,1998-09-03,+91 98042 35498,jaya.joshi@fastmail.com,jaya-joshi.jpg
+Mihir Chatterjee,@mihirchatterje180,Cold Start,"Kotlin, Android",CREW,Deep Link,2002-08-02,+91 78982 48033,mihir.chatterjee@fastmail.com,mihir-chatterjee.jpg
+Divya Iyer,@divyaiyer910,Dune Buggy,"Elixir, realtime",BUILDER,Null Router,2000-09-17,+91 84139 51212,divya.iyer@builder.io,divya-iyer.jpg
+Divya Gupta,@divyagupta,Deep Water,"Python, ML",BUILDER,Harbour Watch,1992-04-11,+91 96538 85644,divya.gupta@proton.me,divya-gupta.jpg
+Harsh Pillai,@harshpillai,Deep Water,"Rust, infra",BUILDER,Salt Ledger,2006-05-25,+91 85763 46495,harsh.pillai@builder.io,harsh-pillai.jpg
+Girish Reddy,@girishreddy,Monsoon Stack,"Node, GraphQL",MENTOR,Coast Guard,1988-03-13,+91 73042 91019,girish.reddy@proton.me,girish-reddy.jpg
+Oorja Bajaj,@oorjabajaj,Night Shift,"Go, distributed systems",RESIDENT,Tide Table,1989-11-11,+91 90798 27179,oorja.bajaj@example.com,oorja-bajaj.jpg
+Rohan Bakshi,@rohanbakshi18,Low Tide,"Figma, product design",SPEAKER,Kernel Kite,1992-08-07,+91 77171 15084,rohan.bakshi@proton.me,rohan-bakshi.jpg
+Utkarsh Iyer,@utkarshiyer319,Reef Knot,"Figma, product design",BUILDER,Packet Garden,2001-12-13,+91 97969 20173,utkarsh.iyer@example.com,utkarsh-iyer.jpg
+Sana Naidu,@sananaidu85,Terminal Velocity,"Rust, infra",RESIDENT,Reef Index,2004-04-02,+91 71631 50030,sana.naidu@example.com,sana-naidu.jpg
+Yash Sharma,@yashsharma,Signal Chain,"Solidity, EVM",RESIDENT,Monsoon Queue,1990-07-16,+91 73230 54198,yash.sharma@proton.me,yash-sharma.jpg
+Aman Tandon,@amantandon45,Terminal Velocity,"Kubernetes, platform",RESIDENT,Grep Wizard,2004-12-03,+91 95636 29628,aman.tandon@hey.com,aman-tandon.jpg
+Utkarsh Chauhan,@utkarshchauhan347,Reef Knot,"Solidity, EVM",BUILDER,Salt Ledger,1994-10-28,+91 86657 18852,utkarsh.chauhan@fastmail.com,utkarsh-chauhan.jpg
+Rajat Desai,@rajatdesai859,Monsoon Stack,"Rust, WASM",BUILDER,Packet Garden,2004-07-04,+91 82052 83144,rajat.desai@example.com,rajat-desai.jpg
+Pooja Tandon,@poojatandon,Low Tide,"C, embedded",ALUMNI,Tide Table,2000-08-27,+91 81167 51160,pooja.tandon@proton.me,pooja-tandon.jpg
+Juhi Bhat,@juhibhat404,Cold Start,"Elixir, realtime",RESIDENT,Beacon Mesh,2001-09-05,+91 99606 51492,juhi.bhat@hey.com,juhi-bhat.jpg
+Wasim Desai,@wasimdesai742,Terminal Velocity,"Kubernetes, platform",RESIDENT,Monsoon Queue,1993-07-09,+91 77346 63307,wasim.desai@builder.io,wasim-desai.jpg
+Tanvi Rana,@tanvirana,Night Shift,"Solidity, EVM",RESIDENT,Signal Fire,1997-03-21,+91 75071 13540,tanvi.rana@fastmail.com,tanvi-rana.jpg
+Payal Bose,@payalbose534,Cold Start,"Figma, product design",BUILDER,Tide Table,1999-01-13,+91 71973 94838,payal.bose@example.com,payal-bose.jpg
+Juhi Rana,@juhirana,Dune Buggy,"Rust, infra",RESIDENT,Palm Proxy,1991-08-18,+91 71787 23794,juhi.rana@mailbox.dev,juhi-rana.jpg
+Swati Kulkarni,@swatikulkarni182,Tide Pool,"TypeScript, fullstack",CREW,Deep Link,1994-11-16,+91 87235 28378,swati.kulkarni@builder.io,swati-kulkarni.jpg
+Naveen Iyer,@naveeniyer,Monsoon Stack,"Python, ML",BUILDER,Coast Guard,1991-03-04,+91 76238 79285,naveen.iyer@proton.me,naveen-iyer.jpg
+Oorja Nair,@oorjanair20,Offshore Ops,"Kubernetes, platform",RESIDENT,Coast Guard,2006-07-20,+91 99534 53829,oorja.nair@mailbox.dev,oorja-nair.jpg
+Lakshmi Mehta,@lakshmimehta302,Tide Pool,"Elixir, realtime",MENTOR,Grep Wizard,1990-04-28,+91 94450 57437,lakshmi.mehta@example.com,lakshmi-mehta.jpg
+Vikram Nair,@vikramnair898,Reef Knot,"Go, distributed systems",BUILDER,Beacon Mesh,1990-11-04,+91 75539 45399,vikram.nair@mailbox.dev,vikram-nair.jpg
+Dev Kapoor,@devkapoor346,Half Awake,"React, Next.js",BUILDER,Lantern Bus,2001-09-01,+91 95306 23808,dev.kapoor@proton.me,dev-kapoor.jpg
+Kabir Joshi,@kabirjoshi78,Salt Runners,"Swift, iOS",CREW,Tide Table,1992-03-12,+91 70057 30511,kabir.joshi@example.com,kabir-joshi.jpg
+Gauri Menon,@gaurimenon735,Low Tide,"Go, distributed systems",RESIDENT,Signal Fire,1996-02-26,+91 86718 37689,gauri.menon@proton.me,gauri-menon.jpg
+Siddharth Grover,@siddharthgrove541,Monsoon Stack,"Swift, iOS",ALUMNI,Coast Guard,1990-04-12,+91 96201 27311,siddharth.grover@fastmail.com,siddharth-grover.jpg
+Siddharth Bose,@siddharthbose964,Zero Config,"Zig, systems",CREW,Coast Guard,1994-08-26,+91 99475 79772,siddharth.bose@builder.io,siddharth-bose.jpg
+Bhavya Naidu,@bhavyanaidu730,Night Shift,"TypeScript, fullstack",RESIDENT,Salt Ledger,1997-07-17,+91 92541 52601,bhavya.naidu@proton.me,bhavya-naidu.jpg
+Tanvi Pillai,@tanvipillai457,Kernel Panic,"Node, GraphQL",MENTOR,Null Router,1993-10-26,+91 99426 92321,tanvi.pillai@builder.io,tanvi-pillai.jpg
+Sana Pillai,@sanapillai,Dune Buggy,"Postgres, data",RESIDENT,Drift Compiler,2002-02-08,+91 90092 39826,sana.pillai@builder.io,sana-pillai.jpg
+Vikram Kapoor,@vikramkapoor291,Tide Pool,"TypeScript, fullstack",CREW,Tide Table,2006-07-02,+91 81067 65986,vikram.kapoor@proton.me,vikram-kapoor.jpg
+Harsh Mehta,@harshmehta476,Offshore Ops,"Postgres, data",BUILDER,Beacon Mesh,2002-02-01,+91 90442 88681,harsh.mehta@builder.io,harsh-mehta.jpg
+Omkar Pillai,@omkarpillai848,Signal Chain,"React, Next.js",CREW,Monsoon Queue,1993-01-11,+91 83668 80699,omkar.pillai@mailbox.dev,omkar-pillai.jpg
+Nikhil Pandey,@nikhilpandey694,Night Shift,"Rust, WASM",RESIDENT,Harbour Watch,2006-07-12,+91 72614 63614,nikhil.pandey@fastmail.com,nikhil-pandey.jpg
+Rishi Kohli,@rishikohli575,Offshore Ops,"React, Next.js",BUILDER,Reef Index,2006-07-06,+91 96409 33683,rishi.kohli@example.com,rishi-kohli.jpg
+Pranav Kohli,@pranavkohli,Kernel Panic,"Elixir, realtime",RESIDENT,Beacon Mesh,1990-02-01,+91 70850 84544,pranav.kohli@hey.com,pranav-kohli.jpg
+Sameer Bakshi,@sameerbakshi22,Night Shift,"Solidity, EVM",SPEAKER,Signal Fire,1993-01-28,+91 86162 12213,sameer.bakshi@example.com,sameer-bakshi.jpg
+Rhea Mishra,@rheamishra632,Deep Water,"C, embedded",RESIDENT,Beacon Mesh,2004-03-02,+91 93001 59721,rhea.mishra@fastmail.com,rhea-mishra.jpg
+Tanvi Banerjee,@tanvibanerjee,Zero Config,"Go, distributed systems",MENTOR,Monsoon Queue,1996-07-26,+91 82613 45572,tanvi.banerjee@mailbox.dev,tanvi-banerjee.jpg
+Riya Joshi,@riyajoshi715,Reef Knot,"Figma, product design",RESIDENT,Salt Ledger,1990-05-03,+91 92897 58804,riya.joshi@mailbox.dev,riya-joshi.jpg
+Payal Shetty,@payalshetty808,Tide Pool,"Figma, product design",RESIDENT,Sandbox Radio,1993-02-18,+91 89386 85428,payal.shetty@example.com,payal-shetty.jpg
+Yash Joshi,@yashjoshi130,Kernel Panic,"Postgres, data",BUILDER,Salt Ledger,1993-08-27,+91 72937 38839,yash.joshi@hey.com,yash-joshi.jpg
+Rajat Gupta,@rajatgupta578,Deep Water,"Rust, WASM",RESIDENT,Tide Table,1992-11-24,+91 95148 91250,rajat.gupta@proton.me,rajat-gupta.jpg
+Tanvi Mishra,@tanvimishra502,Signal Chain,"Solidity, EVM",RESIDENT,Palm Proxy,2003-10-17,+91 76206 71544,tanvi.mishra@example.com,tanvi-mishra.jpg
+Nandini Kaur,@nandinikaur440,Salt Runners,"Three.js, WebGL",CREW,Drift Compiler,1998-01-28,+91 72317 20177,nandini.kaur@proton.me,nandini-kaur.jpg
+Jaya Mishra,@jayamishra,Signal Chain,"Three.js, WebGL",RESIDENT,Deep Link,1999-11-18,+91 79316 53136,jaya.mishra@fastmail.com,jaya-mishra.jpg
+Meera Verma,@meeraverma274,Beach Head,"Python, ML",CREW,Lantern Bus,1991-01-04,+91 76784 41208,meera.verma@example.com,meera-verma.jpg
+Jaya Saxena,@jayasaxena783,Night Shift,"Scala, streaming",BUILDER,Kernel Kite,2002-09-24,+91 99605 19393,jaya.saxena@hey.com,jaya-saxena.jpg
+Vivek Mishra,@vivekmishra941,Night Shift,"Go, distributed systems",RESIDENT,Palm Proxy,1997-05-10,+91 82414 18465,vivek.mishra@proton.me,vivek-mishra.jpg
+Bhavya Ghosh,@bhavyaghosh,Cold Start,"Kubernetes, platform",SPEAKER,Grep Wizard,1993-06-10,+91 88728 15114,bhavya.ghosh@fastmail.com,bhavya-ghosh.jpg
+Vidya Menon,@vidyamenon,Terminal Velocity,"Scala, streaming",BUILDER,Grep Wizard,1997-10-20,+91 80851 42717,vidya.menon@example.com,vidya-menon.jpg
+Rishi Chatterjee,@rishichatterje641,Cold Start,"Swift, iOS",BUILDER,Monsoon Queue,2006-06-28,+91 73148 64732,rishi.chatterjee@hey.com,rishi-chatterjee.jpg
+Uma Kaur,@umakaur472,Signal Chain,"Node, GraphQL",CREW,Harbour Watch,1988-06-19,+91 78751 89481,uma.kaur@hey.com,uma-kaur.jpg
+Meera Malhotra,@meeramalhotra534,Half Awake,"Three.js, WebGL",SPEAKER,Signal Fire,1998-03-18,+91 78921 52355,meera.malhotra@builder.io,meera-malhotra.jpg
+Sneha Rana,@sneharana,Kernel Panic,"Swift, iOS",RESIDENT,Sandbox Radio,2000-02-07,+91 82164 74856,sneha.rana@proton.me,sneha-rana.jpg
+Rohan Pandey,@rohanpandey,Signal Chain,"Solidity, EVM",RESIDENT,Coast Guard,2005-11-04,+91 91186 50243,rohan.pandey@fastmail.com,rohan-pandey.jpg
+Yash Rao,@yashrao626,Terminal Velocity,"Node, GraphQL",RESIDENT,Tide Table,2003-05-15,+91 84782 68132,yash.rao@builder.io,yash-rao.jpg
+Rajat Bajaj,@rajatbajaj,Tide Pool,"Go, distributed systems",BUILDER,Anchor Cache,1996-02-17,+91 84123 18852,rajat.bajaj@mailbox.dev,rajat-bajaj.jpg
+Kabir Iyer,@kabiriyer,Kernel Panic,"Elixir, realtime",RESIDENT,Reef Index,1991-05-07,+91 96881 86462,kabir.iyer@fastmail.com,kabir-iyer.jpg
+Hemant Banerjee,@hemantbanerjee,Low Tide,"Zig, systems",RESIDENT,Monsoon Queue,1999-07-15,+91 87415 24810,hemant.banerjee@builder.io,hemant-banerjee.jpg
+Varun Banerjee,@varunbanerjee,Tide Pool,"C, embedded",RESIDENT,Signal Fire,1988-03-17,+91 97378 45174,varun.banerjee@hey.com,varun-banerjee.jpg
+Zoya Bose,@zoyabose,Beach Head,"Scala, streaming",RESIDENT,Salt Ledger,1999-11-15,+91 95009 90611,zoya.bose@fastmail.com,zoya-bose.jpg
+Trisha Kohli,@trishakohli497,Tide Pool,"Zig, systems",BUILDER,Harbour Watch,1996-10-19,+91 89233 62770,trisha.kohli@fastmail.com,trisha-kohli.jpg
+Kavya Bakshi,@kavyabakshi,Half Awake,"Elixir, realtime",BUILDER,Deep Link,2001-01-24,+91 82192 57112,kavya.bakshi@proton.me,kavya-bakshi.jpg
+Hina Desai,@hinadesai,Kernel Panic,"Rust, WASM",RESIDENT,Lantern Bus,2003-09-11,+91 76158 19126,hina.desai@builder.io,hina-desai.jpg
+Shreya Pillai,@shreyapillai,Dune Buggy,"Go, distributed systems",BUILDER,Drift Compiler,2004-04-14,+91 90754 46497,shreya.pillai@example.com,shreya-pillai.jpg
+Anjali Bose,@anjalibose580,Terminal Velocity,"Figma, product design",RESIDENT,Signal Fire,1989-04-25,+91 80704 69809,anjali.bose@proton.me,anjali-bose.jpg
+Karthik Bhat,@karthikbhat,Reef Knot,"Rust, WASM",BUILDER,Palm Proxy,1997-06-16,+91 89228 21455,karthik.bhat@example.com,karthik-bhat.jpg
+Siddharth Malhotra,@siddharthmalho,Offshore Ops,"Swift, iOS",BUILDER,Harbour Watch,1994-03-15,+91 72914 73176,siddharth.malhotra@proton.me,siddharth-malhotra.jpg
+Nisha Joshi,@nishajoshi122,Low Tide,"Elixir, realtime",BUILDER,Beacon Mesh,2004-08-07,+91 83243 63030,nisha.joshi@builder.io,nisha-joshi.jpg
+Sana Chauhan,@sanachauhan995,Dune Buggy,"Swift, iOS",RESIDENT,Null Router,1993-05-12,+91 74453 82150,sana.chauhan@builder.io,sana-chauhan.jpg
+Zain Gupta,@zaingupta745,Dune Buggy,"Node, GraphQL",RESIDENT,Tide Table,1997-04-27,+91 71296 84889,zain.gupta@builder.io,zain-gupta.jpg
+Nisha Chatterjee,@nishachatterje,Signal Chain,"Swift, iOS",MENTOR,Anchor Cache,1994-04-11,+91 88888 22213,nisha.chatterjee@hey.com,nisha-chatterjee.jpg
+Yash Sethi,@yashsethi296,Beach Head,"Rust, WASM",RESIDENT,Anchor Cache,1990-06-18,+91 82525 61732,yash.sethi@mailbox.dev,yash-sethi.jpg
+Yamini Reddy,@yaminireddy,Half Awake,"Kubernetes, platform",RESIDENT,Anchor Cache,1992-07-12,+91 99146 19091,yamini.reddy@example.com,yamini-reddy.jpg
+Latika Chatterjee,@latikachatterj839,Beach Head,"Scala, streaming",RESIDENT,Grep Wizard,1993-08-26,+91 72441 16355,latika.chatterjee@fastmail.com,latika-chatterjee.jpg
+Hemant Kulkarni,@hemantkulkarni,Tide Pool,"TypeScript, fullstack",SPEAKER,Anchor Cache,2001-01-11,+91 81330 22231,hemant.kulkarni@fastmail.com,hemant-kulkarni.jpg
+Esha Mehta,@eshamehta864,Salt Runners,"Figma, product design",RESIDENT,Coast Guard,1998-06-11,+91 84728 33407,esha.mehta@fastmail.com,esha-mehta.jpg
+Mihir Rana,@mihirrana,Cold Start,"React, Next.js",CREW,Salt Ledger,1992-07-23,+91 81239 43545,mihir.rana@hey.com,mihir-rana.jpg
+Karthik Rana,@karthikrana,Offshore Ops,"Kotlin, Android",RESIDENT,Drift Compiler,1994-01-26,+91 81157 87623,karthik.rana@fastmail.com,karthik-rana.jpg
+Aarav Saxena,@aaravsaxena631,Monsoon Stack,"Kubernetes, platform",MENTOR,Sandbox Radio,1998-04-28,+91 80796 50809,aarav.saxena@hey.com,aarav-saxena.jpg
+Dev Pillai,@devpillai275,Signal Chain,"TypeScript, fullstack",RESIDENT,Palm Proxy,1999-10-21,+91 76233 89787,dev.pillai@mailbox.dev,dev-pillai.jpg
+Sameer Kohli,@sameerkohli46,Zero Config,"Three.js, WebGL",RESIDENT,Kernel Kite,2005-08-07,+91 70364 95807,sameer.kohli@mailbox.dev,sameer-kohli.jpg
+Utkarsh Kapoor,@utkarshkapoor934,Kernel Panic,"Zig, systems",RESIDENT,Beacon Mesh,2004-07-02,+91 80747 24883,utkarsh.kapoor@fastmail.com,utkarsh-kapoor.jpg
+Keshav Joshi,@keshavjoshi,Reef Knot,"Postgres, data",RESIDENT,Palm Proxy,1995-10-26,+91 88268 34202,keshav.joshi@proton.me,keshav-joshi.jpg
+Yamini Bhat,@yaminibhat,Dune Buggy,"React, Next.js",BUILDER,Beacon Mesh,1994-01-17,+91 70263 84594,yamini.bhat@example.com,yamini-bhat.jpg
+Imran Malhotra,@imranmalhotra,Dune Buggy,"Figma, product design",RESIDENT,Deep Link,1996-05-11,+91 75207 74694,imran.malhotra@proton.me,imran-malhotra.jpg
+Harsh Pandey,@harshpandey,Night Shift,"Node, GraphQL",RESIDENT,Grep Wizard,1997-12-23,+91 73359 74198,harsh.pandey@mailbox.dev,harsh-pandey.jpg
+Oorja Patel,@oorjapatel696,Monsoon Stack,"Solidity, EVM",RESIDENT,Packet Garden,1998-03-03,+91 82979 94699,oorja.patel@proton.me,oorja-patel.jpg
+Zain Naidu,@zainnaidu812,Half Awake,"Kubernetes, platform",CREW,Tide Table,1999-09-22,+91 93308 21510,zain.naidu@hey.com,zain-naidu.jpg
+Esha Ghosh,@eshaghosh,Zero Config,"Zig, systems",RESIDENT,Salt Ledger,2006-10-24,+91 70958 68573,esha.ghosh@builder.io,esha-ghosh.jpg
+Karthik Sinha,@karthiksinha973,Terminal Velocity,"Figma, product design",RESIDENT,Tide Table,2000-01-04,+91 82935 88064,karthik.sinha@builder.io,karthik-sinha.jpg
+Zain Malhotra,@zainmalhotra274,Dune Buggy,"Figma, product design",CREW,Reef Index,2003-07-17,+91 89033 97262,zain.malhotra@example.com,zain-malhotra.jpg
+Wasim Yadav,@wasimyadav,Salt Runners,"Swift, iOS",CREW,Signal Fire,1994-07-11,+91 93132 85621,wasim.yadav@builder.io,wasim-yadav.jpg
+Kunal Iyer,@kunaliyer688,Cold Start,"Figma, product design",RESIDENT,Monsoon Queue,1996-02-11,+91 79244 74557,kunal.iyer@builder.io,kunal-iyer.jpg
+Rajat Joshi,@rajatjoshi,Dune Buggy,"C, embedded",SPEAKER,Reef Index,2001-11-13,+91 92474 34787,rajat.joshi@example.com,rajat-joshi.jpg
+Naveen Singh,@naveensingh,Terminal Velocity,"Python, ML",MENTOR,Reef Index,1994-02-16,+91 87550 34094,naveen.singh@example.com,naveen-singh.jpg
+Tarun Shetty,@tarunshetty761,Signal Chain,"Python, ML",RESIDENT,Salt Ledger,1991-07-22,+91 86512 73081,tarun.shetty@example.com,tarun-shetty.jpg
+Wasim Sethi,@wasimsethi,Signal Chain,"Node, GraphQL",BUILDER,Kernel Kite,1990-08-08,+91 83755 72912,wasim.sethi@proton.me,wasim-sethi.jpg
+Divya Chatterjee,@divyachatterje,Reef Knot,"Solidity, EVM",RESIDENT,Palm Proxy,2001-06-04,+91 84408 50634,divya.chatterjee@builder.io,divya-chatterjee.jpg
+Meera Nair,@meeranair,Monsoon Stack,"React, Next.js",BUILDER,Salt Ledger,2000-07-06,+91 84508 88240,meera.nair@builder.io,meera-nair.jpg
+Yash Pandey,@yashpandey437,Tide Pool,"Three.js, WebGL",BUILDER,Null Router,2000-10-22,+91 85840 35795,yash.pandey@example.com,yash-pandey.jpg
+Rhea Banerjee,@rheabanerjee,Low Tide,"Zig, systems",BUILDER,Tide Table,1994-12-25,+91 85426 84191,rhea.banerjee@fastmail.com,rhea-banerjee.jpg
+Wasim Kaur,@wasimkaur,Offshore Ops,"Kubernetes, platform",RESIDENT,Tide Table,1989-05-15,+91 73736 82240,wasim.kaur@proton.me,wasim-kaur.jpg
+Keshav Verma,@keshavverma563,Offshore Ops,"Three.js, WebGL",SPEAKER,Sandbox Radio,1999-01-10,+91 77073 88316,keshav.verma@builder.io,keshav-verma.jpg
+Kabir Shetty,@kabirshetty152,Half Awake,"Solidity, EVM",RESIDENT,Deep Link,1989-08-14,+91 78022 80114,kabir.shetty@builder.io,kabir-shetty.jpg
+Tarun Joshi,@tarunjoshi708,Salt Runners,"C, embedded",BUILDER,Harbour Watch,2002-07-27,+91 72828 40797,tarun.joshi@builder.io,tarun-joshi.jpg
+Zoya Iyer,@zoyaiyer781,Reef Knot,"Python, ML",RESIDENT,Signal Fire,2000-12-06,+91 79416 84301,zoya.iyer@mailbox.dev,zoya-iyer.jpg
+Siddharth Trivedi,@siddharthtrive,Night Shift,"Figma, product design",BUILDER,Harbour Watch,2003-05-11,+91 94268 44551,siddharth.trivedi@hey.com,siddharth-trivedi.jpg
+Nikhil Bajaj,@nikhilbajaj,Deep Water,"Elixir, realtime",RESIDENT,Salt Ledger,1998-01-21,+91 78420 40415,nikhil.bajaj@proton.me,nikhil-bajaj.jpg
+Rahul Grover,@rahulgrover834,Salt Runners,"Node, GraphQL",RESIDENT,Kernel Kite,2005-02-26,+91 84515 30455,rahul.grover@example.com,rahul-grover.jpg
+Oorja Kohli,@oorjakohli638,Beach Head,"Postgres, data",BUILDER,Packet Garden,2001-03-03,+91 99902 12084,oorja.kohli@proton.me,oorja-kohli.jpg
+Deepa Gupta,@deepagupta937,Beach Head,"Solidity, EVM",RESIDENT,Harbour Watch,2002-06-07,+91 71220 14328,deepa.gupta@proton.me,deepa-gupta.jpg
+Meera Chatterjee,@meerachatterje,Reef Knot,"Figma, product design",CREW,Sandbox Radio,2002-05-17,+91 87451 73480,meera.chatterjee@hey.com,meera-chatterjee.jpg
+Rahul Iyer,@rahuliyer,Night Shift,"Zig, systems",RESIDENT,Signal Fire,1994-03-02,+91 90045 36907,rahul.iyer@example.com,rahul-iyer.jpg
+Sahil Kapoor,@sahilkapoor,Reef Knot,"Rust, WASM",RESIDENT,Reef Index,2003-07-06,+91 98851 79934,sahil.kapoor@fastmail.com,sahil-kapoor.jpg
+Bhavya Chatterjee,@bhavyachatterj273,Half Awake,"Kotlin, Android",RESIDENT,Null Router,2000-02-17,+91 88130 22527,bhavya.chatterjee@proton.me,bhavya-chatterjee.jpg
+Sana Desai,@sanadesai407,Night Shift,"React, Next.js",ALUMNI,Salt Ledger,1990-03-21,+91 71637 59708,sana.desai@builder.io,sana-desai.jpg
+Uma Dutta,@umadutta,Cold Start,"Kubernetes, platform",BUILDER,Palm Proxy,1988-08-22,+91 94487 16270,uma.dutta@example.com,uma-dutta.jpg
+Kabir Pandey,@kabirpandey427,Terminal Velocity,"Kubernetes, platform",CREW,Deep Link,1999-12-05,+91 78202 85142,kabir.pandey@example.com,kabir-pandey.jpg
+Anjali Bajaj,@anjalibajaj277,Tide Pool,"Solidity, EVM",RESIDENT,Salt Ledger,1998-11-17,+91 94665 80781,anjali.bajaj@mailbox.dev,anjali-bajaj.jpg
+Pooja Chauhan,@poojachauhan809,Zero Config,"Swift, iOS",MENTOR,Signal Fire,2005-06-04,+91 71222 16176,pooja.chauhan@mailbox.dev,pooja-chauhan.jpg
+Mohit Kaur,@mohitkaur,Offshore Ops,"C, embedded",RESIDENT,Packet Garden,1996-04-04,+91 95934 40059,mohit.kaur@proton.me,mohit-kaur.jpg
+Tanvi Singh,@tanvisingh808,Cold Start,"Elixir, realtime",RESIDENT,Coast Guard,1991-10-28,+91 92966 52498,tanvi.singh@mailbox.dev,tanvi-singh.jpg
+Vikram Sinha,@vikramsinha,Half Awake,"Kubernetes, platform",ALUMNI,Packet Garden,1990-02-14,+91 86702 73745,vikram.sinha@fastmail.com,vikram-sinha.jpg
+Pooja Bajaj,@poojabajaj,Deep Water,"React, Next.js",RESIDENT,Palm Proxy,2001-08-06,+91 73467 65473,pooja.bajaj@example.com,pooja-bajaj.jpg
+Sneha Chatterjee,@snehachatterje,Low Tide,"Postgres, data",BUILDER,Anchor Cache,1999-06-18,+91 90501 43458,sneha.chatterjee@fastmail.com,sneha-chatterjee.jpg
+Arjun Mishra,@arjunmishra55,Zero Config,"Node, GraphQL",MENTOR,Lantern Bus,1995-12-19,+91 98521 49567,arjun.mishra@mailbox.dev,arjun-mishra.jpg
+Rohit Reddy,@rohitreddy,Low Tide,"Rust, infra",BUILDER,Null Router,1996-08-18,+91 78585 87062,rohit.reddy@hey.com,rohit-reddy.jpg
+Nikhil Iyer,@nikhiliyer,Signal Chain,"Rust, infra",SPEAKER,Anchor Cache,2006-02-17,+91 70750 55120,nikhil.iyer@fastmail.com,nikhil-iyer.jpg
+Swati Dutta,@swatidutta,Salt Runners,"Go, distributed systems",BUILDER,Coast Guard,1998-03-02,+91 71374 42399,swati.dutta@fastmail.com,swati-dutta.jpg
+Payal Naidu,@payalnaidu,Monsoon Stack,"Rust, infra",CREW,Anchor Cache,1989-08-13,+91 79364 23024,payal.naidu@proton.me,payal-naidu.jpg
+Nikhil Shetty,@nikhilshetty,Dune Buggy,"Rust, infra",RESIDENT,Reef Index,2000-06-13,+91 74780 99123,nikhil.shetty@fastmail.com,nikhil-shetty.jpg
+Ishita Nair,@ishitanair98,Night Shift,"Scala, streaming",MENTOR,Palm Proxy,1995-01-16,+91 70391 11584,ishita.nair@fastmail.com,ishita-nair.jpg
+Siddharth Ghosh,@siddharthghosh,Reef Knot,"Python, ML",RESIDENT,Monsoon Queue,1992-08-04,+91 94618 71375,siddharth.ghosh@mailbox.dev,siddharth-ghosh.jpg
+Tarun Tandon,@taruntandon,Signal Chain,"React, Next.js",RESIDENT,Signal Fire,2006-12-08,+91 91394 21545,tarun.tandon@mailbox.dev,tarun-tandon.jpg
+Divya Desai,@divyadesai,Night Shift,"Rust, infra",BUILDER,Signal Fire,2001-05-24,+91 78785 14916,divya.desai@fastmail.com,divya-desai.jpg
+Leela Gupta,@leelagupta,Beach Head,"Swift, iOS",RESIDENT,Coast Guard,2000-02-07,+91 75776 44861,leela.gupta@hey.com,leela-gupta.jpg
+Kunal Ghosh,@kunalghosh,Kernel Panic,"Rust, WASM",BUILDER,Sandbox Radio,1991-08-19,+91 78996 65463,kunal.ghosh@proton.me,kunal-ghosh.jpg
+Ira Bose,@irabose41,Reef Knot,"Figma, product design",ALUMNI,Signal Fire,1998-08-11,+91 96083 57890,ira.bose@fastmail.com,ira-bose.jpg
+Meera Sinha,@meerasinha843,Cold Start,"React, Next.js",CREW,Anchor Cache,1999-05-19,+91 77179 53225,meera.sinha@mailbox.dev,meera-sinha.jpg
+Rohit Trivedi,@rohittrivedi,Salt Runners,"Rust, WASM",BUILDER,Kernel Kite,2006-05-09,+91 96114 12246,rohit.trivedi@proton.me,rohit-trivedi.jpg
+Kavya Shetty,@kavyashetty,Low Tide,"Elixir, realtime",BUILDER,Drift Compiler,1990-01-07,+91 93918 45706,kavya.shetty@fastmail.com,kavya-shetty.jpg
+Karthik Chauhan,@karthikchauhan169,Monsoon Stack,"Scala, streaming",BUILDER,Harbour Watch,1998-07-21,+91 94308 91534,karthik.chauhan@example.com,karthik-chauhan.jpg
+Dev Malhotra,@devmalhotra,Signal Chain,"TypeScript, fullstack",RESIDENT,Signal Fire,2001-09-11,+91 93913 96131,dev.malhotra@fastmail.com,dev-malhotra.jpg
+Vani Bose,@vanibose53,Half Awake,"Python, ML",RESIDENT,Packet Garden,2001-08-13,+91 96785 54455,vani.bose@example.com,vani-bose.jpg
+Zoya Kulkarni,@zoyakulkarni942,Terminal Velocity,"Figma, product design",RESIDENT,Reef Index,2001-10-22,+91 89668 95693,zoya.kulkarni@builder.io,zoya-kulkarni.jpg
+Gauri Desai,@gauridesai,Signal Chain,"Scala, streaming",RESIDENT,Beacon Mesh,2001-09-11,+91 96813 81338,gauri.desai@fastmail.com,gauri-desai.jpg
+Pooja Bakshi,@poojabakshi857,Half Awake,"Postgres, data",RESIDENT,Kernel Kite,1996-10-14,+91 98414 14841,pooja.bakshi@mailbox.dev,pooja-bakshi.jpg
+Nandini Bakshi,@nandinibakshi,Tide Pool,"Go, distributed systems",RESIDENT,Beacon Mesh,2005-06-21,+91 85921 20033,nandini.bakshi@example.com,nandini-bakshi.jpg
+Kabir Mishra,@kabirmishra525,Deep Water,"Rust, WASM",BUILDER,Palm Proxy,1993-12-22,+91 94301 27950,kabir.mishra@hey.com,kabir-mishra.jpg
+Vivek Desai,@vivekdesai,Zero Config,"Solidity, EVM",RESIDENT,Coast Guard,1994-02-02,+91 90145 54640,vivek.desai@example.com,vivek-desai.jpg
+Arjun Trivedi,@arjuntrivedi,Night Shift,"Kubernetes, platform",RESIDENT,Sandbox Radio,1992-02-14,+91 75286 21777,arjun.trivedi@proton.me,arjun-trivedi.jpg
+Aditya Mehta,@adityamehta926,Zero Config,"Elixir, realtime",BUILDER,Coast Guard,1998-05-25,+91 91001 64950,aditya.mehta@mailbox.dev,aditya-mehta.jpg
+Karthik Kapoor,@karthikkapoor287,Beach Head,"Zig, systems",RESIDENT,Signal Fire,1992-04-21,+91 94055 83040,karthik.kapoor@builder.io,karthik-kapoor.jpg
+Shreya Dutta,@shreyadutta,Tide Pool,"Postgres, data",CREW,Palm Proxy,1988-08-25,+91 72506 36846,shreya.dutta@proton.me,shreya-dutta.jpg
+Dev Shetty,@devshetty,Cold Start,"Postgres, data",SPEAKER,Coast Guard,1995-07-24,+91 94238 69712,dev.shetty@fastmail.com,dev-shetty.jpg
+Juhi Nair,@juhinair318,Low Tide,"Figma, product design",RESIDENT,Sandbox Radio,2006-07-10,+91 86754 57058,juhi.nair@mailbox.dev,juhi-nair.jpg
+Latika Rana,@latikarana519,Terminal Velocity,"Kubernetes, platform",RESIDENT,Deep Link,1996-02-20,+91 85669 21403,latika.rana@example.com,latika-rana.jpg
+Priya Sharma,@priyasharma151,Deep Water,"Rust, infra",RESIDENT,Palm Proxy,1991-05-24,+91 99533 30358,priya.sharma@hey.com,priya-sharma.jpg
+Ira Verma,@iraverma,Offshore Ops,"C, embedded",RESIDENT,Lantern Bus,1988-05-02,+91 80645 74069,ira.verma@proton.me,ira-verma.jpg
+Hina Malhotra,@hinamalhotra967,Terminal Velocity,"Postgres, data",RESIDENT,Monsoon Queue,2004-04-04,+91 87111 46304,hina.malhotra@proton.me,hina-malhotra.jpg
+Ira Singh,@irasingh232,Night Shift,"Kubernetes, platform",RESIDENT,Anchor Cache,1990-11-06,+91 72783 22784,ira.singh@builder.io,ira-singh.jpg
+Omkar Sharma,@omkarsharma280,Beach Head,"Scala, streaming",BUILDER,Tide Table,1997-03-22,+91 71287 45473,omkar.sharma@builder.io,omkar-sharma.jpg
+Imran Bakshi,@imranbakshi,Night Shift,"Go, distributed systems",SPEAKER,Signal Fire,1998-02-22,+91 97285 54483,imran.bakshi@builder.io,imran-bakshi.jpg
+Imran Mishra,@imranmishra696,Deep Water,"Zig, systems",RESIDENT,Drift Compiler,1989-03-26,+91 83103 72176,imran.mishra@example.com,imran-mishra.jpg
+Leela Pandey,@leelapandey,Deep Water,"Go, distributed systems",BUILDER,Harbour Watch,1999-10-14,+91 89143 13464,leela.pandey@mailbox.dev,leela-pandey.jpg
+Meera Yadav,@meerayadav639,Terminal Velocity,"Rust, WASM",BUILDER,Null Router,1989-01-24,+91 81688 46773,meera.yadav@builder.io,meera-yadav.jpg
+Uma Sinha,@umasinha,Tide Pool,"Elixir, realtime",ALUMNI,Anchor Cache,2000-02-19,+91 81317 75508,uma.sinha@mailbox.dev,uma-sinha.jpg
+Kabir Rana,@kabirrana144,Dune Buggy,"Zig, systems",ALUMNI,Kernel Kite,2005-02-27,+91 75459 90515,kabir.rana@builder.io,kabir-rana.jpg
+Dev Banerjee,@devbanerjee666,Tide Pool,"Rust, infra",RESIDENT,Packet Garden,1996-09-14,+91 94324 21171,dev.banerjee@fastmail.com,dev-banerjee.jpg
+Shreya Banerjee,@shreyabanerjee,Terminal Velocity,"TypeScript, fullstack",SPEAKER,Monsoon Queue,1996-04-26,+91 87113 98459,shreya.banerjee@hey.com,shreya-banerjee.jpg
+Karthik Joshi,@karthikjoshi898,Reef Knot,"React, Next.js",RESIDENT,Harbour Watch,1995-05-26,+91 73727 90846,karthik.joshi@example.com,karthik-joshi.jpg
+Dev Chatterjee,@devchatterjee85,Monsoon Stack,"Rust, WASM",RESIDENT,Drift Compiler,1995-11-06,+91 90108 78084,dev.chatterjee@fastmail.com,dev-chatterjee.jpg
+Rohit Naidu,@rohitnaidu,Kernel Panic,"Rust, WASM",RESIDENT,Coast Guard,1996-03-24,+91 85693 14854,rohit.naidu@proton.me,rohit-naidu.jpg
+Uma Banerjee,@umabanerjee89,Beach Head,"Rust, infra",BUILDER,Salt Ledger,2006-03-08,+91 88919 26202,uma.banerjee@example.com,uma-banerjee.jpg
+Yash Reddy,@yashreddy40,Salt Runners,"TypeScript, fullstack",BUILDER,Drift Compiler,2003-02-19,+91 83813 96965,yash.reddy@builder.io,yash-reddy.jpg
+Keshav Desai,@keshavdesai605,Half Awake,"Rust, infra",BUILDER,Kernel Kite,1996-11-06,+91 98773 38277,keshav.desai@example.com,keshav-desai.jpg
+Omkar Verma,@omkarverma,Signal Chain,"Go, distributed systems",BUILDER,Reef Index,1999-10-06,+91 87650 48599,omkar.verma@builder.io,omkar-verma.jpg
+Yash Patel,@yashpatel812,Monsoon Stack,"Figma, product design",BUILDER,Beacon Mesh,2006-03-14,+91 75741 73251,yash.patel@example.com,yash-patel.jpg
+Divya Patel,@divyapatel711,Deep Water,"Node, GraphQL",RESIDENT,Sandbox Radio,1991-03-23,+91 76028 90022,divya.patel@mailbox.dev,divya-patel.jpg
+Jaya Bakshi,@jayabakshi,Terminal Velocity,"Figma, product design",RESIDENT,Coast Guard,1993-02-17,+91 78457 23029,jaya.bakshi@proton.me,jaya-bakshi.jpg
+Uma Pillai,@umapillai,Kernel Panic,"Rust, infra",BUILDER,Tide Table,1992-12-06,+91 95657 94609,uma.pillai@mailbox.dev,uma-pillai.jpg
+Anjali Chatterjee,@anjalichatterj,Deep Water,"Elixir, realtime",CREW,Palm Proxy,1988-06-09,+91 77220 44423,anjali.chatterjee@proton.me,anjali-chatterjee.jpg
+Aman Sharma,@amansharma719,Signal Chain,"Python, ML",RESIDENT,Drift Compiler,1994-03-23,+91 73011 48909,aman.sharma@proton.me,aman-sharma.jpg
+Tarun Naidu,@tarunnaidu850,Zero Config,"Zig, systems",CREW,Kernel Kite,1993-09-08,+91 86004 72380,tarun.naidu@proton.me,tarun-naidu.jpg
+Deepa Kapoor,@deepakapoor84,Offshore Ops,"Solidity, EVM",BUILDER,Signal Fire,1993-09-10,+91 89248 82571,deepa.kapoor@example.com,deepa-kapoor.jpg
+Vani Joshi,@vanijoshi898,Kernel Panic,"Elixir, realtime",RESIDENT,Grep Wizard,1994-06-19,+91 70413 81225,vani.joshi@proton.me,vani-joshi.jpg
+Trisha Tandon,@trishatandon558,Signal Chain,"TypeScript, fullstack",RESIDENT,Kernel Kite,2005-11-08,+91 89698 86360,trisha.tandon@example.com,trisha-tandon.jpg
+Aditya Saxena,@adityasaxena830,Signal Chain,"Go, distributed systems",BUILDER,Salt Ledger,1988-08-14,+91 82253 93911,aditya.saxena@mailbox.dev,aditya-saxena.jpg
+Latika Pillai,@latikapillai302,Kernel Panic,"Go, distributed systems",BUILDER,Lantern Bus,1996-01-26,+91 78708 20365,latika.pillai@hey.com,latika-pillai.jpg
+Omkar Malhotra,@omkarmalhotra423,Half Awake,"Node, GraphQL",RESIDENT,Harbour Watch,1990-12-16,+91 76341 55573,omkar.malhotra@mailbox.dev,omkar-malhotra.jpg
+Neha Malhotra,@nehamalhotra,Dune Buggy,"Elixir, realtime",BUILDER,Packet Garden,1998-01-21,+91 95025 66420,neha.malhotra@example.com,neha-malhotra.jpg
+Riya Patel,@riyapatel,Zero Config,"Python, ML",RESIDENT,Drift Compiler,1999-05-20,+91 97347 49913,riya.patel@proton.me,riya-patel.jpg
+Nikita Sinha,@nikitasinha,Low Tide,"Scala, streaming",RESIDENT,Anchor Cache,2002-04-08,+91 70340 82226,nikita.sinha@builder.io,nikita-sinha.jpg
+Vidya Pillai,@vidyapillai607,Signal Chain,"Node, GraphQL",RESIDENT,Palm Proxy,1995-08-01,+91 80867 11417,vidya.pillai@example.com,vidya-pillai.jpg
+Kunal Kulkarni,@kunalkulkarni,Night Shift,"Python, ML",RESIDENT,Packet Garden,1997-02-05,+91 97202 41585,kunal.kulkarni@mailbox.dev,kunal-kulkarni.jpg
+Farhan Nair,@farhannair948,Reef Knot,"Zig, systems",RESIDENT,Signal Fire,2000-11-24,+91 78185 35351,farhan.nair@fastmail.com,farhan-nair.jpg
+Vani Naidu,@vaninaidu,Salt Runners,"Rust, WASM",SPEAKER,Null Router,1995-05-06,+91 70757 75300,vani.naidu@builder.io,vani-naidu.jpg
+Nikita Pillai,@nikitapillai385,Half Awake,"Elixir, realtime",BUILDER,Harbour Watch,1999-05-16,+91 82891 98891,nikita.pillai@builder.io,nikita-pillai.jpg
+Chirag Trivedi,@chiragtrivedi238,Deep Water,"Node, GraphQL",BUILDER,Packet Garden,1988-03-24,+91 76672 84750,chirag.trivedi@mailbox.dev,chirag-trivedi.jpg
+Farhan Reddy,@farhanreddy,Kernel Panic,"Kotlin, Android",SPEAKER,Anchor Cache,1997-07-09,+91 79187 35681,farhan.reddy@mailbox.dev,farhan-reddy.jpg
+Payal Mehta,@payalmehta,Cold Start,"React, Next.js",RESIDENT,Anchor Cache,1991-08-08,+91 97177 56362,payal.mehta@builder.io,payal-mehta.jpg
+Manish Sharma,@manishsharma,Low Tide,"Rust, infra",RESIDENT,Kernel Kite,2000-03-16,+91 70061 36339,manish.sharma@example.com,manish-sharma.jpg
+Sana Malhotra,@sanamalhotra,Terminal Velocity,"Zig, systems",RESIDENT,Anchor Cache,1990-06-12,+91 95606 35943,sana.malhotra@fastmail.com,sana-malhotra.jpg
+Parth Desai,@parthdesai603,Offshore Ops,"Three.js, WebGL",RESIDENT,Harbour Watch,2005-07-06,+91 98037 23951,parth.desai@fastmail.com,parth-desai.jpg
+Aditya Bose,@adityabose,Signal Chain,"Postgres, data",ALUMNI,Signal Fire,1992-02-02,+91 75217 26779,aditya.bose@hey.com,aditya-bose.jpg
+Esha Dutta,@eshadutta,Half Awake,"Go, distributed systems",RESIDENT,Lantern Bus,1992-09-08,+91 74904 51875,esha.dutta@hey.com,esha-dutta.jpg
+Kabir Kohli,@kabirkohli,Beach Head,"C, embedded",BUILDER,Anchor Cache,2001-11-12,+91 74856 53473,kabir.kohli@hey.com,kabir-kohli.jpg
+Kabir Rao,@kabirrao,Cold Start,"Go, distributed systems",BUILDER,Anchor Cache,2003-07-21,+91 92058 92537,kabir.rao@hey.com,kabir-rao.jpg
+Kabir Menon,@kabirmenon67,Beach Head,"Zig, systems",MENTOR,Harbour Watch,1990-12-18,+91 72140 91109,kabir.menon@example.com,kabir-menon.jpg
+Naveen Mehta,@naveenmehta,Reef Knot,"Python, ML",RESIDENT,Signal Fire,1997-03-12,+91 82696 43191,naveen.mehta@hey.com,naveen-mehta.jpg
+Harsh Desai,@harshdesai264,Half Awake,"TypeScript, fullstack",BUILDER,Deep Link,1993-01-25,+91 94984 70633,harsh.desai@mailbox.dev,harsh-desai.jpg
+Anjali Trivedi,@anjalitrivedi834,Monsoon Stack,"Three.js, WebGL",RESIDENT,Reef Index,1993-06-18,+91 76517 81497,anjali.trivedi@proton.me,anjali-trivedi.jpg
+Siddharth Bhat,@siddharthbhat907,Monsoon Stack,"Zig, systems",RESIDENT,Coast Guard,1997-03-24,+91 88106 84708,siddharth.bhat@proton.me,siddharth-bhat.jpg
+Shreya Tandon,@shreyatandon,Reef Knot,"Kotlin, Android",CREW,Lantern Bus,1994-07-14,+91 75597 95608,shreya.tandon@example.com,shreya-tandon.jpg
+Riya Kulkarni,@riyakulkarni,Salt Runners,"React, Next.js",BUILDER,Beacon Mesh,2005-02-11,+91 79808 72906,riya.kulkarni@hey.com,riya-kulkarni.jpg
+Jaya Nair,@jayanair,Offshore Ops,"Go, distributed systems",MENTOR,Kernel Kite,2002-08-17,+91 81909 86877,jaya.nair@builder.io,jaya-nair.jpg
+Ira Tandon,@iratandon,Dune Buggy,"Go, distributed systems",ALUMNI,Grep Wizard,1991-11-15,+91 74051 53860,ira.tandon@hey.com,ira-tandon.jpg
+Payal Pandey,@payalpandey,Zero Config,"TypeScript, fullstack",BUILDER,Grep Wizard,1997-01-22,+91 83432 18914,payal.pandey@hey.com,payal-pandey.jpg
+Vani Kulkarni,@vanikulkarni264,Night Shift,"Three.js, WebGL",BUILDER,Deep Link,1995-12-01,+91 77581 74629,vani.kulkarni@proton.me,vani-kulkarni.jpg
+Juhi Pillai,@juhipillai567,Terminal Velocity,"Rust, infra",RESIDENT,Harbour Watch,1990-04-10,+91 72543 74477,juhi.pillai@example.com,juhi-pillai.jpg
+Ira Reddy,@irareddy877,Monsoon Stack,"C, embedded",BUILDER,Reef Index,1992-08-20,+91 82709 13572,ira.reddy@mailbox.dev,ira-reddy.jpg
+Vikram Bajaj,@vikrambajaj,Half Awake,"Figma, product design",RESIDENT,Reef Index,1994-08-12,+91 81786 75287,vikram.bajaj@hey.com,vikram-bajaj.jpg
+Pranav Chauhan,@pranavchauhan556,Beach Head,"Kubernetes, platform",RESIDENT,Null Router,1994-03-25,+91 78859 76497,pranav.chauhan@mailbox.dev,pranav-chauhan.jpg
+Rishi Nair,@rishinair,Zero Config,"C, embedded",CREW,Signal Fire,1997-02-12,+91 95370 45827,rishi.nair@builder.io,rishi-nair.jpg
+Esha Chatterjee,@eshachatterjee701,Offshore Ops,"TypeScript, fullstack",RESIDENT,Grep Wizard,1999-04-15,+91 76735 73244,esha.chatterjee@proton.me,esha-chatterjee.jpg
+Rohan Sharma,@rohansharma33,Signal Chain,"C, embedded",CREW,Beacon Mesh,1996-02-03,+91 76461 85878,rohan.sharma@builder.io,rohan-sharma.jpg
+Omkar Reddy,@omkarreddy24,Beach Head,"Rust, infra",RESIDENT,Null Router,1997-02-24,+91 84905 63546,omkar.reddy@proton.me,omkar-reddy.jpg
+Mohit Iyer,@mohitiyer,Deep Water,"Node, GraphQL",BUILDER,Salt Ledger,1998-06-05,+91 91708 96695,mohit.iyer@builder.io,mohit-iyer.jpg
+Kavya Pandey,@kavyapandey,Zero Config,"Figma, product design",RESIDENT,Lantern Bus,1995-10-25,+91 84233 49379,kavya.pandey@hey.com,kavya-pandey.jpg
+Juhi Kulkarni,@juhikulkarni,Dune Buggy,"Solidity, EVM",BUILDER,Sandbox Radio,2004-05-27,+91 99336 74825,juhi.kulkarni@fastmail.com,juhi-kulkarni.jpg
+Ishita Menon,@ishitamenon,Kernel Panic,"Elixir, realtime",RESIDENT,Signal Fire,1996-06-21,+91 73298 58581,ishita.menon@proton.me,ishita-menon.jpg
+Bhavya Malhotra,@bhavyamalhotra942,Tide Pool,"Node, GraphQL",MENTOR,Salt Ledger,2003-08-28,+91 93046 55499,bhavya.malhotra@example.com,bhavya-malhotra.jpg
+Nikita Chauhan,@nikitachauhan,Reef Knot,"Solidity, EVM",BUILDER,Harbour Watch,1999-11-26,+91 96973 84531,nikita.chauhan@mailbox.dev,nikita-chauhan.jpg
+Varun Kulkarni,@varunkulkarni,Kernel Panic,"TypeScript, fullstack",RESIDENT,Lantern Bus,1995-06-01,+91 87185 50009,varun.kulkarni@builder.io,varun-kulkarni.jpg
+Riya Mehta,@riyamehta,Cold Start,"Swift, iOS",MENTOR,Sandbox Radio,1999-04-10,+91 77145 26230,riya.mehta@mailbox.dev,riya-mehta.jpg
+Gauri Dutta,@gauridutta,Salt Runners,"Solidity, EVM",SPEAKER,Signal Fire,2006-08-16,+91 91889 68283,gauri.dutta@hey.com,gauri-dutta.jpg
+Utkarsh Malhotra,@utkarshmalhotr886,Half Awake,"TypeScript, fullstack",RESIDENT,Salt Ledger,1993-11-25,+91 81599 66778,utkarsh.malhotra@fastmail.com,utkarsh-malhotra.jpg
+Rahul Rana,@rahulrana660,Reef Knot,"Rust, infra",RESIDENT,Signal Fire,1999-01-05,+91 97720 86585,rahul.rana@hey.com,rahul-rana.jpg
+Tarun Singh,@tarunsingh388,Dune Buggy,"C, embedded",RESIDENT,Coast Guard,1998-11-25,+91 70858 16628,tarun.singh@example.com,tarun-singh.jpg
+Hina Ghosh,@hinaghosh491,Tide Pool,"Scala, streaming",RESIDENT,Packet Garden,2006-02-21,+91 72090 33521,hina.ghosh@builder.io,hina-ghosh.jpg
+Sameer Tandon,@sameertandon643,Beach Head,"Kotlin, Android",RESIDENT,Packet Garden,1994-01-12,+91 97560 71251,sameer.tandon@example.com,sameer-tandon.jpg
+Yamini Kohli,@yaminikohli659,Tide Pool,"Python, ML",RESIDENT,Coast Guard,2001-03-24,+91 76521 42527,yamini.kohli@proton.me,yamini-kohli.jpg
+Tarun Dutta,@tarundutta190,Dune Buggy,"Solidity, EVM",RESIDENT,Tide Table,1992-04-05,+91 80856 72393,tarun.dutta@example.com,tarun-dutta.jpg
+Girish Trivedi,@girishtrivedi,Night Shift,"Rust, WASM",RESIDENT,Monsoon Queue,2005-12-16,+91 75927 77534,girish.trivedi@mailbox.dev,girish-trivedi.jpg
+Leela Bhat,@leelabhat,Monsoon Stack,"Swift, iOS",BUILDER,Kernel Kite,1995-02-05,+91 72339 88008,leela.bhat@builder.io,leela-bhat.jpg
+Rohan Reddy,@rohanreddy12,Signal Chain,"TypeScript, fullstack",BUILDER,Sandbox Radio,2001-09-17,+91 99360 57788,rohan.reddy@proton.me,rohan-reddy.jpg
+Chirag Nair,@chiragnair,Reef Knot,"Figma, product design",BUILDER,Sandbox Radio,2002-07-24,+91 96327 42960,chirag.nair@example.com,chirag-nair.jpg
+Imran Iyer,@imraniyer,Zero Config,"C, embedded",BUILDER,Monsoon Queue,2001-11-05,+91 93742 57355,imran.iyer@builder.io,imran-iyer.jpg
+Sameer Gupta,@sameergupta,Low Tide,"Rust, WASM",CREW,Tide Table,2002-06-15,+91 75662 26089,sameer.gupta@builder.io,sameer-gupta.jpg
+Tanvi Kaur,@tanvikaur422,Tide Pool,"Figma, product design",RESIDENT,Kernel Kite,2003-01-22,+91 88144 66266,tanvi.kaur@builder.io,tanvi-kaur.jpg
+Aman Bajaj,@amanbajaj318,Reef Knot,"Solidity, EVM",BUILDER,Monsoon Queue,2003-07-23,+91 70405 38082,aman.bajaj@hey.com,aman-bajaj.jpg
+Kunal Desai,@kunaldesai444,Reef Knot,"Kotlin, Android",RESIDENT,Harbour Watch,1998-04-01,+91 78493 32149,kunal.desai@builder.io,kunal-desai.jpg
+Meera Tandon,@meeratandon,Offshore Ops,"Kubernetes, platform",MENTOR,Drift Compiler,1991-01-07,+91 92182 53202,meera.tandon@example.com,meera-tandon.jpg
+Gauri Ghosh,@gaurighosh241,Monsoon Stack,"Rust, infra",BUILDER,Null Router,1990-12-22,+91 74703 58429,gauri.ghosh@example.com,gauri-ghosh.jpg
+Gauri Rao,@gaurirao,Monsoon Stack,"Scala, streaming",RESIDENT,Harbour Watch,2000-05-05,+91 74085 22791,gauri.rao@proton.me,gauri-rao.jpg
+Varun Naidu,@varunnaidu,Beach Head,"Solidity, EVM",BUILDER,Reef Index,1991-09-02,+91 83107 86702,varun.naidu@hey.com,varun-naidu.jpg
+Mihir Nair,@mihirnair509,Deep Water,"Kubernetes, platform",RESIDENT,Packet Garden,2002-07-14,+91 85291 98924,mihir.nair@proton.me,mihir-nair.jpg
+Shreya Kapoor,@shreyakapoor,Kernel Panic,"Python, ML",BUILDER,Coast Guard,1996-12-03,+91 72871 52756,shreya.kapoor@builder.io,shreya-kapoor.jpg
+Swati Singh,@swatisingh,Half Awake,"TypeScript, fullstack",BUILDER,Signal Fire,2000-03-24,+91 89916 44266,swati.singh@builder.io,swati-singh.jpg
+Vivek Mehta,@vivekmehta655,Reef Knot,"TypeScript, fullstack",RESIDENT,Tide Table,2003-08-16,+91 94102 71761,vivek.mehta@mailbox.dev,vivek-mehta.jpg
+Leela Sethi,@leelasethi58,Tide Pool,"Solidity, EVM",RESIDENT,Reef Index,1996-06-28,+91 78733 69452,leela.sethi@example.com,leela-sethi.jpg
+Sneha Gupta,@snehagupta,Offshore Ops,"TypeScript, fullstack",BUILDER,Reef Index,2000-01-15,+91 92639 36333,sneha.gupta@proton.me,sneha-gupta.jpg
+Divya Kulkarni,@divyakulkarni46,Zero Config,"Swift, iOS",SPEAKER,Signal Fire,1995-02-20,+91 95161 59661,divya.kulkarni@builder.io,divya-kulkarni.jpg
+Nisha Pillai,@nishapillai,Low Tide,"Scala, streaming",BUILDER,Palm Proxy,2006-08-01,+91 98704 31757,nisha.pillai@fastmail.com,nisha-pillai.jpg
+Sameer Banerjee,@sameerbanerjee665,Signal Chain,"Solidity, EVM",BUILDER,Reef Index,2005-12-20,+91 89928 76729,sameer.banerjee@fastmail.com,sameer-banerjee.jpg
+Wasim Saxena,@wasimsaxena235,Signal Chain,"React, Next.js",RESIDENT,Null Router,2000-05-18,+91 99566 70828,wasim.saxena@fastmail.com,wasim-saxena.jpg
+Yamini Mishra,@yaminimishra366,Monsoon Stack,"Elixir, realtime",RESIDENT,Monsoon Queue,1988-09-12,+91 75105 87230,yamini.mishra@proton.me,yamini-mishra.jpg
+Vivek Joshi,@vivekjoshi,Dune Buggy,"Node, GraphQL",RESIDENT,Lantern Bus,1995-08-03,+91 71148 33712,vivek.joshi@mailbox.dev,vivek-joshi.jpg
+Vidya Rao,@vidyarao936,Reef Knot,"Python, ML",MENTOR,Deep Link,2000-05-21,+91 78542 70452,vidya.rao@mailbox.dev,vidya-rao.jpg
+Rhea Saxena,@rheasaxena207,Signal Chain,"Rust, infra",RESIDENT,Lantern Bus,1988-05-21,+91 91059 18417,rhea.saxena@fastmail.com,rhea-saxena.jpg
+Nikita Mehta,@nikitamehta759,Monsoon Stack,"Rust, WASM",CREW,Harbour Watch,1990-05-16,+91 93892 77640,nikita.mehta@mailbox.dev,nikita-mehta.jpg
+Rohit Kaur,@rohitkaur357,Tide Pool,"Figma, product design",MENTOR,Coast Guard,2006-06-20,+91 76972 98139,rohit.kaur@proton.me,rohit-kaur.jpg
+Meera Joshi,@meerajoshi64,Tide Pool,"Python, ML",BUILDER,Harbour Watch,2006-06-22,+91 86603 74925,meera.joshi@hey.com,meera-joshi.jpg
+Siddharth Singh,@siddharthsingh373,Kernel Panic,"React, Next.js",RESIDENT,Signal Fire,1999-03-15,+91 90749 15632,siddharth.singh@proton.me,siddharth-singh.jpg
+Karthik Kulkarni,@karthikkulkarn727,Deep Water,"Node, GraphQL",BUILDER,Palm Proxy,1997-02-10,+91 92940 85797,karthik.kulkarni@proton.me,karthik-kulkarni.jpg
+Aarav Dutta,@aaravdutta604,Zero Config,"React, Next.js",RESIDENT,Tide Table,1994-11-27,+91 75129 77123,aarav.dutta@mailbox.dev,aarav-dutta.jpg
+Aman Saxena,@amansaxena,Tide Pool,"Figma, product design",CREW,Monsoon Queue,2003-11-08,+91 84876 88694,aman.saxena@fastmail.com,aman-saxena.jpg
+Siddharth Gupta,@siddharthgupta750,Half Awake,"Kubernetes, platform",RESIDENT,Grep Wizard,2001-06-13,+91 90812 43750,siddharth.gupta@proton.me,siddharth-gupta.jpg
+Pranav Pillai,@pranavpillai,Beach Head,"Zig, systems",CREW,Coast Guard,1990-06-18,+91 90321 38205,pranav.pillai@builder.io,pranav-pillai.jpg
+Zoya Saxena,@zoyasaxena178,Monsoon Stack,"Node, GraphQL",BUILDER,Drift Compiler,1988-08-04,+91 86652 15528,zoya.saxena@example.com,zoya-saxena.jpg
+Siddharth Chatterjee,@siddharthchatt803,Cold Start,"Python, ML",RESIDENT,Grep Wizard,1997-11-26,+91 74399 42159,siddharth.chatterjee@fastmail.com,siddharth-chatterjee.jpg
+Naveen Shetty,@naveenshetty818,Dune Buggy,"Go, distributed systems",RESIDENT,Salt Ledger,1995-11-05,+91 85290 85282,naveen.shetty@proton.me,naveen-shetty.jpg
+Zain Banerjee,@zainbanerjee500,Kernel Panic,"React, Next.js",BUILDER,Drift Compiler,2000-03-20,+91 93703 70983,zain.banerjee@mailbox.dev,zain-banerjee.jpg
+Aditya Rana,@adityarana,Signal Chain,"Swift, iOS",ALUMNI,Harbour Watch,2001-02-12,+91 71477 75977,aditya.rana@builder.io,aditya-rana.jpg
+Neha Trivedi,@nehatrivedi290,Kernel Panic,"TypeScript, fullstack",RESIDENT,Monsoon Queue,2006-03-04,+91 96452 94820,neha.trivedi@example.com,neha-trivedi.jpg
+Shreya Ghosh,@shreyaghosh,Cold Start,"Scala, streaming",BUILDER,Grep Wizard,1989-02-06,+91 81108 81450,shreya.ghosh@mailbox.dev,shreya-ghosh.jpg
+Rishi Bajaj,@rishibajaj,Terminal Velocity,"Rust, infra",BUILDER,Palm Proxy,2000-03-20,+91 90448 56275,rishi.bajaj@fastmail.com,rishi-bajaj.jpg
+Chirag Verma,@chiragverma,Offshore Ops,"Python, ML",RESIDENT,Beacon Mesh,1996-10-24,+91 83896 94094,chirag.verma@mailbox.dev,chirag-verma.jpg
+Tarun Ghosh,@tarunghosh347,Signal Chain,"Postgres, data",RESIDENT,Grep Wizard,1993-06-11,+91 79131 76715,tarun.ghosh@builder.io,tarun-ghosh.jpg
+Nikita Bose,@nikitabose,Monsoon Stack,"C, embedded",RESIDENT,Reef Index,1993-02-09,+91 98051 75411,nikita.bose@proton.me,nikita-bose.jpg
+Farhan Rao,@farhanrao39,Kernel Panic,"Go, distributed systems",RESIDENT,Null Router,1994-11-21,+91 73703 65945,farhan.rao@example.com,farhan-rao.jpg
+Hemant Grover,@hemantgrover579,Low Tide,"Swift, iOS",BUILDER,Drift Compiler,1991-04-10,+91 71260 22142,hemant.grover@builder.io,hemant-grover.jpg
+Payal Sharma,@payalsharma86,Terminal Velocity,"Three.js, WebGL",BUILDER,Lantern Bus,1995-06-09,+91 70028 91388,payal.sharma@fastmail.com,payal-sharma.jpg
+Jaya Sharma,@jayasharma586,Monsoon Stack,"Elixir, realtime",RESIDENT,Palm Proxy,1996-01-22,+91 80554 51814,jaya.sharma@proton.me,jaya-sharma.jpg
+Nandini Rao,@nandinirao544,Zero Config,"Elixir, realtime",CREW,Grep Wizard,1999-06-11,+91 85447 43630,nandini.rao@mailbox.dev,nandini-rao.jpg
+Harsh Joshi,@harshjoshi400,Reef Knot,"Python, ML",MENTOR,Drift Compiler,1992-02-20,+91 70819 56134,harsh.joshi@mailbox.dev,harsh-joshi.jpg
+Bhavya Gupta,@bhavyagupta948,Deep Water,"Swift, iOS",BUILDER,Harbour Watch,2002-02-23,+91 97836 95926,bhavya.gupta@proton.me,bhavya-gupta.jpg
+Farhan Chauhan,@farhanchauhan384,Salt Runners,"Rust, WASM",RESIDENT,Grep Wizard,1992-12-21,+91 73851 66086,farhan.chauhan@proton.me,farhan-chauhan.jpg
+Girish Malhotra,@girishmalhotra143,Salt Runners,"React, Next.js",RESIDENT,Kernel Kite,2003-02-10,+91 97806 96823,girish.malhotra@proton.me,girish-malhotra.jpg
+Rahul Joshi,@rahuljoshi337,Deep Water,"React, Next.js",BUILDER,Drift Compiler,1994-03-28,+91 88500 37827,rahul.joshi@proton.me,rahul-joshi.jpg
+Esha Tandon,@eshatandon,Monsoon Stack,"Rust, WASM",CREW,Palm Proxy,1990-03-24,+91 74347 30732,esha.tandon@fastmail.com,esha-tandon.jpg
+Neha Nair,@nehanair874,Dune Buggy,"Zig, systems",RESIDENT,Monsoon Queue,1995-07-12,+91 84810 13099,neha.nair@example.com,neha-nair.jpg
+Nandini Banerjee,@nandinibanerje,Reef Knot,"Python, ML",MENTOR,Grep Wizard,2003-03-12,+91 97631 11353,nandini.banerjee@example.com,nandini-banerjee.jpg
+Divya Reddy,@divyareddy,Kernel Panic,"Kotlin, Android",RESIDENT,Monsoon Queue,1995-03-04,+91 76678 84087,divya.reddy@proton.me,divya-reddy.jpg
+Swati Chauhan,@swatichauhan,Deep Water,"Rust, infra",RESIDENT,Packet Garden,2003-02-18,+91 83994 94953,swati.chauhan@example.com,swati-chauhan.jpg
+Trisha Verma,@trishaverma,Salt Runners,"C, embedded",BUILDER,Monsoon Queue,1997-06-19,+91 97788 51872,trisha.verma@example.com,trisha-verma.jpg
+Latika Reddy,@latikareddy82,Terminal Velocity,"Scala, streaming",BUILDER,Signal Fire,1992-03-13,+91 81600 50011,latika.reddy@mailbox.dev,latika-reddy.jpg
+Lakshmi Reddy,@lakshmireddy,Zero Config,"Three.js, WebGL",RESIDENT,Deep Link,1997-04-13,+91 81887 79881,lakshmi.reddy@hey.com,lakshmi-reddy.jpg
+Tara Gupta,@taragupta292,Tide Pool,"Python, ML",BUILDER,Tide Table,2000-04-14,+91 75141 72515,tara.gupta@fastmail.com,tara-gupta.jpg
+Zain Sharma,@zainsharma580,Low Tide,"Figma, product design",RESIDENT,Coast Guard,1990-08-18,+91 73163 68167,zain.sharma@proton.me,zain-sharma.jpg
+Radha Ghosh,@radhaghosh,Kernel Panic,"React, Next.js",ALUMNI,Tide Table,1996-05-18,+91 73441 50356,radha.ghosh@hey.com,radha-ghosh.jpg
+Tara Kohli,@tarakohli,Cold Start,"Elixir, realtime",RESIDENT,Sandbox Radio,1993-12-22,+91 82587 59074,tara.kohli@mailbox.dev,tara-kohli.jpg
+Farhan Pillai,@farhanpillai847,Dune Buggy,"Go, distributed systems",RESIDENT,Sandbox Radio,1993-10-11,+91 89876 24746,farhan.pillai@fastmail.com,farhan-pillai.jpg
+Lakshmi Kulkarni,@lakshmikulkarn,Terminal Velocity,"React, Next.js",CREW,Sandbox Radio,2006-08-19,+91 87746 18068,lakshmi.kulkarni@fastmail.com,lakshmi-kulkarni.jpg
+Mihir Desai,@mihirdesai476,Dune Buggy,"Node, GraphQL",BUILDER,Salt Ledger,2004-09-08,+91 79963 72674,mihir.desai@mailbox.dev,mihir-desai.jpg
+Shreya Sharma,@shreyasharma,Tide Pool,"Kubernetes, platform",SPEAKER,Drift Compiler,1989-08-25,+91 77231 76329,shreya.sharma@fastmail.com,shreya-sharma.jpg
+Rhea Naidu,@rheanaidu,Deep Water,"Three.js, WebGL",RESIDENT,Tide Table,1991-09-17,+91 99955 63166,rhea.naidu@builder.io,rhea-naidu.jpg
+Divya Grover,@divyagrover821,Low Tide,"Three.js, WebGL",RESIDENT,Signal Fire,1990-09-25,+91 82239 31616,divya.grover@mailbox.dev,divya-grover.jpg
+Kavya Mehta,@kavyamehta755,Kernel Panic,"TypeScript, fullstack",RESIDENT,Lantern Bus,1998-09-02,+91 95448 83288,kavya.mehta@proton.me,kavya-mehta.jpg
+Mihir Sharma,@mihirsharma760,Half Awake,"Rust, infra",BUILDER,Anchor Cache,1996-05-21,+91 94321 97314,mihir.sharma@proton.me,mihir-sharma.jpg
+Leela Verma,@leelaverma,Night Shift,"Rust, infra",SPEAKER,Deep Link,1992-01-05,+91 99756 41592,leela.verma@proton.me,leela-verma.jpg
+Varun Pandey,@varunpandey,Cold Start,"React, Next.js",CREW,Null Router,1988-03-11,+91 84685 54700,varun.pandey@hey.com,varun-pandey.jpg
+Keshav Sethi,@keshavsethi833,Offshore Ops,"Zig, systems",CREW,Beacon Mesh,1990-08-15,+91 74096 21237,keshav.sethi@example.com,keshav-sethi.jpg
+Aarav Ghosh,@aaravghosh602,Night Shift,"Kotlin, Android",MENTOR,Null Router,2006-11-08,+91 96551 15483,aarav.ghosh@proton.me,aarav-ghosh.jpg
+Swati Joshi,@swatijoshi844,Salt Runners,"Go, distributed systems",MENTOR,Kernel Kite,1992-06-26,+91 77274 96461,swati.joshi@hey.com,swati-joshi.jpg
+Jaya Sinha,@jayasinha,Dune Buggy,"Swift, iOS",RESIDENT,Lantern Bus,2000-07-04,+91 85460 77030,jaya.sinha@builder.io,jaya-sinha.jpg
+Qadir Yadav,@qadiryadav,Night Shift,"Node, GraphQL",BUILDER,Palm Proxy,1992-02-05,+91 98171 59168,qadir.yadav@proton.me,qadir-yadav.jpg
+Meera Sharma,@meerasharma993,Beach Head,"C, embedded",ALUMNI,Beacon Mesh,1999-02-27,+91 98289 45999,meera.sharma@hey.com,meera-sharma.jpg
+Gauri Bajaj,@gauribajaj174,Kernel Panic,"Kubernetes, platform",BUILDER,Coast Guard,1994-06-03,+91 87689 89039,gauri.bajaj@fastmail.com,gauri-bajaj.jpg
+Naveen Verma,@naveenverma760,Cold Start,"Kotlin, Android",CREW,Signal Fire,1998-01-08,+91 97977 27860,naveen.verma@builder.io,naveen-verma.jpg
+Karthik Kohli,@karthikkohli,Dune Buggy,"Swift, iOS",MENTOR,Null Router,1995-06-19,+91 94451 30591,karthik.kohli@fastmail.com,karthik-kohli.jpg
+Nandini Pillai,@nandinipillai,Offshore Ops,"TypeScript, fullstack",RESIDENT,Grep Wizard,1994-08-02,+91 72096 46277,nandini.pillai@hey.com,nandini-pillai.jpg
+Meera Rao,@meerarao,Night Shift,"Zig, systems",RESIDENT,Anchor Cache,1998-08-11,+91 81866 59615,meera.rao@builder.io,meera-rao.jpg
+Hemant Mishra,@hemantmishra,Dune Buggy,"Node, GraphQL",RESIDENT,Coast Guard,1989-05-02,+91 96634 16572,hemant.mishra@hey.com,hemant-mishra.jpg
+Yamini Sinha,@yaminisinha408,Dune Buggy,"Kotlin, Android",RESIDENT,Coast Guard,1996-09-15,+91 78296 17275,yamini.sinha@mailbox.dev,yamini-sinha.jpg
+Rohan Rana,@rohanrana,Cold Start,"Zig, systems",RESIDENT,Signal Fire,1998-02-20,+91 99362 36310,rohan.rana@fastmail.com,rohan-rana.jpg
+Girish Kulkarni,@girishkulkarni127,Night Shift,"Swift, iOS",RESIDENT,Null Router,1992-03-18,+91 99741 13467,girish.kulkarni@builder.io,girish-kulkarni.jpg
+Priya Trivedi,@priyatrivedi712,Monsoon Stack,"React, Next.js",BUILDER,Lantern Bus,1995-09-14,+91 99727 46128,priya.trivedi@example.com,priya-trivedi.jpg
+Lakshmi Saxena,@lakshmisaxena702,Beach Head,"Swift, iOS",RESIDENT,Tide Table,1992-02-23,+91 83503 71308,lakshmi.saxena@mailbox.dev,lakshmi-saxena.jpg
+Priya Tandon,@priyatandon,Beach Head,"Rust, WASM",RESIDENT,Anchor Cache,1989-07-26,+91 86542 24525,priya.tandon@builder.io,priya-tandon.jpg
+Sameer Bhat,@sameerbhat184,Salt Runners,"Elixir, realtime",MENTOR,Packet Garden,1990-01-09,+91 80307 68764,sameer.bhat@proton.me,sameer-bhat.jpg
+Farhan Naidu,@farhannaidu623,Half Awake,"Node, GraphQL",RESIDENT,Salt Ledger,1989-02-05,+91 84527 48466,farhan.naidu@mailbox.dev,farhan-naidu.jpg
+Jaya Kaur,@jayakaur,Signal Chain,"Python, ML",RESIDENT,Reef Index,2004-11-01,+91 93465 92512,jaya.kaur@hey.com,jaya-kaur.jpg
+Aman Bhat,@amanbhat492,Offshore Ops,"Kotlin, Android",RESIDENT,Coast Guard,2003-08-27,+91 89249 87853,aman.bhat@builder.io,aman-bhat.jpg
+Mohit Mehta,@mohitmehta351,Salt Runners,"Postgres, data",RESIDENT,Reef Index,1993-01-15,+91 84180 47719,mohit.mehta@example.com,mohit-mehta.jpg
+Utkarsh Desai,@utkarshdesai,Zero Config,"Go, distributed systems",RESIDENT,Deep Link,1992-12-07,+91 85076 48658,utkarsh.desai@builder.io,utkarsh-desai.jpg
+Jaya Reddy,@jayareddy,Signal Chain,"Solidity, EVM",BUILDER,Kernel Kite,2003-04-23,+91 97630 96080,jaya.reddy@example.com,jaya-reddy.jpg
+Gauri Rana,@gaurirana,Offshore Ops,"Postgres, data",MENTOR,Coast Guard,2001-07-08,+91 95643 66346,gauri.rana@fastmail.com,gauri-rana.jpg
+Mihir Malhotra,@mihirmalhotra,Salt Runners,"Rust, WASM",RESIDENT,Lantern Bus,2003-05-26,+91 95631 25295,mihir.malhotra@hey.com,mihir-malhotra.jpg
+Harsh Kapoor,@harshkapoor118,Reef Knot,"React, Next.js",MENTOR,Deep Link,1992-11-15,+91 92717 32130,harsh.kapoor@builder.io,harsh-kapoor.jpg
+Rishi Kapoor,@rishikapoor,Salt Runners,"C, embedded",ALUMNI,Harbour Watch,1999-06-28,+91 82253 16322,rishi.kapoor@hey.com,rishi-kapoor.jpg
+Qadir Banerjee,@qadirbanerjee631,Night Shift,"Swift, iOS",SPEAKER,Sandbox Radio,1992-06-17,+91 78980 87626,qadir.banerjee@proton.me,qadir-banerjee.jpg
+Rishi Menon,@rishimenon795,Beach Head,"Kubernetes, platform",RESIDENT,Harbour Watch,1994-11-05,+91 97037 13788,rishi.menon@proton.me,rishi-menon.jpg
+Kavya Sinha,@kavyasinha380,Offshore Ops,"Solidity, EVM",ALUMNI,Salt Ledger,1988-05-26,+91 92999 57054,kavya.sinha@mailbox.dev,kavya-sinha.jpg
+Naveen Bose,@naveenbose202,Night Shift,"C, embedded",MENTOR,Signal Fire,2003-08-08,+91 70508 68899,naveen.bose@mailbox.dev,naveen-bose.jpg
+Uma Trivedi,@umatrivedi905,Low Tide,"Elixir, realtime",RESIDENT,Coast Guard,1993-05-22,+91 87181 59410,uma.trivedi@mailbox.dev,uma-trivedi.jpg
+Swati Sharma,@swatisharma0,Reef Knot,"Node, GraphQL",MENTOR,Grep Wizard,1990-10-25,+91 98133 69926,swati.sharma@hey.com,swati-sharma.jpg
+Rajat Singh,@rajatsingh,Tide Pool,"Rust, infra",BUILDER,Drift Compiler,1991-08-25,+91 80447 64408,rajat.singh@mailbox.dev,rajat-singh.jpg
+Zoya Sharma,@zoyasharma943,Half Awake,"Go, distributed systems",BUILDER,Packet Garden,1994-06-26,+91 74449 81752,zoya.sharma@hey.com,zoya-sharma.jpg
+Aman Malhotra,@amanmalhotra,Night Shift,"Three.js, WebGL",RESIDENT,Beacon Mesh,1994-06-14,+91 90728 26518,aman.malhotra@hey.com,aman-malhotra.jpg
+Swati Bhat,@swatibhat,Zero Config,"Kubernetes, platform",RESIDENT,Null Router,2003-07-23,+91 82053 72782,swati.bhat@mailbox.dev,swati-bhat.jpg
+Harsh Gupta,@harshgupta153,Half Awake,"TypeScript, fullstack",RESIDENT,Packet Garden,2005-10-12,+91 89679 85696,harsh.gupta@proton.me,harsh-gupta.jpg
+Vani Kaur,@vanikaur,Cold Start,"Go, distributed systems",CREW,Null Router,2006-11-15,+91 96959 45058,vani.kaur@mailbox.dev,vani-kaur.jpg
+Mihir Kulkarni,@mihirkulkarni719,Half Awake,"Kotlin, Android",BUILDER,Anchor Cache,1989-08-03,+91 87087 13819,mihir.kulkarni@fastmail.com,mihir-kulkarni.jpg
+Ishita Saxena,@ishitasaxena375,Beach Head,"Kotlin, Android",RESIDENT,Lantern Bus,1999-04-18,+91 95891 99254,ishita.saxena@proton.me,ishita-saxena.jpg
+Qadir Joshi,@qadirjoshi,Cold Start,"Zig, systems",BUILDER,Monsoon Queue,1993-07-12,+91 70994 94195,qadir.joshi@mailbox.dev,qadir-joshi.jpg
+Jaya Singh,@jayasingh,Tide Pool,"Node, GraphQL",BUILDER,Sandbox Radio,2000-04-27,+91 77205 77430,jaya.singh@builder.io,jaya-singh.jpg
+Nisha Grover,@nishagrover928,Salt Runners,"Three.js, WebGL",CREW,Packet Garden,1998-06-04,+91 70027 75273,nisha.grover@proton.me,nisha-grover.jpg
+Rohit Bose,@rohitbose,Night Shift,"TypeScript, fullstack",RESIDENT,Sandbox Radio,1999-09-24,+91 83802 44253,rohit.bose@builder.io,rohit-bose.jpg
+Vikram Dutta,@vikramdutta992,Terminal Velocity,"Figma, product design",CREW,Null Router,1990-09-21,+91 73926 19034,vikram.dutta@mailbox.dev,vikram-dutta.jpg
+Tanvi Yadav,@tanviyadav520,Signal Chain,"Swift, iOS",BUILDER,Null Router,2003-11-04,+91 73536 99356,tanvi.yadav@hey.com,tanvi-yadav.jpg
+Vani Gupta,@vanigupta,Deep Water,"Zig, systems",RESIDENT,Lantern Bus,2001-07-08,+91 86765 51870,vani.gupta@example.com,vani-gupta.jpg
+Anjali Joshi,@anjalijoshi942,Half Awake,"Kotlin, Android",BUILDER,Monsoon Queue,1997-01-16,+91 87096 34107,anjali.joshi@mailbox.dev,anjali-joshi.jpg
+Harsh Grover,@harshgrover883,Offshore Ops,"Solidity, EVM",BUILDER,Grep Wizard,1992-09-01,+91 95635 66938,harsh.grover@example.com,harsh-grover.jpg
+Mohit Kulkarni,@mohitkulkarni243,Dune Buggy,"Figma, product design",RESIDENT,Palm Proxy,1990-10-25,+91 77019 39371,mohit.kulkarni@mailbox.dev,mohit-kulkarni.jpg
