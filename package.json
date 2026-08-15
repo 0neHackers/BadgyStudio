@@ -1,6 +1,6 @@
 {
   "name": "badgy-studio",
-  "version": "7.0.0",
+  "version": "7.3.0",
   "private": true,
   "description": "Badgy Studio: all-in-one ID card, badge and frame creator.",
   "scripts": {

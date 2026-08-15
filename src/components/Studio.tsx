@@ -16,6 +16,7 @@ import {
 import { releasePhoto } from "@/lib/image";
 import { savePass, toVaultPhoto } from "@/lib/vault";
 import { notifyProgress, notifyWarning } from "@/lib/toast";
+import { ask } from "@/lib/confirm";
 import { useBrandAssets } from "@/lib/brand-assets";
 import type { CodeKind } from "@/lib/codes";
 import {
@@ -197,18 +198,16 @@ export function Studio({ origin }: { origin: string }) {
         name: badge.name,
         team: badge.team,
       });
-      const agreed = window.confirm(
-        [
-          "To make X show your badge in the link preview, it has to be uploaded to a public address.",
-          "",
-          "That means sending:",
-          ...summary.map((line) => `  · ${line}`),
-          "",
-          "Anyone with the link can see it. Nothing else in this app is ever uploaded.",
-          "",
-          "Cancel to skip the upload: the image will download and you can attach it yourself.",
-        ].join("\n"),
-      );
+      // Not a destructive question, so the confirm button takes focus and the
+      // tone stays normal. It is still the one moment this app sends anything,
+      // so what would be sent is itemised rather than summarised.
+      const agreed = await ask({
+        title: "Upload this badge so the link preview shows it?",
+        body: "X can only show your badge in the preview if the image sits at a public address. Nothing else in this app is ever uploaded.",
+        bullets: summary,
+        confirmLabel: "Upload and share",
+        cancelLabel: "Skip the upload",
+      });
       rememberShareConsent(agreed ? "granted" : "denied");
     }
 

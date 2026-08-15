@@ -7,6 +7,7 @@ import { Cursor } from "@/components/Cursor";
 import { BootScreen } from "@/components/BootScreen";
 import { BatchHost } from "@/components/BatchHost";
 import { Toaster } from "@/components/Toaster";
+import { ConfirmDialog } from "@/components/ConfirmDialog";
 import "./globals.css";
 
 const origin = siteOrigin();
@@ -64,6 +65,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* Notifications. Outlives every route, because a bulk run started on
             /bulk can finish while somebody is reading /passes. */}
         <Toaster />
+        <ConfirmDialog />
       </body>
     </html>
   );

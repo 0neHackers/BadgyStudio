@@ -138,6 +138,89 @@ export interface RenderOptions {
 }
 
 /**
+ * Canvas dimension ceiling. Chrome refuses a canvas with either side past
+ * this, and html-to-image clamps to the same number. A team frame at 3x is
+ * 4800x2700, so nothing here reaches it; the clamp exists so that a future
+ * format cannot fail silently.
+ */
+const MAX_CANVAS = 16384;
+
+/**
+ * Turns the serialised SVG into a canvas.
+ *
+ * WHY THIS IS NOT html-to-image's toCanvas
+ *
+ * `toCanvas` is `toSvg` followed by an image load and a `drawImage`, and its
+ * image loader resolves inside `requestAnimationFrame`:
+ *
+ *     img.onload = () => img.decode().then(() =>
+ *       requestAnimationFrame(() => resolve(img)))
+ *
+ * requestAnimationFrame does not fire while a tab is hidden. So a bulk run
+ * parked on whichever row it was drawing the moment you switched tab or
+ * application, and continued from the next one when you came back. It looked
+ * like the run was still going, because the status strip was accurate: the row
+ * really was in flight, waiting for a frame that would never come.
+ *
+ * Every yield this project owns was moved off rAF in V05.06 for exactly this
+ * reason. This was the last one, and it was in a dependency, which is why it
+ * survived three versions of looking for it in our own code.
+ *
+ * So the SVG step is still html-to-image's, and only the twenty lines after it
+ * are ours: load the image, draw it, no frame required. `decode()` is
+ * attempted because it keeps the paint off the main thread, but nothing waits
+ * on it: `onload` already guarantees the image is drawable, and a decode that
+ * a hidden tab deprioritises must not become the new place a run stops.
+ */
+async function drawToCanvas(
+  svgUrl: string,
+  width: number,
+  height: number,
+  pixelRatio: number,
+): Promise<HTMLCanvasElement> {
+  const image = new Image();
+  image.decoding = "async";
+  image.crossOrigin = "anonymous";
+
+  await new Promise<void>((resolve, reject) => {
+    image.onload = () => resolve();
+    image.onerror = () => reject(new Error("The serialised artboard did not load."));
+    image.src = svgUrl;
+  });
+
+  // Best effort. A rejection here means the browser will decode during
+  // drawImage instead, which is slower and still correct.
+  await image.decode().catch(() => {});
+
+  const canvas = document.createElement("canvas");
+  let pixelWidth = width * pixelRatio;
+  let pixelHeight = height * pixelRatio;
+
+  if (pixelWidth > MAX_CANVAS || pixelHeight > MAX_CANVAS) {
+    const scale = Math.min(MAX_CANVAS / pixelWidth, MAX_CANVAS / pixelHeight);
+    pixelWidth = Math.floor(pixelWidth * scale);
+    pixelHeight = Math.floor(pixelHeight * scale);
+  }
+
+  canvas.width = pixelWidth;
+  canvas.height = pixelHeight;
+  canvas.style.width = `${width}px`;
+  canvas.style.height = `${height}px`;
+
+  const context = canvas.getContext("2d");
+  if (!context) throw new Error("This browser refused a 2D canvas.");
+
+  // Painted before the artboard, because the badge does not fill every pixel
+  // at every format and a transparent PNG on a dark timeline is not the thing
+  // anyone previewed.
+  context.fillStyle = COLORS.paper;
+  context.fillRect(0, 0, canvas.width, canvas.height);
+  context.drawImage(image, 0, 0, canvas.width, canvas.height);
+
+  return canvas;
+}
+
+/**
  * Everything up to but not including PNG compression.
  *
  * Split out from `renderBlob` so a batch run can start compressing one row
@@ -149,7 +232,7 @@ export async function renderCanvas(
   node: HTMLElement,
   { width, height, pixelRatio = 3, label = "card" }: RenderOptions,
 ): Promise<{ canvas: HTMLCanvasElement; settleMs: number; serialiseMs: number; label: string; pixelRatio: number }> {
-  const [{ toCanvas }, fontEmbedCSS] = await Promise.all([
+  const [{ toSvg }, fontEmbedCSS] = await Promise.all([
     import("html-to-image"),
     buildFontEmbedCss(),
   ]);
@@ -158,10 +241,9 @@ export async function renderCanvas(
   await settle(node);
   const startedRaster = performance.now();
 
-  const canvas = await toCanvas(node, {
+  const svgUrl = await toSvg(node, {
     width,
     height,
-    pixelRatio,
     cacheBust: false,
     backgroundColor: COLORS.paper,
     fontEmbedCSS,
@@ -180,6 +262,8 @@ export async function renderCanvas(
       animation: "none",
     },
   });
+
+  const canvas = await drawToCanvas(svgUrl, width, height, pixelRatio);
 
   return {
     canvas,
@@ -245,6 +329,11 @@ export async function renderBlob(node: HTMLElement, options: RenderOptions): Pro
  */
 function exportFilter(node: Node): boolean {
   return !(node instanceof Element) || node.getAttribute("data-export") !== "skip";
+}
+
+/** Saves a string as a file. Used for the CSV templates. */
+export function downloadText(text: string, fileName: string) {
+  downloadBlob(new Blob([text], { type: "text/csv;charset=utf-8" }), fileName);
 }
 
 export function downloadBlob(blob: Blob, fileName: string) {

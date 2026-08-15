@@ -1,7 +1,7 @@
 # Badgy Studio
 
 **All-in-One ID Card, Badge, & Frame Creator** — built for the HH Goa 2026 Open Trials.
-Version **V07.00**, shown in the app as **V7.0-PROD**.
+Version **V07.03**, shown in the app as **V7.3-PROD**.
 
 Upload a photo, get a branded HH Goa 2026 graphic, download it, share it on X with
 **#FrameInGoa**. Nothing is uploaded to produce the image.
@@ -245,11 +245,11 @@ produces everything, as zip parts budgeted at 96 MB each.
 ## 8. Testing
 
 The verification harness is not in this folder, deliberately: it needs Playwright, which
-would make every deployment install a browser binary. It lives in `../webapp/V07.00/tools/`
+would make every deployment install a browser binary. It lives in `../webapp/V07.03/tools/`
 and every script takes a `--url`, so it can be pointed at the live deployment:
 
 ```bash
-cd ../webapp/V07.00
+cd ../webapp/V07.03
 npm install
 npx playwright install chromium
 node tools/verify-v0603.mjs     --url https://your-deployment.vercel.app
@@ -260,7 +260,7 @@ node tools/verify-css.mjs       --url https://your-deployment.vercel.app
 PowerShell is identical here, since these are all `node` and `npx` invocations:
 
 ```powershell
-cd ..\webapp\V07.00
+cd ..\webapp\V07.03
 npm install
 npx playwright install chromium
 node tools\verify-v0603.mjs     --url https://your-deployment.vercel.app

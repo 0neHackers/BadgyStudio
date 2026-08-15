@@ -87,6 +87,7 @@ export function SiteHeader() {
               title="Back to the generator"
               className="press inline-flex shrink-0 items-center justify-center border-[3px] border-paper/30 bg-ink text-paper hover:border-sun hover:text-sun"
               style={{ width: 38, height: 38 }}
+              suppressHydrationWarning
             >
               <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none">
                 <path
@@ -128,6 +129,7 @@ export function SiteHeader() {
               className="press inline-flex items-center border-[3px] border-paper/30 px-2.5 font-[family-name:var(--font-display)] text-paper hover:border-sun hover:text-sun"
               style={{ fontSize: "var(--step-0)", height: HEADER_CONTROL_H }}
               title="Passes saved in this browser"
+              suppressHydrationWarning
             >
               Saved
             </Link>
@@ -139,6 +141,7 @@ export function SiteHeader() {
               href={cta.href}
               className="press pop-in inline-flex items-center border-[3px] border-ink bg-sun px-3 font-[family-name:var(--font-display)] text-ink"
               style={{ fontSize: "var(--step-0)", height: HEADER_CONTROL_H }}
+              suppressHydrationWarning
             >
               {cta.long}
             </Link>
@@ -155,6 +158,7 @@ export function SiteHeader() {
                 title={generator.long}
                 className="press pop-in inline-flex items-center border-[3px] border-paper/30 px-2.5 font-[family-name:var(--font-display)] text-paper hover:border-sun hover:text-sun"
                 style={{ fontSize: "var(--step-0)", height: HEADER_CONTROL_H }}
+                suppressHydrationWarning
               >
                 {generator.short}
               </Link>
@@ -182,6 +186,7 @@ export function SiteHeader() {
             rel="noreferrer noopener"
             className="press hidden items-center border-[3px] border-ink bg-sun px-3 font-[family-name:var(--font-display)] text-ink min-[380px]:inline-flex"
             style={{ fontSize: "var(--step-0)", height: HEADER_CONTROL_H }}
+            suppressHydrationWarning
           >
             {EVENT.site}
           </a>
@@ -236,6 +241,7 @@ export function SiteFooter() {
             rel="noreferrer noopener"
             className="press inline-flex items-center gap-2"
             title={EVENT.organiser}
+            suppressHydrationWarning
           >
             <StudioMark height={30} />
           </a>
@@ -276,6 +282,7 @@ export function SiteFooter() {
             rel="noreferrer noopener"
             className="press credit-box"
             title={`${APP.author} on GitHub`}
+            suppressHydrationWarning
           >
             <OneHackersMark height={CREDIT_MARK} />
           </a>
@@ -286,6 +293,7 @@ export function SiteFooter() {
             rel="noreferrer noopener"
             className="press credit-box gap-1.5 hover:opacity-80"
             title={`${APP.handle} on X`}
+            suppressHydrationWarning
           >
             <XMark size={CREDIT_MARK} />
             <span className="font-[family-name:var(--font-mono)] tracking-[0.06em]">

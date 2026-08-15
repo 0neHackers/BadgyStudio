@@ -17,6 +17,7 @@ import { useBrandAssets } from "@/lib/brand-assets";
 import { pickFolder } from "@/lib/sink";
 import { yieldToBrowser } from "@/lib/schedule";
 import { notifyError, notifyInfo, notifyProgress, notifySuccess, notifyWarning } from "@/lib/toast";
+import { ask } from "@/lib/confirm";
 import {
   EMPTY_ROSTER,
   clearRoster,
@@ -475,8 +476,16 @@ export function BulkStudio({ origin }: { origin: string }) {
    * reloads, so losing work has to be a decision rather than a side effect.
    * Confirmed when there is anything to lose.
    */
-  const clearAll = () => {
-    if (rows.length > 0 && !window.confirm(`Clear all ${rows.length} rows? This cannot be undone.`)) {
+  const clearAll = async () => {
+    if (
+      rows.length > 0 &&
+      !(await ask({
+        title: `Clear all ${rows.length} rows?`,
+        body: "The roster, every correction in it and the current selection all go. Photos you attached will have to be attached again.",
+        confirmLabel: `Clear ${rows.length} rows`,
+        tone: "danger",
+      }))
+    ) {
       return;
     }
     rows.forEach((row) => releasePhoto(row.photo));
@@ -601,7 +610,7 @@ export function BulkStudio({ origin }: { origin: string }) {
                 CSV template
               </Button>
               {rows.length > 0 ? (
-                <Button variant="ghost" onClick={clearAll} disabled={running}>
+                <Button variant="ghost" onClick={() => void clearAll()} disabled={running}>
                   Clear
                 </Button>
               ) : null}

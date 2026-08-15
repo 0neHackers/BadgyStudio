@@ -1,5 +1,6 @@
 "use client";
 
+import { forwardRef } from "react";
 import type { ButtonHTMLAttributes, InputHTMLAttributes, ReactNode } from "react";
 
 /**
@@ -29,14 +30,17 @@ const VARIANTS: Record<Variant, string> = {
   danger: "bg-flag text-paper slab-sm hover:bg-[#ff1a2e]",
 };
 
-export function Button({
-  variant = "secondary",
-  className = "",
-  children,
-  ...rest
-}: ButtonHTMLAttributes<HTMLButtonElement> & { variant?: Variant }) {
+/**
+ * Forwards its ref, because the confirmation dialog focuses one of its two
+ * buttons on open and which one depends on how dangerous the question is.
+ */
+export const Button = forwardRef<
+  HTMLButtonElement,
+  ButtonHTMLAttributes<HTMLButtonElement> & { variant?: Variant }
+>(function Button({ variant = "secondary", className = "", children, ...rest }, ref) {
   return (
     <button
+      ref={ref}
       type="button"
       className={`${BASE_BUTTON} ${VARIANTS[variant]} ${className}`}
       style={{
@@ -49,7 +53,7 @@ export function Button({
       {children}
     </button>
   );
-}
+});
 
 export function Label({ children, hint }: { children: ReactNode; hint?: string }) {
   return (

@@ -366,6 +366,39 @@ export async function deletePass(id: string): Promise<void> {
   announce();
 }
 
+/**
+ * Deletes many at once.
+ *
+ * One transaction and one announcement rather than a loop over `deletePass`,
+ * which would re-render the list once per record. On a selection of five
+ * hundred that is five hundred renders of a list that is about to be five
+ * hundred rows shorter.
+ *
+ * Returns how many were removed, so the caller can report a number rather than
+ * assume the whole selection existed.
+ */
+export async function deletePasses(ids: string[]): Promise<number> {
+  if (ids.length === 0) return 0;
+  const wanted = new Set(ids);
+  const before = cache.length;
+
+  const written = await run("readwrite", (store) => {
+    // The last request is the one `run` waits on; the rest ride the same
+    // transaction, which is what makes this one round trip.
+    let last: IDBRequest | null = null;
+    for (const id of ids) last = store.delete(id);
+    return last as IDBRequest;
+  });
+
+  // A refused database still leaves the cache correct for this session, and
+  // the records come back on the next load. Better than pretending it failed.
+  if (written === null) await openDb();
+
+  cache = cache.filter((entry) => !wanted.has(entry.id));
+  announce();
+  return before - cache.length;
+}
+
 export async function clearVault(): Promise<void> {
   await run("readwrite", (store) => store.clear());
   cache = [];

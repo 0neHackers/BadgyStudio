@@ -4,7 +4,7 @@ import { useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore
 import { ACCENTS, CANVAS, EVENT, type AccentKey, type FormatKey } from "@/lib/brand";
 import { buildBadge } from "@/lib/badge";
 import { makeSerial } from "@/lib/identifier";
-import { downloadBlob, fileNameFor, renderBlob } from "@/lib/export";
+import { downloadBlob, downloadText, fileNameFor, renderBlob } from "@/lib/export";
 import { yieldToBrowser } from "@/lib/schedule";
 import { releasePhoto } from "@/lib/image";
 import { DEFAULT_INPUT, type BadgeState, type FieldVisibility, type PhotoAsset } from "@/types";
@@ -12,6 +12,7 @@ import { CODE_OPTIONS, type CodeKind } from "@/lib/codes";
 import {
   clearVault,
   deletePass,
+  deletePasses,
   fromVaultPhoto,
   loadVault,
   subscribeVault,
@@ -28,13 +29,31 @@ import { Stage } from "@/components/Stage";
 import { Button, Segmented, TextField, VisibilityPicker } from "@/components/ui/controls";
 import { EmailField } from "@/components/ContactFields";
 import {
+  EMPTY_ANSWER,
+  answerMatches,
+  blankTemplate,
+  isComplete,
+  parseUnlockCsv,
+  prefilledTemplate,
+} from "@/lib/unlock";
+import {
+  EMPTY_DRAFT,
+  clearUnlock,
+  restoreUnlock,
+  setAnswer,
+  setAnswers,
+  subscribeUnlock,
+  unlockSnapshot,
+} from "@/lib/unlock-store";
+import {
   DEFAULT_VAULT_PAGE_SIZE,
   VaultPager,
   pageCountFor,
   perPageFor,
   type VaultPageSize,
 } from "@/components/Pager";
-import { notifyError, notifyProgress, notifySuccess, notifyWarning } from "@/lib/toast";
+import { notifyError, notifyInfo, notifyProgress, notifySuccess, notifyWarning } from "@/lib/toast";
+import { ask } from "@/lib/confirm";
 
 /**
  * Passes saved in this browser.
@@ -220,9 +239,16 @@ export function PassVault({ origin }: { origin: string }) {
           {passes.length > 0 ? (
             <Button
               variant="danger"
-              onClick={() => {
+              onClick={async () => {
                 const count = passes.length;
-                if (window.confirm(`Delete all ${count} saved passes from this browser?`)) {
+                if (
+                  await ask({
+                    title: `Delete all ${count} saved passes?`,
+                    body: "Every record in this browser goes, photos included. There is no server copy and no undo.",
+                    confirmLabel: `Delete all ${count}`,
+                    tone: "danger",
+                  })
+                ) {
                   void clearVault().then(() =>
                     notifySuccess(`Deleted ${count} saved pass${count === 1 ? "" : "es"}`),
                   );
@@ -232,6 +258,37 @@ export function PassVault({ origin }: { origin: string }) {
               }}
             >
               Clear everything
+            </Button>
+          ) : null}
+          {/* Beside Clear everything, and only when there is a selection to
+              delete. A destructive button that is always live next to another
+              destructive button is how the wrong one gets pressed. */}
+          {checked.size > 0 ? (
+            <Button
+              variant="danger"
+              onClick={async () => {
+                const ids = [...checked];
+                if (
+                  !(await ask({
+                    title: `Delete ${ids.length} selected pass${ids.length === 1 ? "" : "es"}?`,
+                    body: "They go from this browser, photos included. There is no server copy and no undo.",
+                    confirmLabel: `Delete ${ids.length}`,
+                    tone: "danger",
+                  }))
+                ) {
+                  return;
+                }
+                void deletePasses(ids).then((removed) => {
+                  setChecked(new Set());
+                  if (openId && ids.includes(openId)) setOpenId(null);
+                  notifySuccess(
+                    `${removed} pass${removed === 1 ? "" : "es"} deleted`,
+                    "Removed from this browser.",
+                  );
+                });
+              }}
+            >
+              Delete {checked.size} selected
             </Button>
           ) : null}
         </div>
@@ -324,7 +381,15 @@ export function PassVault({ origin }: { origin: string }) {
           </div>
 
           {selected.length > 0 ? (
-            <BatchUnlock passes={selected} settings={settings} origin={origin} />
+            <BatchUnlock
+              passes={selected}
+              allPasses={passes}
+              settings={settings}
+              origin={origin}
+              onImported={(serials) =>
+                setChecked((current) => new Set([...current, ...serials]))
+              }
+            />
           ) : null}
 
           {/* Above and below, because a list you have scrolled to the end of
@@ -374,8 +439,15 @@ export function PassVault({ origin }: { origin: string }) {
                     </Button>
                     <Button
                       variant="ghost"
-                      onClick={() => {
-                        if (window.confirm(`Delete ${pass.id} from this browser?`)) {
+                      onClick={async () => {
+                        if (
+                          await ask({
+                            title: `Delete ${pass.id}?`,
+                            body: `${pass.input.name || "This pass"} goes from this browser, photo included. There is no undo.`,
+                            confirmLabel: "Delete it",
+                            tone: "danger",
+                          })
+                        ) {
                           void deletePass(pass.id).then(() => notifySuccess("Deleted", pass.id));
                           if (openId === pass.id) setOpenId(null);
                         }
@@ -800,18 +872,71 @@ function PassPanel({
  */
 function BatchUnlock({
   passes,
+  allPasses,
   settings,
   origin,
+  onImported,
 }: {
   passes: VaultPass[];
+  /** Everything in the vault, so an import can match a pass that is not ticked. */
+  allPasses: VaultPass[];
   settings: RenderSettings;
   origin: string;
+  /** An import is allowed to widen the selection: forty filled rows meant forty. */
+  onImported: (serials: string[]) => void;
 }) {
   const nodeRef = useRef<HTMLDivElement>(null);
   const [current, setCurrent] = useState<{ pass: VaultPass; photo: PhotoAsset | null } | null>(null);
   const [running, setRunning] = useState(false);
   const [progress, setProgress] = useState({ done: 0, total: 0 });
   const [report, setReport] = useState<{ ok: number; refused: string[] } | null>(null);
+
+  // The sheet lives outside this component, so navigating away and back does
+  // not throw away forty rows of typing. See lib/unlock-store.ts.
+  const draft = useSyncExternalStore(subscribeUnlock, unlockSnapshot, () => EMPTY_DRAFT);
+  useEffect(() => {
+    restoreUnlock();
+  }, []);
+
+  /**
+   * Reads a filled-in template.
+   *
+   * Rows are keyed on the pass number, so the file may cover more passes than
+   * are ticked, fewer, or the same ones in another order. Anything it
+   * recognises is written into the sheet; anything it does not is reported by
+   * number rather than dropped.
+   */
+  const importCsv = async (file: File | null) => {
+    if (!file) return;
+    const job = notifyProgress("Reading the CSV", file.name);
+    try {
+      const parsed = parseUnlockCsv(await file.text(), allPasses);
+      if (parsed.matched.length === 0) {
+        job.fail(
+          "Nothing in that file matched",
+          parsed.unknown.length > 0
+            ? `${parsed.unknown.length} pass numbers are not in this browser.`
+            : "No pass number column was found.",
+        );
+        return;
+      }
+
+      setAnswers(parsed.matched);
+      onImported(parsed.matched.map((row) => row.serial));
+
+      const notes = [
+        parsed.unknown.length > 0 ? `${parsed.unknown.length} unknown` : "",
+        parsed.malformed > 0 ? `${parsed.malformed} without a pass number` : "",
+      ].filter(Boolean);
+
+      job.succeed(
+        `${parsed.matched.length} row${parsed.matched.length === 1 ? "" : "s"} imported`,
+        notes.length > 0 ? `Ignored: ${notes.join(", ")}.` : "Selected and ready to check.",
+      );
+    } catch {
+      job.fail("That file could not be read", "It has to be a CSV.");
+    }
+  };
 
   const mount = useCallback(async (pass: VaultPass, photo: PhotoAsset | null) => {
     setCurrent({ pass, photo });
@@ -822,13 +947,6 @@ function BatchUnlock({
   }, []);
 
   const run = async () => {
-    const answers = {
-      name: (document.getElementById("batch-name") as HTMLInputElement | null)?.value ?? "",
-      username: (document.getElementById("batch-handle") as HTMLInputElement | null)?.value ?? "",
-      email: (document.getElementById("batch-email") as HTMLInputElement | null)?.value ?? "",
-      team: (document.getElementById("batch-team") as HTMLInputElement | null)?.value ?? "",
-    };
-
     setRunning(true);
     setReport(null);
     setProgress({ done: 0, total: passes.length });
@@ -845,7 +963,10 @@ function BatchUnlock({
       setProgress({ done: index, total: passes.length });
       job.update({ detail: `${index} of ${passes.length}`, progress: index / passes.length });
 
-      if (!identityMatches(pass, answers)) {
+      // One answer per pass, not one answer for the batch. Each is still
+      // verified on its own, so the guarantee per pass is what it always was.
+      const answer = draft.answers[pass.id] ?? EMPTY_ANSWER;
+      if (!isComplete(pass, answer) || !answerMatches(pass, answer)) {
         refused.push(pass.id);
         continue;
       }
@@ -906,29 +1027,143 @@ function BatchUnlock({
       >
         RE-ISSUE {passes.length} SELECTED
       </p>
-      <p className="mt-1 mb-3 max-w-[70ch] leading-snug text-ink/70" style={{ fontSize: "0.77rem" }}>
-        Every pass is checked individually against the details below, so this only produces the ones
-        that genuinely belong to whoever fills this in. Anything that does not match is listed
-        rather than skipped quietly.
+      <p className="mt-1 mb-3 max-w-[76ch] leading-snug text-ink/70" style={{ fontSize: "0.77rem" }}>
+        <strong>One answer per pass.</strong> Every pass is checked on its own, against its own
+        row, so this produces only the ones whose details genuinely reproduce their pass number.
+        Anything that does not match is named rather than skipped quietly. Fill the table in, or
+        download a template and upload it back.
       </p>
 
-      <div className="grid gap-[var(--gap-sm)] sm:grid-cols-2">
-        <label className="block min-w-0">
-          <FieldLabel>Full name</FieldLabel>
-          <input id="batch-name" className="w-full border-[3px] border-ink bg-paper px-3 py-2" />
+      {/* CSV in and out. The generated template carries the pass number and the
+          holder's name; the blank one carries neither. Both are offered because
+          they answer different questions, and the difference is stated rather
+          than left to be worked out. */}
+      <div className="mb-3 flex flex-wrap items-center gap-2 border-[2px] border-ink/25 bg-paper/60 px-2.5 py-2">
+        <span
+          className="font-[family-name:var(--font-mono)] font-bold tracking-[0.14em] text-ink/55"
+          style={{ fontSize: "0.72rem" }}
+        >
+          CSV
+        </span>
+        <Button
+          onClick={() => {
+            downloadText(prefilledTemplate(passes), "badgy-unlock-selected.csv");
+            notifyInfo(
+              `Template for ${passes.length} pass${passes.length === 1 ? "" : "es"}`,
+              "Pass number and name filled in. Add handle, team and email.",
+            );
+          }}
+          className="!min-h-[34px] !py-1"
+        >
+          Template for these {passes.length}
+        </Button>
+        <Button
+          onClick={() => {
+            downloadText(blankTemplate(), "badgy-unlock-blank.csv");
+            notifyInfo("Blank template", "Columns only. You supply the pass numbers.");
+          }}
+          variant="ghost"
+          className="!min-h-[34px] !py-1"
+        >
+          Blank template
+        </Button>
+        <label className="press inline-flex cursor-pointer items-center border-[3px] border-ink bg-paper px-2.5 py-1" style={{ fontSize: "var(--step--1)", minHeight: 34 }}>
+          Upload filled CSV
+          <input
+            type="file"
+            accept=".csv,text/csv"
+            className="sr-only"
+            onChange={(event) => void importCsv(event.target.files?.[0] ?? null)}
+          />
         </label>
-        <label className="block min-w-0">
-          <FieldLabel>X handle</FieldLabel>
-          <input id="batch-handle" className="w-full border-[3px] border-ink bg-paper px-3 py-2" />
-        </label>
-        <label className="block min-w-0">
-          <FieldLabel>Team</FieldLabel>
-          <input id="batch-team" className="w-full border-[3px] border-ink bg-paper px-3 py-2" />
-        </label>
-        <label className="block min-w-0">
-          <FieldLabel>Email</FieldLabel>
-          <input id="batch-email" className="w-full border-[3px] border-ink bg-paper px-3 py-2" />
-        </label>
+        {Object.keys(draft.answers).length > 0 ? (
+          <Button
+            variant="ghost"
+            className="!min-h-[34px] !py-1"
+            onClick={async () => {
+              if (
+                await ask({
+                  title: "Clear the unlock sheet?",
+                  body: "Every answer typed or imported here goes. The passes themselves are untouched.",
+                  confirmLabel: "Clear the sheet",
+                  tone: "danger",
+                })
+              ) {
+                clearUnlock();
+                notifyInfo("Sheet cleared");
+              }
+            }}
+          >
+            Clear the sheet
+          </Button>
+        ) : null}
+      </div>
+
+      <p className="mb-2 max-w-[76ch] leading-snug text-ink/55" style={{ fontSize: "0.72rem" }}>
+        The generated template already contains the pass number and the name, so filling it in
+        proves three of the four fields a pass number is built from rather than all four. The blank
+        template and the single-pass check still ask for all four. The five columns are the pass
+        number and the four fields it is built from; nothing else is asked for, because nothing
+        else would change what comes out.
+      </p>
+
+      {/* One row per selected pass. A team pass needs only the team and the
+          lead's handle, so the fields it does not use are disabled rather than
+          hidden: a gap in a table reads as a bug. */}
+      <div className="max-h-[42vh] overflow-auto border-[2px] border-ink/25 bg-paper/60">
+        <table className="w-full border-collapse" style={{ fontSize: "0.72rem" }}>
+          <thead className="sticky top-0 bg-paper">
+            <tr className="text-left">
+              {["Pass", "Name", "@handle", "Team", "Email", ""].map((head) => (
+                <th
+                  key={head}
+                  className="border-b-[2px] border-ink/25 px-1.5 py-1 font-[family-name:var(--font-mono)] font-bold tracking-[0.1em] text-ink/55"
+                >
+                  {head}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {passes.map((pass) => {
+              const answer = draft.answers[pass.id] ?? EMPTY_ANSWER;
+              const team = pass.format === "team";
+              const ready = isComplete(pass, answer);
+              return (
+                <tr key={pass.id} className="border-b-[1px] border-ink/10">
+                  <td className="whitespace-nowrap px-1.5 py-1 font-[family-name:var(--font-mono)] font-bold">
+                    {pass.id}
+                  </td>
+                  {(["name", "handle", "team", "email"] as const).map((field) => {
+                    const unused = team && (field === "name" || field === "email");
+                    return (
+                      <td key={field} className="px-1 py-1">
+                        <input
+                          value={answer[field]}
+                          disabled={unused}
+                          aria-label={`${field} for ${pass.id}`}
+                          placeholder={unused ? "not used" : ""}
+                          onChange={(event) => setAnswer(pass.id, { [field]: event.target.value })}
+                          className="w-full min-w-[7rem] border-[2px] border-ink/40 bg-paper px-1.5 py-1 disabled:opacity-40"
+                          style={{ fontSize: "0.72rem" }}
+                        />
+                      </td>
+                    );
+                  })}
+                  <td className="px-1.5 py-1 text-center">
+                    <span
+                      title={ready ? "Ready to check" : "Incomplete"}
+                      className={ready ? "text-palm" : "text-ink/30"}
+                      aria-label={ready ? "Ready to check" : "Incomplete"}
+                    >
+                      {ready ? "●" : "○"}
+                    </span>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
       </div>
 
       <div className="mt-3 flex flex-wrap items-center gap-3">
