@@ -360,30 +360,30 @@ export builds its own font embed stylesheet to avoid this; if it recurs, check
 
 ## 10. Licence
 
-**Copyright © 2026 0neHackers ([@shanzalfiroz](https://x.com/shanzalfiroz)). All rights
-reserved.**
+**MIT.** Copyright © 2026 0neHackers ([@shanzalfiroz](https://x.com/shanzalfiroz)).
+Full text in [`LICENSE`](LICENSE); exclusions in [`NOTICE`](NOTICE).
 
-This is **not** open source. No permission is granted to copy, modify, distribute, publish,
-sublicense or create derivative works from this source, in whole or in part, without written
-permission from the copyright holder.
+Use it, fork it, change it, ship it, sell it. The one condition is that the copyright notice
+and the permission notice travel with any substantial copy. There is no warranty.
 
-Deliberately not an OSS licence. An open licence cannot be taken back once granted, and this
-was built as a submission and a portfolio piece rather than as something to be forked. It can
-be opened later; it cannot be closed later.
+Earlier revisions of this file said "all rights reserved". That was true up to V7.3, when the
+repository was private. It went public with the V7.3 release and MIT replaced it. MIT was
+chosen over Apache-2.0 because the project is small enough that a patent grant is beside the
+point, and over AGPL because nothing here is worth defending with copyleft — it is a badge
+generator, and it is more useful to people if they can lift a piece of it without reading a
+licence twice.
 
-**What this does not do.** It does not stop anyone using the deployed site, which is the
-point of the deployment and what the task brief requires. It does not conceal the client
-bundle either, because a web app has to send its JavaScript to the browser. What it reserves
-is the right to the source, the design and the work, not the right to visit the page.
+**What MIT does not change.** It never covered the deployed site's availability, which stays
+public because the brief requires it. It does not cover the third-party material below.
 
 ### What this licence does not cover
 
-Three categories inside this folder are not mine to license, and the notice above does not
-extend to them.
+Three categories inside this folder are not mine to license, and the grant above does not
+extend to them. This is the short version; [`NOTICE`](NOTICE) is the authoritative one.
 
 | What | Whose | Terms |
 | ---- | ----- | ----- |
-| `public/brand/hacker-house.png`, `goa-devanagari.svg`, `247pm-studio.svg` | Hacker House Goa and 2:47 PM Studio | Used to identify the event this was built for. **Delete them if this code is reused for anything else.** See `public/brand/README.md`. |
+| `public/brand/hacker-house.png`, `goa-devanagari.svg`, `247pm-studio.svg` | Hacker House Goa and 2:47 PM Studio | Trademarks. Included only to identify the event this was built for. **MIT grants you no rights to these — delete them if you fork this for anything else.** See `public/brand/README.md`. |
 | `public/fonts/CalSans-SemiBold.woff2` | Cal Sans | MIT |
 | `public/fonts/VictorMono-*.woff2`, `Imbue-*.woff2` | Victor Mono, Imbue | SIL OFL 1.1. The licence text must travel with the font files if they are redistributed. |
 

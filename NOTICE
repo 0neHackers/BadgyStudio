@@ -1,0 +1,62 @@
+Badgy Studio
+Copyright (c) 2026 0neHackers
+
+This product is licensed under the MIT License. See the LICENSE file.
+
+================================================================================
+WHAT THE MIT LICENCE DOES NOT COVER
+================================================================================
+
+The MIT grant applies to this project's own source code. It does not, and
+cannot, grant rights to material owned by other people that ships in this
+repository. Three categories are excluded.
+
+--------------------------------------------------------------------------------
+1. EVENT BRAND ASSETS AND TRADEMARKS  --  NOT LICENSED, DO NOT REUSE
+--------------------------------------------------------------------------------
+
+  public/brand/hacker-house.png
+  public/brand/goa-devanagari.svg
+  public/brand/247pm-studio.svg
+
+These are the marks of Hacker House Goa and 2:47 PM Studio. They are included
+solely to identify the event this tool was built for, as an entry to the
+HH Goa 2026 Open Trials. No trademark licence is granted by the MIT licence or
+by this notice, and none is implied.
+
+  If you fork this project for any other purpose, DELETE THESE FILES and
+  replace them with your own marks.
+
+The same applies to the event name, the "#FrameInGoa" hashtag, and the wordmarks
+rendered in the badge layouts. See public/brand/README.md.
+
+--------------------------------------------------------------------------------
+2. FONTS  --  LICENSED, BUT UNDER THEIR OWN TERMS
+--------------------------------------------------------------------------------
+
+  public/fonts/CalSans-SemiBold.woff2          Cal Sans          MIT
+  public/fonts/VictorMono-*.woff2              Victor Mono       SIL OFL 1.1
+  public/fonts/Imbue-*.woff2                   Imbue             SIL OFL 1.1
+
+SIL OFL 1.1 requires its licence text to travel with the font files if they are
+redistributed. Keep it with them.
+
+--------------------------------------------------------------------------------
+3. NPM DEPENDENCIES
+--------------------------------------------------------------------------------
+
+Every dependency keeps its own licence; `npm ls --long` lists them. All are MIT
+or similarly permissive, and none impose terms on this project's own source.
+
+================================================================================
+ORIGINAL ARTWORK
+================================================================================
+
+The sun, palm and perforation marks in src/components/Marks.tsx are drawn in
+code rather than copied. The event site's illustrations are original artwork
+rather than identity marks, and there is a difference between using someone's
+logo to identify their event and lifting their illustrator's work.
+
+================================================================================
+
+Not legal advice. If any of this matters commercially, have a lawyer read it.
